@@ -1,6 +1,6 @@
 //Maya ASCII 2018 scene
 //Name: IKLamp.ma
-//Last modified: Wed, Mar 06, 2019 10:37:52 AM
+//Last modified: Wed, Mar 06, 2019 09:51:52 PM
 //Codeset: 1252
 file -rdi 1 -ns "lamp_model" -rfn "lamp_modelRN" -op "v=0;" -typ "mayaAscii"
 		 "E:/School/Spring2019/DGM2211/Rigging//scenes/Lamps/01-lamp_model.ma";
@@ -16,13 +16,13 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "CCADA3B5-4BBB-3408-2EB3-6C972AB31738";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 9.0178146471498266 14.096557238034265 -42.714832346142991 ;
-	setAttr ".r" -type "double3" -13.538352729612242 -545.79999999968311 0 ;
+	setAttr ".t" -type "double3" 3.7129675919789626 14.716942904792953 -80.128794204770742 ;
+	setAttr ".r" -type "double3" -6.9383527295580993 -544.59999999962224 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "BDDF4396-4786-1B9A-6E3D-A998160C7950";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 49.079354304499475;
+	setAttr ".coi" 84.71617450082762;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -78,26 +78,26 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr ".hc" -type "string" "viewSet -s %camera";
 	setAttr ".o" yes;
 	setAttr ".ai_translator" -type "string" "orthographic";
-createNode transform -n "IKRig";
+createNode transform -n "IK_With_Base";
 	rename -uid "CF3F412B-422E-31FB-E231-509F1275C179";
-createNode transform -n "Joints" -p "IKRig";
+createNode transform -n "Joints" -p "IK_With_Base";
 	rename -uid "B241825F-436B-D4F6-F66A-369C96F80320";
-createNode joint -n "Base_Jnt" -p "|IKRig|Joints";
+createNode joint -n "Base_Jnt" -p "|IK_With_Base|Joints";
 	rename -uid "F42638B5-4B83-CC08-51F4-6F9A9905D28B";
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".dla" yes;
 	setAttr ".jot" -type "string" "xzy";
 	setAttr ".jo" -type "double3" -179.99999999999866 0.22585136580161738 90.000000231204027 ;
-createNode joint -n "Lower_Arm_Jnt" -p "|IKRig|Joints|Base_Jnt";
+createNode joint -n "Lower_Arm_Jnt" -p "|IK_With_Base|Joints|Base_Jnt";
 	rename -uid "551EE8E6-4D35-A649-F38A-D0800FED6107";
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".dla" yes;
 	setAttr ".jot" -type "string" "xzy";
-	setAttr ".jo" -type "double3" 0.17047577396521868 0.14814603122747483 49.009194062388957 ;
+	setAttr ".jo" -type "double3" 0.17047577396521862 0.14814603122747483 49.009194062388957 ;
 	setAttr ".radi" 1.231507755619526;
-createNode joint -n "Upper_Arm_Jnt" -p "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt";
+createNode joint -n "Upper_Arm_Jnt" -p "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt";
 	rename -uid "71959100-418D-1AAF-3373-2CBB718710B0";
 	setAttr ".t" -type "double3" 15.244422114103015 -8.8817841970012523e-16 3.4694469519536142e-18 ;
 	setAttr ".r" -type "double3" 4.5535712631355946e-19 -0.0002497440931985018 3.7264341719984111e-07 ;
@@ -108,18 +108,18 @@ createNode joint -n "Upper_Arm_Jnt" -p "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt";
 	setAttr ".jo" -type "double3" 0 0.029971626123383138 -99.175183881113441 ;
 	setAttr ".pa" -type "double3" 0 0 5 ;
 	setAttr ".radi" 1.3222514778694734;
-createNode joint -n "Head_Jnt" -p "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt";
+createNode joint -n "Head_Jnt" -p "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt";
 	rename -uid "E55FFF23-456B-A500-58D7-EC879035D5DB";
 	setAttr ".t" -type "double3" 16.849108551463502 7.1054273576010019e-15 1.7347234759768071e-18 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".dla" yes;
 	setAttr ".radi" 1.3222514778694734;
-createNode ikEffector -n "effector1" -p "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt";
+createNode ikEffector -n "effector1" -p "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt";
 	rename -uid "999C5D3D-49DB-326C-B679-EDADD2E9613D";
 	setAttr ".v" no;
 	setAttr ".hd" yes;
-createNode parentConstraint -n "Lower_Arm_Jnt_parentConstraint1" -p "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt";
+createNode parentConstraint -n "Lower_Arm_Jnt_parentConstraint1" -p "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt";
 	rename -uid "82CB441E-4ECE-0038-337F-5D9745A4C0E1";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Root_ctrlW0" -dv 1 -min 0 -at "double";
 	setAttr -k on ".nds";
@@ -137,11 +137,11 @@ createNode parentConstraint -n "Lower_Arm_Jnt_parentConstraint1" -p "|IKRig|Join
 	setAttr ".tg[0].tot" -type "double3" 4.963083675318166e-24 0 3.4694469519536142e-18 ;
 	setAttr ".tg[0].tor" -type "double3" -179.99999999940772 -1.1194259434433544e-06 
 		40.991026564913987 ;
-	setAttr ".lr" -type "double3" 1.2610402381840586e-14 -1.1194259434247186e-06 -3.225227970306243e-15 ;
+	setAttr ".lr" -type "double3" 1.2622826547846534e-14 -1.1194259434247186e-06 -1.5947470961988174e-14 ;
 	setAttr ".rst" -type "double3" 2.2360458719043548 9.5118669925220027e-17 1.3010426069826053e-18 ;
 	setAttr ".rsrr" -type "double3" 1.2610402381840586e-14 -1.1194259434247186e-06 -3.225227970306243e-15 ;
 	setAttr -k on ".w0";
-createNode parentConstraint -n "Base_Jnt_parentConstraint1" -p "|IKRig|Joints|Base_Jnt";
+createNode parentConstraint -n "Base_Jnt_parentConstraint1" -p "|IK_With_Base|Joints|Base_Jnt";
 	rename -uid "8D6B6ACB-4748-B8CB-7D54-4A9EA26E0E92";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Base_ctrlW0" -dv 1 -min 0 -at "double";
 	setAttr -k on ".nds";
@@ -162,7 +162,7 @@ createNode parentConstraint -n "Base_Jnt_parentConstraint1" -p "|IKRig|Joints|Ba
 	setAttr ".rst" -type "double3" 9.02298147309466e-09 0.57817523928221348 8.2367810350092441e-09 ;
 	setAttr ".rsrr" -type "double3" 4.9696166897867449e-17 -5.5173828725626996e-33 1.2722218725854067e-14 ;
 	setAttr -k on ".w0";
-createNode scaleConstraint -n "Base_Jnt_scaleConstraint1" -p "|IKRig|Joints|Base_Jnt";
+createNode scaleConstraint -n "Base_Jnt_scaleConstraint1" -p "|IK_With_Base|Joints|Base_Jnt";
 	rename -uid "77775287-4035-DFAB-CB69-C3B5980B86D6";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Base_ctrlW0" -dv 1 -min 0 -at "double";
 	setAttr -k on ".nds";
@@ -178,9 +178,9 @@ createNode scaleConstraint -n "Base_Jnt_scaleConstraint1" -p "|IKRig|Joints|Base
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
 	setAttr -k on ".w0";
-createNode transform -n "Controls" -p "IKRig";
+createNode transform -n "Controls" -p "IK_With_Base";
 	rename -uid "90F03B24-437A-07BC-DA85-2AA58AC633D0";
-createNode transform -n "Transform_Ctrl_Grp" -p "|IKRig|Controls";
+createNode transform -n "Transform_Ctrl_Grp" -p "|IK_With_Base|Controls";
 	rename -uid "A9DBD3A0-4FF5-3DE9-0DAE-CAAEC7FF70D0";
 createNode transform -n "Transform_ctrl" -p "Transform_Ctrl_Grp";
 	rename -uid "E621E9E7-4E66-DF9F-0107-55B21B2F35C1";
@@ -198,12 +198,35 @@ createNode nurbsCurve -n "Transform_ctrlShape" -p "Transform_ctrl";
 		-10.135583260442013 -6.2062547986959026e-16 10.135583260442013
 		-1.4358344938194333e-15 -8.7769697078588512e-16 14.333879309478812
 		10.135583260442013 -6.2062547986959016e-16 10.135583260442012
-		14.33387930947881 -1.196912260107316e-31 1.9547060604586612e-15
+		14.33387930947881 -1.1969122601073162e-31 1.9547060604586612e-15
 		10.135583260442013 6.2062547986959036e-16 -10.135583260442013
 		8.7769697078588443e-16 8.7769697078588443e-16 -14.333879309478803
 		-10.135583260442013 6.2062547986959016e-16 -10.135583260442012
 		;
-createNode transform -n "Base_ctrl_grp" -p "Transform_ctrl";
+createNode transform -n "COG_Ctrl_Grp" -p "Transform_ctrl";
+	rename -uid "4A2EB0C0-49E2-841D-2C75-DDB37C078C53";
+createNode transform -n "COG_ctrl" -p "COG_Ctrl_Grp";
+	rename -uid "91C9738F-48ED-54BF-A99E-DDA3A802C620";
+createNode nurbsCurve -n "COG_ctrlShape" -p "COG_ctrl";
+	rename -uid "D6DC8F06-4E5B-4AE6-C537-15AF581F6495";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		9.2748413387185682 5.6792023790306249e-16 -9.2748413387185682
+		8.0316050278866514e-16 8.0316050278866514e-16 -13.116606410074429
+		-9.2748413387185682 5.6792023790306229e-16 -9.2748413387185682
+		-13.116606410074434 4.1635982292081013e-32 -6.79967192517379e-16
+		-9.2748413387185682 -5.6792023790306239e-16 9.2748413387185682
+		-1.3138994349550409e-15 -8.0316050278866573e-16 13.116606410074436
+		9.2748413387185682 -5.6792023790306229e-16 9.2748413387185682
+		13.116606410074434 -1.09526714187125e-31 1.7887069849589571e-15
+		9.2748413387185682 5.6792023790306249e-16 -9.2748413387185682
+		8.0316050278866514e-16 8.0316050278866514e-16 -13.116606410074429
+		-9.2748413387185682 5.6792023790306229e-16 -9.2748413387185682
+		;
+createNode transform -n "Base_ctrl_grp" -p "COG_ctrl";
 	rename -uid "536879AB-4F49-05F7-586B-4FA10C98C244";
 	setAttr ".rp" -type "double3" 9.0229814730946633e-09 0.57817524671554521 8.2367810350092408e-09 ;
 	setAttr ".sp" -type "double3" 9.0229814730946584e-09 0.57817524671554554 8.2367810350092424e-09 ;
@@ -3269,7 +3292,7 @@ createNode parentConstraint -n "lower_arm_geo_parentConstraint2" -p "lower_arm_g
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
 	setAttr ".tg[0].tot" -type "double3" 7.2999420643891986 0.29121597352166351 0.00075055095702396268 ;
-	setAttr ".tg[0].tor" -type "double3" 179.99902475336862 -0.0067644527226023475 40.99102403748163 ;
+	setAttr ".tg[0].tor" -type "double3" 179.99902475336864 -0.0067644527226023475 40.99102403748163 ;
 	setAttr ".lr" -type "double3" -4.0999337690740647e-15 2.48480834489335e-17 -6.3611093629270335e-15 ;
 	setAttr ".rst" -type "double3" -1.2612133559741778e-13 1.4832579608992091e-13 6.070112641698433e-11 ;
 	setAttr ".rsrr" -type "double3" -4.0999337690740647e-15 2.48480834489335e-17 -6.3611093629270335e-15 ;
@@ -4846,7 +4869,7 @@ createNode parentConstraint -n "Head_Jnt_parentConstraint1" -p "|FKRig|Joints|Ba
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".tg[0].tot" -type "double3" -0.16854037999683769 -0.20531390388780224 -4.456332073350406e-05 ;
+	setAttr ".tg[0].tot" -type "double3" -0.16854037999683769 -0.20531390388780224 -4.4563320733504066e-05 ;
 	setAttr ".tg[0].tor" -type "double3" 179.99452215876047 -0.024622528422638006 141.06950493848805 ;
 	setAttr ".lr" -type "double3" -7.6221495979604201e-15 4.65901564667592e-18 1.2722218725854067e-14 ;
 	setAttr ".rst" -type "double3" 16.849108551463509 1.4210854715202004e-14 3.4694469519536142e-18 ;
@@ -5097,7 +5120,23 @@ createNode nurbsCurve -n "head_ctrlShape" -p "head_ctrl";
 		-1.7922555866503318 4.606459325816588 -0.008814126253127148
 		;
 createNode fosterParent -n "lamp_modelRNfosterParent1";
-	rename -uid "6C86E6D3-4DD6-DD2D-D4C5-749929BD0FE8";
+	rename -uid "3790FFA6-411D-1FDA-07D1-FDAF2B512DFB";
+createNode scaleConstraint -n "head_geo_scaleConstraint1" -p "lamp_modelRNfosterParent1";
+	rename -uid "5A6C0276-48D5-2437-4212-709284BA995D";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Head_JntW0" -dv 1 -min 0 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr -k on ".w0";
 createNode parentConstraint -n "head_geo_parentConstraint1" -p "lamp_modelRNfosterParent1";
 	rename -uid "E82D6AEB-4F32-79B6-F38C-9CBD87133A7B";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Head_JntW0" -dv 1 -min 0 -at "double";
@@ -5115,13 +5154,13 @@ createNode parentConstraint -n "head_geo_parentConstraint1" -p "lamp_modelRNfost
 	setAttr ".erp" yes;
 	setAttr ".tg[0].tot" -type "double3" 0.19054345743834489 -0.043367787049803042 0.0088939838475592305 ;
 	setAttr ".tg[0].tor" -type "double3" 179.98031303998056 0.016359078537828694 140.16620623672614 ;
-	setAttr ".lr" -type "double3" 1.7468961726959732e-09 9.0802685942409958e-10 1.4694162766786012e-12 ;
+	setAttr ".lr" -type "double3" 1.7468961571659211e-09 9.0802684078803708e-10 1.4694162766786006e-12 ;
 	setAttr ".rst" -type "double3" -2.2204460492503131e-15 -7.1054273576010019e-15 0 ;
 	setAttr ".rsrr" -type "double3" -1.983187660268022e-15 -1.4031402122569763e-14 -6.3611093629270335e-15 ;
 	setAttr -k on ".w0";
-createNode scaleConstraint -n "head_geo_scaleConstraint1" -p "lamp_modelRNfosterParent1";
-	rename -uid "5A6C0276-48D5-2437-4212-709284BA995D";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Head_JntW0" -dv 1 -min 0 -at "double";
+createNode scaleConstraint -n "upper_arm_geo_scaleConstraint1" -p "lamp_modelRNfosterParent1";
+	rename -uid "7C44AF8E-46F9-257C-43EE-87A71656CAE7";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Upper_Arm_JntW0" -dv 1 -min 0 -at "double";
 	setAttr -k on ".nds";
 	setAttr -k off ".v";
 	setAttr -k off ".tx";
@@ -5153,13 +5192,13 @@ createNode parentConstraint -n "upper_arm_geo_parentConstraint1" -p "lamp_modelR
 	setAttr ".tg[0].tot" -type "double3" 7.4348124323719844e-09 5.3278082390306736e-08 
 		0.0014111009039370209 ;
 	setAttr ".tg[0].tor" -type "double3" 179.98031303998056 0.016359078537819243 140.16620623672611 ;
-	setAttr ".lr" -type "double3" 1.7468965757008263e-09 9.0802543687132217e-10 1.4630551673156552e-12 ;
+	setAttr ".lr" -type "double3" 1.7468965593942716e-09 9.0802545550738477e-10 1.4630551673156554e-12 ;
 	setAttr ".rst" -type "double3" -1.7763568394002505e-15 -3.5527136788005009e-15 -2.9490299091605721e-17 ;
 	setAttr ".rsrr" -type "double3" 6.625896752179732e-15 6.9885234700137125e-18 -1.9083328088781097e-14 ;
 	setAttr -k on ".w0";
-createNode scaleConstraint -n "upper_arm_geo_scaleConstraint1" -p "lamp_modelRNfosterParent1";
-	rename -uid "7C44AF8E-46F9-257C-43EE-87A71656CAE7";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Upper_Arm_JntW0" -dv 1 -min 0 -at "double";
+createNode scaleConstraint -n "lower_arm_geo_scaleConstraint1" -p "lamp_modelRNfosterParent1";
+	rename -uid "9BEB418D-4161-972D-6729-32A0AB32FB0D";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Lower_Arm_JntW0" -dv 1 -min 0 -at "double";
 	setAttr -k on ".nds";
 	setAttr -k off ".v";
 	setAttr -k off ".tx";
@@ -5172,6 +5211,28 @@ createNode scaleConstraint -n "upper_arm_geo_scaleConstraint1" -p "lamp_modelRNf
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
+	setAttr -k on ".w0";
+createNode parentConstraint -n "lower_arm_geo_parentConstraint1" -p "lamp_modelRNfosterParent1";
+	rename -uid "AAD3D497-4B9C-145D-F8B7-94A7FEB0C5EE";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Lower_Arm_JntW0" -dv 1 -min 0 -at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr ".tg[0].tot" -type "double3" 7.5530127256933444 -6.4364625185220348e-07 
+		0.00069899782130343653 ;
+	setAttr ".tg[0].tor" -type "double3" 179.9993517695307 -0.0064645288902023118 40.991023999535308 ;
+	setAttr ".lr" -type "double3" 1.7469041287416925e-09 9.0803680719900737e-10 1.4948607141305234e-12 ;
+	setAttr ".rst" -type "double3" 8.8817841970012523e-16 8.8817841970012523e-16 -1.7347234759768071e-18 ;
+	setAttr ".rsrr" -type "double3" 1.1181637552020173e-15 -2.484808344893378e-17 6.361109362927032e-15 ;
 	setAttr -k on ".w0";
 createNode mesh -n "lower_arm_geoShapeDeformed" -p "lamp_modelRNfosterParent1";
 	rename -uid "ADB8FFAA-4134-75EA-20E8-5BBC8057285A";
@@ -5556,9 +5617,9 @@ createNode mesh -n "lower_arm_geoShapeDeformed" -p "lamp_modelRNfosterParent1";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
-createNode parentConstraint -n "lower_arm_geo_parentConstraint1" -p "lamp_modelRNfosterParent1";
-	rename -uid "AAD3D497-4B9C-145D-F8B7-94A7FEB0C5EE";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Lower_Arm_JntW0" -dv 1 -min 0 -at "double";
+createNode scaleConstraint -n "base_geo_scaleConstraint1" -p "lamp_modelRNfosterParent1";
+	rename -uid "05897911-461E-CA9E-CBC9-1BBB5F9F4869";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Base_JntW0" -dv 1 -min 0 -at "double";
 	setAttr -k on ".nds";
 	setAttr -k off ".v";
 	setAttr -k off ".tx";
@@ -5571,16 +5632,10 @@ createNode parentConstraint -n "lower_arm_geo_parentConstraint1" -p "lamp_modelR
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".tg[0].tot" -type "double3" 7.5530127256933444 -6.4364625185220348e-07 
-		0.00069899782130343653 ;
-	setAttr ".tg[0].tor" -type "double3" 179.9993517695307 -0.0064645288902023118 40.991023999535308 ;
-	setAttr ".lr" -type "double3" 1.746904153589776e-09 9.0803680719900737e-10 1.4948607141305236e-12 ;
-	setAttr ".rst" -type "double3" 8.8817841970012523e-16 8.8817841970012523e-16 -1.7347234759768071e-18 ;
-	setAttr ".rsrr" -type "double3" 1.1181637552020173e-15 -2.484808344893378e-17 6.361109362927032e-15 ;
 	setAttr -k on ".w0";
-createNode scaleConstraint -n "lower_arm_geo_scaleConstraint1" -p "lamp_modelRNfosterParent1";
-	rename -uid "9BEB418D-4161-972D-6729-32A0AB32FB0D";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Lower_Arm_JntW0" -dv 1 -min 0 -at "double";
+createNode parentConstraint -n "base_geo_parentConstraint1" -p "lamp_modelRNfosterParent1";
+	rename -uid "3198BCD1-4ACD-55C7-4DA5-F38055388594";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Base_JntW0" -dv 1 -min 0 -at "double";
 	setAttr -k on ".nds";
 	setAttr -k off ".v";
 	setAttr -k off ".tx";
@@ -5593,6 +5648,13 @@ createNode scaleConstraint -n "lower_arm_geo_scaleConstraint1" -p "lamp_modelRNf
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
+	setAttr ".tg[0].tot" -type "double3" 1.0735824768884106 -4.6907513887021436e-09 
+		-0.0042319147184280669 ;
+	setAttr ".tg[0].tor" -type "double3" -179.77414863419838 -9.1003910068758035e-10 
+		90.000000231202236 ;
+	setAttr ".lr" -type "double3" 6.0380842497003809e-15 -9.1003205860381258e-10 3.5749434619649443e-12 ;
+	setAttr ".rst" -type "double3" 0 0 -8.6736173798840355e-19 ;
+	setAttr ".rsrr" -type "double3" 6.0629323330987983e-15 -9.1003203375572915e-10 3.5813045713278705e-12 ;
 	setAttr -k on ".w0";
 createNode mesh -n "base_geoShapeDeformed" -p "lamp_modelRNfosterParent1";
 	rename -uid "89309828-4FE8-0870-2681-A5BC8596ECBA";
@@ -6128,59 +6190,20 @@ createNode mesh -n "base_geoShapeDeformed" -p "lamp_modelRNfosterParent1";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
-createNode parentConstraint -n "base_geo_parentConstraint1" -p "lamp_modelRNfosterParent1";
-	rename -uid "3198BCD1-4ACD-55C7-4DA5-F38055388594";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Base_JntW0" -dv 1 -min 0 -at "double";
-	setAttr -k on ".nds";
-	setAttr -k off ".v";
-	setAttr -k off ".tx";
-	setAttr -k off ".ty";
-	setAttr -k off ".tz";
-	setAttr -k off ".rx";
-	setAttr -k off ".ry";
-	setAttr -k off ".rz";
-	setAttr -k off ".sx";
-	setAttr -k off ".sy";
-	setAttr -k off ".sz";
-	setAttr ".erp" yes;
-	setAttr ".tg[0].tot" -type "double3" 1.0735824768884106 -4.6907513887021436e-09 
-		-0.0042319147184280669 ;
-	setAttr ".tg[0].tor" -type "double3" -179.77414863419838 -9.1003910068758035e-10 
-		90.000000231202236 ;
-	setAttr ".lr" -type "double3" 6.0629323330987983e-15 -9.1003203375572915e-10 3.5813045713278705e-12 ;
-	setAttr ".rst" -type "double3" 0 0 -8.6736173798840355e-19 ;
-	setAttr ".rsrr" -type "double3" 6.0629323330987983e-15 -9.1003203375572915e-10 3.5813045713278705e-12 ;
-	setAttr -k on ".w0";
-createNode scaleConstraint -n "base_geo_scaleConstraint1" -p "lamp_modelRNfosterParent1";
-	rename -uid "05897911-461E-CA9E-CBC9-1BBB5F9F4869";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Base_JntW0" -dv 1 -min 0 -at "double";
-	setAttr -k on ".nds";
-	setAttr -k off ".v";
-	setAttr -k off ".tx";
-	setAttr -k off ".ty";
-	setAttr -k off ".tz";
-	setAttr -k off ".rx";
-	setAttr -k off ".ry";
-	setAttr -k off ".rz";
-	setAttr -k off ".sx";
-	setAttr -k off ".sy";
-	setAttr -k off ".sz";
-	setAttr ".erp" yes;
-	setAttr -k on ".w0";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "D372B95E-4BDF-EBA3-E1E1-0CAF901EA967";
+	rename -uid "18E18207-433A-0C9C-1211-20B3B41A9980";
 	setAttr -s 2 ".lnk";
 	setAttr -s 2 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "35AC606F-49D2-5530-221F-87AF53F8F6A7";
+	rename -uid "B985DCE2-463D-B7FB-7180-269D50E680EB";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "E6EF1479-418B-3177-B50F-8BBA2F7BBE9F";
+	rename -uid "9B273149-4263-60ED-27AA-9A825FA3A90A";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "C82FD360-44D3-E52D-1B88-429CA6991521";
+	rename -uid "3CB05891-467E-2FC2-9408-66BF48D4E71B";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "50A4CCAA-4824-58F6-23B9-67AC12790A34";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "CAA598E2-4350-C6EE-6392-22B905661824";
+	rename -uid "4F92A49C-4577-1246-DC5A-40B740E648D1";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "5BD7B777-4E45-A1D7-3F44-E0AF2FEDF4FD";
 	setAttr ".g" yes;
@@ -6252,1191 +6275,217 @@ createNode reference -n "lamp_modelRN";
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"lamp_modelRN"
 		"lamp_modelRN" 0
-		"lamp_modelRN" 510
-		0 "|lamp_model:Geometry" "|IKRig" "-s -r "
-		0 "|lamp_modelRNfosterParent1|base_geo_scaleConstraint1" "|IKRig|lamp_model:Geometry|lamp_model:base_geo" 
+		"lamp_modelRN" 106
+		0 "|lamp_model:Geometry" "|IK_With_Base" "-s -r "
+		0 "|lamp_modelRNfosterParent1|base_geoShapeDeformed" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo" 
 		"-s -r "
-		0 "|lamp_modelRNfosterParent1|base_geo_parentConstraint1" "|IKRig|lamp_model:Geometry|lamp_model:base_geo" 
+		0 "|lamp_modelRNfosterParent1|base_geo_parentConstraint1" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo" 
 		"-s -r "
-		0 "|lamp_modelRNfosterParent1|base_geoShapeDeformed" "|IKRig|lamp_model:Geometry|lamp_model:base_geo" 
+		0 "|lamp_modelRNfosterParent1|base_geo_scaleConstraint1" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo" 
 		"-s -r "
-		0 "|lamp_modelRNfosterParent1|lower_arm_geo_scaleConstraint1" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo" 
+		0 "|lamp_modelRNfosterParent1|lower_arm_geoShapeDeformed" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo" 
 		"-s -r "
-		0 "|lamp_modelRNfosterParent1|lower_arm_geo_parentConstraint1" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo" 
+		0 "|lamp_modelRNfosterParent1|lower_arm_geo_parentConstraint1" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo" 
 		"-s -r "
-		0 "|lamp_modelRNfosterParent1|lower_arm_geoShapeDeformed" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo" 
+		0 "|lamp_modelRNfosterParent1|lower_arm_geo_scaleConstraint1" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo" 
 		"-s -r "
-		0 "|lamp_modelRNfosterParent1|upper_arm_geo_scaleConstraint1" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo" 
+		0 "|lamp_modelRNfosterParent1|upper_arm_geo_parentConstraint1" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo" 
 		"-s -r "
-		0 "|lamp_modelRNfosterParent1|upper_arm_geo_parentConstraint1" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo" 
+		0 "|lamp_modelRNfosterParent1|upper_arm_geo_scaleConstraint1" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo" 
 		"-s -r "
-		0 "|lamp_modelRNfosterParent1|head_geo_scaleConstraint1" "|IKRig|lamp_model:Geometry|lamp_model:head_geo" 
+		0 "|lamp_modelRNfosterParent1|head_geo_parentConstraint1" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo" 
 		"-s -r "
-		0 "|lamp_modelRNfosterParent1|head_geo_parentConstraint1" "|IKRig|lamp_model:Geometry|lamp_model:head_geo" 
+		0 "|lamp_modelRNfosterParent1|head_geo_scaleConstraint1" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo" 
 		"-s -r "
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
 		"intermediateObject" " 1"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
 		"uvPivot" " -type \"double2\" 0.5 0.5"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
 		"uvSet[0].uvSetName" " -type \"string\" \"map1\""
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints" " -s 247"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[0]" " -type \"float2\" 0.3958334 0.31474133999999998"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[1]" " -type \"float2\" 0.375 0.68619841000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[2]" " -type \"float2\" 0.41666669000000001 0.31474137000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[3]" " -type \"float2\" 0.39583337000000002 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[4]" " -type \"float2\" 0.4375 0.3147414"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[5]" " -type \"float2\" 0.41666669000000001 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[6]" " -type \"float2\" 0.45833337000000002 0.31474137000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[7]" " -type \"float2\" 0.4375 0.68619834999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[8]" " -type \"float2\" 0.47916671999999999 0.31474137000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[9]" " -type \"float2\" 0.45833337000000002 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[10]" " -type \"float2\" 0.5 0.3147414"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[11]" " -type \"float2\" 0.47916671999999999 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[12]" " -type \"float2\" 0.52083336999999996 0.31474137000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[13]" " -type \"float2\" 0.49999997000000002 0.68619834999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[14]" " -type \"float2\" 0.54166674999999997 0.31474133999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[15]" " -type \"float2\" 0.52083336999999996 0.68619817000000005"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[16]" " -type \"float2\" 0.5625 0.31474163999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[17]" " -type \"float2\" 0.54166669000000001 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[18]" " -type \"float2\" 0.58333336999999996 0.31474133999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[19]" " -type \"float2\" 0.5625 0.68619841000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[20]" " -type \"float2\" 0.60416663000000004 0.31474137000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[21]" " -type \"float2\" 0.58333343000000004 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[22]" " -type \"float2\" 0.62499994000000003 0.3147414"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[23]" " -type \"float2\" 0.60416669000000001 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[24]" " -type \"float2\" 0.62178617999999997 0.085311263999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[25]" " -type \"float2\" 0.57031321999999995 0.033839020999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[26]" " -type \"float2\" 0.5 0.014998627"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[27]" " -type \"float2\" 0.42968677999999999 0.033839020999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[28]" " -type \"float2\" 0.37821381999999998 0.085311263999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[29]" " -type \"float2\" 0.35937342 0.15562506000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[30]" " -type \"float2\" 0.37821385000000002 0.22593833999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[31]" " -type \"float2\" 0.42968677999999999 0.27741110000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[32]" " -type \"float2\" 0.5 0.29625148000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[33]" " -type \"float2\" 0.57031321999999995 0.27741110000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[34]" " -type \"float2\" 0.62178617999999997 0.22593833999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[35]" " -type \"float2\" 0.5 0.15000000999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[36]" " -type \"float2\" 0.64062655000000002 0.15562506000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[37]" " -type \"float2\" 0.57031321999999995 0.96491110000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[38]" " -type \"float2\" 0.5 0.98375148000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[39]" " -type \"float2\" 0.42968677999999999 0.96491110000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[40]" " -type \"float2\" 0.37821381999999998 0.91343892000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[41]" " -type \"float2\" 0.35937342 0.84312505000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[42]" " -type \"float2\" 0.37821385000000002 0.77281177000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[43]" " -type \"float2\" 0.42968677999999999 0.72133899000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[44]" " -type \"float2\" 0.5 0.70249861000000002"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[45]" " -type \"float2\" 0.57031321999999995 0.72133899000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[46]" " -type \"float2\" 0.62178617999999997 0.77281177000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[47]" " -type \"float2\" 0.64062655000000002 0.84312505000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[48]" " -type \"float2\" 0.62178617999999997 0.91343892000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[49]" " -type \"float2\" 0.5 0.83749998000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[50]" " -type \"float2\" 0.375 0.31474137000000002"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[51]" " -type \"float2\" 0.62499994000000003 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[52]" " -type \"float2\" 0.62499994000000003 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[53]" " -type \"float2\" 0.63531649000000001 0.078125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[54]" " -type \"float2\" 0.375 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[55]" " -type \"float2\" 0.578125 0.020933539000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[56]" " -type \"float2\" 0.39583333999999998 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[57]" " -type \"float2\" 0.5 0"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[58]" " -type \"float2\" 0.41666669000000001 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[59]" " -type \"float2\" 0.421875 0.020933539000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[60]" " -type \"float2\" 0.43750002999999998 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[61]" " -type \"float2\" 0.36468353999999997 0.078125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[62]" " -type \"float2\" 0.45833337000000002 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[63]" " -type \"float2\" 0.34375 0.15625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[64]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[65]" " -type \"float2\" 0.36468353999999997 0.234375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[66]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[67]" " -type \"float2\" 0.421875 0.29156646000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[68]" " -type \"float2\" 0.52083336999999996 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[69]" " -type \"float2\" 0.5 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[70]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[71]" " -type \"float2\" 0.578125 0.29156646000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[72]" " -type \"float2\" 0.5625 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[73]" " -type \"float2\" 0.63531649000000001 0.234375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[74]" " -type \"float2\" 0.58333330999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[75]" " -type \"float2\" 0.65625 0.15625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[76]" " -type \"float2\" 0.60416663000000004 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[77]" " -type \"float2\" 0.375 0.68843984999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[78]" " -type \"float2\" 0.63531649000000001 0.921875"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[79]" " -type \"float2\" 0.62499994000000003 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[80]" " -type \"float2\" 0.39583333999999998 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[81]" " -type \"float2\" 0.578125 0.97906649000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[82]" " -type \"float2\" 0.41666669000000001 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[83]" " -type \"float2\" 0.5 1"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[84]" " -type \"float2\" 0.43750002999999998 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[85]" " -type \"float2\" 0.421875 0.97906649000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[86]" " -type \"float2\" 0.45833337000000002 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[87]" " -type \"float2\" 0.36468353999999997 0.921875"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[88]" " -type \"float2\" 0.47916671999999999 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[89]" " -type \"float2\" 0.34375 0.84375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[90]" " -type \"float2\" 0.50000005999999997 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[91]" " -type \"float2\" 0.36468353999999997 0.765625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[92]" " -type \"float2\" 0.52083336999999996 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[93]" " -type \"float2\" 0.421875 0.70843350999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[94]" " -type \"float2\" 0.54166669000000001 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[95]" " -type \"float2\" 0.5 0.6875"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[96]" " -type \"float2\" 0.5625 0.68843984999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[97]" " -type \"float2\" 0.578125 0.70843350999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[98]" " -type \"float2\" 0.58333330999999999 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[99]" " -type \"float2\" 0.63531649000000001 0.765625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[100]" " -type \"float2\" 0.65625 0.84375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[101]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[102]" " -type \"float2\" 0.62499994000000003 0.53807896"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[103]" " -type \"float2\" 0.62469339000000002 0.68843979"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[104]" " -type \"float2\" 0.60444193999999996 0.68347179999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[105]" " -type \"float2\" 0.60416663000000004 0.53807908000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[106]" " -type \"float2\" 0.37527530999999997 0.68347186000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[107]" " -type \"float2\" 0.375 0.53807896"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[108]" " -type \"float2\" 0.39583333999999998 0.53807901999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[109]" " -type \"float2\" 0.39552683 0.68843984999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[110]" " -type \"float2\" 0.39610866 0.68347179999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[111]" " -type \"float2\" 0.41666669000000001 0.53807908000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[112]" " -type \"float2\" 0.41636013999999999 0.68843979"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[113]" " -type \"float2\" 0.416942 0.68347179999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[114]" " -type \"float2\" 0.4375 0.53807896"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[115]" " -type \"float2\" 0.43719348000000002 0.68843979"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[116]" " -type \"float2\" 0.43777537 0.68347186000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[117]" " -type \"float2\" 0.45833337000000002 0.53807896"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[118]" " -type \"float2\" 0.45802685999999998 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[119]" " -type \"float2\" 0.45860868999999999 0.68347179999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[120]" " -type \"float2\" 0.47916671999999999 0.53807908000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[121]" " -type \"float2\" 0.47886016999999997 0.68843979"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[122]" " -type \"float2\" 0.47944203000000002 0.68347179999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[123]" " -type \"float2\" 0.50000005999999997 0.53807896"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[124]" " -type \"float2\" 0.49969353999999999 0.68843979"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[125]" " -type \"float2\" 0.50027537 0.68347186000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[126]" " -type \"float2\" 0.52083336999999996 0.53807901999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[127]" " -type \"float2\" 0.52052683 0.68843984999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[128]" " -type \"float2\" 0.52110869000000004 0.68347179999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[129]" " -type \"float2\" 0.54166669000000001 0.53807908000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[130]" " -type \"float2\" 0.54136013999999999 0.68843979"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[131]" " -type \"float2\" 0.541942 0.68347179999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[132]" " -type \"float2\" 0.5625 0.53807896"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[133]" " -type \"float2\" 0.56219344999999998 0.68843979"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[134]" " -type \"float2\" 0.56277531000000003 0.68347186000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[135]" " -type \"float2\" 0.58333330999999999 0.53807896"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[136]" " -type \"float2\" 0.58302683 0.68843984999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[137]" " -type \"float2\" 0.58360862999999996 0.68347179999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[138]" " -type \"float2\" 0.60386008000000002 0.68843979"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[139]" " -type \"float2\" 0.62692481 0.91664248999999998"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[140]" " -type \"float2\" 0.57328009999999996 0.97028725999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[141]" " -type \"float2\" 0.5 0.83749998000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[142]" " -type \"float2\" 0.5 0.98992252000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[143]" " -type \"float2\" 0.42671993000000003 0.97028725999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[144]" " -type \"float2\" 0.37307519 0.91664248999999998"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[145]" " -type \"float2\" 0.35343986999999999 0.84336239000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[146]" " -type \"float2\" 0.37307519 0.77008235000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[147]" " -type \"float2\" 0.42671993000000003 0.71643758000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[148]" " -type \"float2\" 0.5 0.69680226000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[149]" " -type \"float2\" 0.57328009999999996 0.71643758000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[150]" " -type \"float2\" 0.62692481 0.77008235000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[151]" " -type \"float2\" 0.64656013000000001 0.84336239000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[152]" " -type \"float2\" 0.57746350999999996 0.022026401000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[153]" " -type \"float2\" 0.63417071000000003 0.078733593000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[154]" " -type \"float2\" 0.5 0.15000000999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[155]" " -type \"float2\" 0.5 0.0012701154"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[156]" " -type \"float2\" 0.42253652000000003 0.022026401000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[157]" " -type \"float2\" 0.36582932000000001 0.078733593000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[158]" " -type \"float2\" 0.34507304 0.15619706999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[159]" " -type \"float2\" 0.36582932000000001 0.23366055999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[160]" " -type \"float2\" 0.42253652000000003 0.29036774999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[161]" " -type \"float2\" 0.5 0.31112403"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[162]" " -type \"float2\" 0.57746350999999996 0.29036774999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[163]" " -type \"float2\" 0.63417071000000003 0.23366055999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[164]" " -type \"float2\" 0.65492695999999995 0.15619706999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[165]" " -type \"float2\" 0.375 0.33505559000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[166]" " -type \"float2\" 0.39583333999999998 0.33505559000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[167]" " -type \"float2\" 0.41666669000000001 0.33505568000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[168]" " -type \"float2\" 0.43750002999999998 0.33505559000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[169]" " -type \"float2\" 0.45833337000000002 0.33505559000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[170]" " -type \"float2\" 0.47916671999999999 0.33505568000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[171]" " -type \"float2\" 0.50000005999999997 0.33505559000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[172]" " -type \"float2\" 0.52083336999999996 0.33505559000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[173]" " -type \"float2\" 0.54166669000000001 0.33505568000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[174]" " -type \"float2\" 0.5625 0.33505559000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[175]" " -type \"float2\" 0.58333330999999999 0.33505559000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[176]" " -type \"float2\" 0.60416663000000004 0.33505568000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[177]" " -type \"float2\" 0.62499994000000003 0.33505559000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[178]" " -type \"float2\" 0.63531649000000001 0.078125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[179]" " -type \"float2\" 0.65625 0.15625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[180]" " -type \"float2\" 0.62499994000000003 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[181]" " -type \"float2\" 0.60416663000000004 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[182]" " -type \"float2\" 0.375 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[183]" " -type \"float2\" 0.39583333999999998 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[184]" " -type \"float2\" 0.578125 0.020933539000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[185]" " -type \"float2\" 0.41666669000000001 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[186]" " -type \"float2\" 0.5 0"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[187]" " -type \"float2\" 0.43750002999999998 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[188]" " -type \"float2\" 0.421875 0.020933539000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[189]" " -type \"float2\" 0.45833337000000002 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[190]" " -type \"float2\" 0.36468353999999997 0.078125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[191]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[192]" " -type \"float2\" 0.34375 0.15625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[193]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[194]" " -type \"float2\" 0.36468353999999997 0.234375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[195]" " -type \"float2\" 0.52083336999999996 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[196]" " -type \"float2\" 0.421875 0.29156646000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[197]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[198]" " -type \"float2\" 0.5 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[199]" " -type \"float2\" 0.5625 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[200]" " -type \"float2\" 0.578125 0.29156646000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[201]" " -type \"float2\" 0.58333330999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[202]" " -type \"float2\" 0.63531649000000001 0.234375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[203]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[204]" " -type \"float2\" 0.52083336999999996 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[205]" " -type \"float2\" 0.52083336999999996 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[206]" " -type \"float2\" 0.50000005999999997 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[207]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[208]" " -type \"float2\" 0.5625 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[209]" " -type \"float2\" 0.56250005999999997 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[210]" " -type \"float2\" 0.54166669000000001 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[211]" " -type \"float2\" 0.58333330999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[212]" " -type \"float2\" 0.60416663000000004 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[213]" " -type \"float2\" 0.60416663000000004 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[214]" " -type \"float2\" 0.58333330999999999 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[215]" " -type \"float2\" 0.5 0.15000000999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[216]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[217]" " -type \"float2\" 0.34479091000000001 0.83966649000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[218]" " -type \"float2\" 0.5 0.83221531000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[219]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[220]" " -type \"float2\" 0.47916674999999997 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[221]" " -type \"float2\" 0.65625 0.15625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[222]" " -type \"float2\" 0.60456699000000003 0.68434912000000003"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[223]" " -type \"float2\" 0.5 0.83259039999999995"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[224]" " -type \"float2\" 0.35045809 0.83845323000000005"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[225]" " -type \"float2\" 0.36929848999999998 0.76828945000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[226]" " -type \"float2\" 0.42453944999999998 0.71283531"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[227]" " -type \"float2\" 0.5 0.69282889000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[228]" " -type \"float2\" 0.57546054999999996 0.71283525000000003"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[229]" " -type \"float2\" 0.63070154 0.76828945000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[230]" " -type \"float2\" 0.64954190999999994 0.83845329000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[231]" " -type \"float2\" 0.34375 0.84375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[232]" " -type \"float2\" 0.36468353999999997 0.765625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[233]" " -type \"float2\" 0.47916671999999999 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[234]" " -type \"float2\" 0.50000005999999997 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[235]" " -type \"float2\" 0.421875 0.70843350999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[236]" " -type \"float2\" 0.52083336999999996 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[237]" " -type \"float2\" 0.5 0.6875"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[238]" " -type \"float2\" 0.54166669000000001 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[239]" " -type \"float2\" 0.578125 0.70843350999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[240]" " -type \"float2\" 0.5625 0.68843984999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[241]" " -type \"float2\" 0.63531649000000001 0.765625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[242]" " -type \"float2\" 0.58333330999999999 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[243]" " -type \"float2\" 0.65625 0.84375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[244]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[245]" " -type \"float2\" 0.5 0.83749998000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[246]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
+		"uvst[0].uvsp[0:246]" (" -s 247 -type \"float2\" 0.3958334 0.31474133999999998 0.375 0.68619841000000004 0.41666669000000001 0.31474137000000002 0.39583337000000002 0.68619841000000004 0.4375 0.3147414 0.41666669000000001 0.68619841000000004 0.45833337000000002 0.31474137000000002 0.4375 0.68619834999999996 0.47916671999999999 0.31474137000000002 0.45833337000000002 0.68619841000000004 0.5 0.3147414 0.47916671999999999 0.68619841000000004 0.52083336999999996 0.31474137000000002 0.49999997000000002 0.68619834999999996 0.54166674999999997 0.31474133999999998 0.52083336999999996 0.68619817000000005 0.5625 0.31474163999999999 0.54166669000000001 0.68619841000000004 0.58333336999999996 0.31474133999999998 0.5625 0.68619841000000004 0.60416663000000004 0.31474137000000002 0.58333343000000004 0.68619841000000004 0.62499994000000003 0.3147414 0.60416669000000001 0.68619841000000004 0.62178617999999997 0.085311263999999998 0.57031321999999995 0.033839020999999997 0.5 0.014998627 0.42968677999999999 0.033839020999999997 0.37821381999999998 0.08"
+		+ "5311263999999998 0.35937342 0.15562506000000001 0.37821385000000002 0.22593833999999999 0.42968677999999999 0.27741110000000002 0.5 0.29625148000000001 0.57031321999999995 0.27741110000000002 0.62178617999999997 0.22593833999999999 0.5 0.15000000999999999 0.64062655000000002 0.15562506000000001 0.57031321999999995 0.96491110000000002 0.5 0.98375148000000001 0.42968677999999999 0.96491110000000002 0.37821381999999998 0.91343892000000004 0.35937342 0.84312505000000004 0.37821385000000002 0.77281177000000001 0.42968677999999999 0.72133899000000001 0.5 0.70249861000000002 0.57031321999999995 0.72133899000000001 0.62178617999999997 0.77281177000000001 0.64062655000000002 0.84312505000000004 0.62178617999999997 0.91343892000000004 0.5 0.83749998000000003 0.375 0.31474137000000002 0.62499994000000003 0.68619841000000004 0.62499994000000003 0.3125 0.63531649000000001 0.078125 0.375 0.3125 0.578125 0.020933539000000001 0.39583333999999998 0.3125 0.5 0 0.41666669000000001 0.3125 0.421875 0.020933539000000001 0.43750002"
+		+ "999999998 0.3125 0.36468353999999997 0.078125 0.45833337000000002 0.3125 0.34375 0.15625 0.47916671999999999 0.3125 0.36468353999999997 0.234375 0.50000005999999997 0.3125 0.421875 0.29156646000000003 0.52083336999999996 0.3125 0.5 0.3125 0.54166669000000001 0.3125 0.578125 0.29156646000000003 0.5625 0.3125 0.63531649000000001 0.234375 0.58333330999999999 0.3125 0.65625 0.15625 0.60416663000000004 0.3125 0.375 0.68843984999999996 0.63531649000000001 0.921875 0.62499994000000003 0.68843984999999996 0.39583333999999998 0.68843984999999996 0.578125 0.97906649000000001 0.41666669000000001 0.68843984999999996 0.5 1 0.43750002999999998 0.68843984999999996 0.421875 0.97906649000000001 0.45833337000000002 0.68843984999999996 0.36468353999999997 0.921875 0.47916671999999999 0.68843984999999996 0.34375 0.84375 0.50000005999999997 0.68843984999999996 0.36468353999999997 0.765625 0.52083336999999996 0.68843984999999996 0.421875 0.70843350999999999 0.54166669000000001 0.68843984999999996 0.5 0.6875 0.5625 0.68843984999999"
+		+ "996 0.578125 0.70843350999999999 0.58333330999999999 0.68843984999999996 0.63531649000000001 0.765625 0.65625 0.84375 0.60416663000000004 0.68843984999999996 0.62499994000000003 0.53807896 0.62469339000000002 0.68843979 0.60444193999999996 0.68347179999999996 0.60416663000000004 0.53807908000000004 0.37527530999999997 0.68347186000000004 0.375 0.53807896 0.39583333999999998 0.53807901999999996 0.39552683 0.68843984999999996 0.39610866 0.68347179999999996 0.41666669000000001 0.53807908000000004 0.41636013999999999 0.68843979 0.416942 0.68347179999999996 0.4375 0.53807896 0.43719348000000002 0.68843979 0.43777537 0.68347186000000004 0.45833337000000002 0.53807896 0.45802685999999998 0.68843984999999996 0.45860868999999999 0.68347179999999996 0.47916671999999999 0.53807908000000004 0.47886016999999997 0.68843979 0.47944203000000002 0.68347179999999996 0.50000005999999997 0.53807896 0.49969353999999999 0.68843979 0.50027537 0.68347186000000004 0.52083336999999996 0.53807901999999996 0.52052683 0.68843984999999996"
+		+ " 0.52110869000000004 0.68347179999999996 0.54166669000000001 0.53807908000000004 0.54136013999999999 0.68843979 0.541942 0.68347179999999996 0.5625 0.53807896 0.56219344999999998 0.68843979 0.56277531000000003 0.68347186000000004 0.58333330999999999 0.53807896 0.58302683 0.68843984999999996 0.58360862999999996 0.68347179999999996 0.60386008000000002 0.68843979 0.62692481 0.91664248999999998 0.57328009999999996 0.97028725999999998 0.5 0.83749998000000003 0.5 0.98992252000000003 0.42671993000000003 0.97028725999999998 0.37307519 0.91664248999999998 0.35343986999999999 0.84336239000000002 0.37307519 0.77008235000000003 0.42671993000000003 0.71643758000000002 0.5 0.69680226000000001 0.57328009999999996 0.71643758000000002 0.62692481 0.77008235000000003 0.64656013000000001 0.84336239000000002 0.57746350999999996 0.022026401000000001 0.63417071000000003 0.078733593000000004 0.5 0.15000000999999999 0.5 0.0012701154 0.42253652000000003 0.022026401000000001 0.36582932000000001 0.078733593000000004 0.34507304 0.1561970"
+		+ "6999999999 0.36582932000000001 0.23366055999999999 0.42253652000000003 0.29036774999999998 0.5 0.31112403 0.57746350999999996 0.29036774999999998 0.63417071000000003 0.23366055999999999 0.65492695999999995 0.15619706999999999 0.375 0.33505559000000001 0.39583333999999998 0.33505559000000001 0.41666669000000001 0.33505568000000002 0.43750002999999998 0.33505559000000001 0.45833337000000002 0.33505559000000001 0.47916671999999999 0.33505568000000002 0.50000005999999997 0.33505559000000001 0.52083336999999996 0.33505559000000001 0.54166669000000001 0.33505568000000002 0.5625 0.33505559000000001 0.58333330999999999 0.33505559000000001 0.60416663000000004 0.33505568000000002 0.62499994000000003 0.33505559000000001 0.63531649000000001 0.078125 0.65625 0.15625 0.62499994000000003 0.3125 0.60416663000000004 0.3125 0.375 0.3125 0.39583333999999998 0.3125 0.578125 0.020933539000000001 0.41666669000000001 0.3125 0.5 0 0.43750002999999998 0.3125 0.421875 0.020933539000000001 0.45833337000000002 0.3125 0.36468353999999997"
+		+ " 0.078125 0.47916671999999999 0.3125 0.34375 0.15625 0.50000005999999997 0.3125 0.36468353999999997 0.234375 0.52083336999999996 0.3125 0.421875 0.29156646000000003 0.54166669000000001 0.3125 0.5 0.3125 0.5625 0.3125 0.578125 0.29156646000000003 0.58333330999999999 0.3125 0.63531649000000001 0.234375 0.50000005999999997 0.3125 0.52083336999999996 0.3125 0.52083336999999996 0.68555014999999997 0.50000005999999997 0.68555014999999997 0.54166669000000001 0.3125 0.5625 0.3125 0.56250005999999997 0.68555014999999997 0.54166669000000001 0.68555014999999997 0.58333330999999999 0.3125 0.60416663000000004 0.3125 0.60416663000000004 0.68555014999999997 0.58333330999999999 0.68555014999999997 0.5 0.15000000999999999 0.47916671999999999 0.3125 0.34479091000000001 0.83966649000000004 0.5 0.83221531000000004 0.47916671999999999 0.3125 0.47916674999999997 0.68555014999999997 0.65625 0.15625 0.60456699000000003 0.68434912000000003 0.5 0.83259039999999995 0.35045809 0.83845323000000005 0.36929848999999998 0.76828945000000004 "
+		+ "0.42453944999999998 0.71283531 0.5 0.69282889000000003 0.57546054999999996 0.71283525000000003 0.63070154 0.76828945000000004 0.64954190999999994 0.83845329000000002 0.34375 0.84375 0.36468353999999997 0.765625 0.47916671999999999 0.68843984999999996 0.50000005999999997 0.68843984999999996 0.421875 0.70843350999999999 0.52083336999999996 0.68843984999999996 0.5 0.6875 0.54166669000000001 0.68843984999999996 0.578125 0.70843350999999999 0.5625 0.68843984999999996 0.63531649000000001 0.765625 0.58333330999999999 0.68843984999999996 0.65625 0.84375 0.60416663000000004 0.68843984999999996 0.5 0.83749998000000003 0.60416663000000004 0.68843984999999996"
+		)
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
+		"aiTranslator" " -type \"string\" \"polymesh\""
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShapeOrig" 
+		"aiTranslator" " -type \"string\" \"polymesh\""
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
 		"intermediateObject" " 1"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
 		"uvPivot" " -type \"double2\" 0.5 0.5"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
 		"uvSet[0].uvSetName" " -type \"string\" \"map1\""
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints" " -s 164"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[0]" " -type \"float2\" 0.36929848999999998 0.76828945000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[1]" " -type \"float2\" 0.42453944999999998 0.71283531"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[2]" " -type \"float2\" 0.5 0.69282889000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[3]" " -type \"float2\" 0.57546054999999996 0.71283525000000003"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[4]" " -type \"float2\" 0.5 0.83259039999999995"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[5]" " -type \"float2\" 0.63070154 0.76828945000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[6]" " -type \"float2\" 0.64954190999999994 0.83845329000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[7]" " -type \"float2\" 0.60416663000000004 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[8]" " -type \"float2\" 0.34479091000000001 0.83966649000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[9]" " -type \"float2\" 0.35045809 0.83845323000000005"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[10]" " -type \"float2\" 0.34375 0.84375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[11]" " -type \"float2\" 0.47916671999999999 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[12]" " -type \"float2\" 0.50000005999999997 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[13]" " -type \"float2\" 0.36468353999999997 0.765625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[14]" " -type \"float2\" 0.52083336999999996 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[15]" " -type \"float2\" 0.421875 0.70843350999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[16]" " -type \"float2\" 0.54166669000000001 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[17]" " -type \"float2\" 0.5 0.6875"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[18]" " -type \"float2\" 0.5625 0.68843984999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[19]" " -type \"float2\" 0.578125 0.70843350999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[20]" " -type \"float2\" 0.58333330999999999 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[21]" " -type \"float2\" 0.63531649000000001 0.765625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[22]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[23]" " -type \"float2\" 0.65625 0.84375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[24]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[25]" " -type \"float2\" 0.5 0.83749998000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[26]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[27]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[28]" " -type \"float2\" 0.65560227999999998 0.16286854000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[29]" " -type \"float2\" 0.59822887000000002 0.30581859"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[30]" " -type \"float2\" 0.52083336999999996 0.31717541999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[31]" " -type \"float2\" 0.50000005999999997 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[32]" " -type \"float2\" 0.5625 0.31717503000000002"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[33]" " -type \"float2\" 0.54166669000000001 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[34]" " -type \"float2\" 0.60416663000000004 0.31717541999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[35]" " -type \"float2\" 0.58333330999999999 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[36]" " -type \"float2\" 0.47748258999999998 0.31910691000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[37]" " -type \"float2\" 0.5 0.83221531000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[38]" " -type \"float2\" 0.50000005999999997 0.31717503000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[39]" " -type \"float2\" 0.47916674999999997 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[40]" " -type \"float2\" 0.54166669000000001 0.31717503000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[41]" " -type \"float2\" 0.52083336999999996 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[42]" " -type \"float2\" 0.58333330999999999 0.31717541999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[43]" " -type \"float2\" 0.56250005999999997 0.68555014999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[44]" " -type \"float2\" 0.5 0.15855005"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[45]" " -type \"float2\" 0.60456699000000003 0.68434912000000003"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[46]" " -type \"float2\" 0.51997674000000005 0.30581852999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[47]" " -type \"float2\" 0.50191081000000004 0.15745223999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[48]" " -type \"float2\" 0.48167812999999998 0.30781533999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[49]" " -type \"float2\" 0.55993020999999998 0.30581852999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[50]" " -type \"float2\" 0.47916671999999999 0.31717503000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[51]" " -type \"float2\" 0.57990693999999998 0.30581852999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[52]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[53]" " -type \"float2\" 0.52083336999999996 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[54]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[55]" " -type \"float2\" 0.5625 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[56]" " -type \"float2\" 0.58333330999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[57]" " -type \"float2\" 0.60416663000000004 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[58]" " -type \"float2\" 0.65625 0.15625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[59]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[60]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[61]" " -type \"float2\" 0.5 0.15000000999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[62]" " -type \"float2\" 0.375 0.31474137000000002"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[63]" " -type \"float2\" 0.3958334 0.31474133999999998"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[64]" " -type \"float2\" 0.39583337000000002 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[65]" " -type \"float2\" 0.375 0.68619841000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[66]" " -type \"float2\" 0.41666669000000001 0.31474137000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[67]" " -type \"float2\" 0.41666669000000001 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[68]" " -type \"float2\" 0.4375 0.3147414"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[69]" " -type \"float2\" 0.4375 0.68619834999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[70]" " -type \"float2\" 0.45833337000000002 0.31474137000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[71]" " -type \"float2\" 0.45833337000000002 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[72]" " -type \"float2\" 0.47916671999999999 0.31474137000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[73]" " -type \"float2\" 0.47916671999999999 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[74]" " -type \"float2\" 0.5 0.3147414"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[75]" " -type \"float2\" 0.49999997000000002 0.68619834999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[76]" " -type \"float2\" 0.52083336999999996 0.31474137000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[77]" " -type \"float2\" 0.52083336999999996 0.68619817000000005"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[78]" " -type \"float2\" 0.54166674999999997 0.31474133999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[79]" " -type \"float2\" 0.54166669000000001 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[80]" " -type \"float2\" 0.5625 0.31474163999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[81]" " -type \"float2\" 0.5625 0.68619841000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[82]" " -type \"float2\" 0.58333336999999996 0.31474133999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[83]" " -type \"float2\" 0.58333343000000004 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[84]" " -type \"float2\" 0.60416663000000004 0.31474137000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[85]" " -type \"float2\" 0.60416669000000001 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[86]" " -type \"float2\" 0.62499994000000003 0.3147414"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[87]" " -type \"float2\" 0.62499994000000003 0.68619841000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[88]" " -type \"float2\" 0.57031321999999995 0.033839020999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[89]" " -type \"float2\" 0.62178617999999997 0.085311263999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[90]" " -type \"float2\" 0.5 0.15000000999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[91]" " -type \"float2\" 0.5 0.014998627"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[92]" " -type \"float2\" 0.42968677999999999 0.033839020999999997"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[93]" " -type \"float2\" 0.37821381999999998 0.085311263999999998"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[94]" " -type \"float2\" 0.35937342 0.15562506000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[95]" " -type \"float2\" 0.37821385000000002 0.22593833999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[96]" " -type \"float2\" 0.42968677999999999 0.27741110000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[97]" " -type \"float2\" 0.5 0.29625148000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[98]" " -type \"float2\" 0.57031321999999995 0.27741110000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[99]" " -type \"float2\" 0.62178617999999997 0.22593833999999999"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[100]" " -type \"float2\" 0.64062655000000002 0.15562506000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[101]" " -type \"float2\" 0.62178617999999997 0.91343892000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[102]" " -type \"float2\" 0.57031321999999995 0.96491110000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[103]" " -type \"float2\" 0.5 0.83749998000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[104]" " -type \"float2\" 0.5 0.98375148000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[105]" " -type \"float2\" 0.42968677999999999 0.96491110000000002"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[106]" " -type \"float2\" 0.37821381999999998 0.91343892000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[107]" " -type \"float2\" 0.35937342 0.84312505000000004"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[108]" " -type \"float2\" 0.37821385000000002 0.77281177000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[109]" " -type \"float2\" 0.42968677999999999 0.72133899000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[110]" " -type \"float2\" 0.5 0.70249861000000002"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[111]" " -type \"float2\" 0.57031321999999995 0.72133899000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[112]" " -type \"float2\" 0.62178617999999997 0.77281177000000001"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[113]" " -type \"float2\" 0.64062655000000002 0.84312505000000004"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[114]" " -type \"float2\" 0.375 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[115]" " -type \"float2\" 0.39583333999999998 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[116]" " -type \"float2\" 0.63531649000000001 0.078125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[117]" " -type \"float2\" 0.578125 0.020933539000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[118]" " -type \"float2\" 0.41666669000000001 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[119]" " -type \"float2\" 0.5 0"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[120]" " -type \"float2\" 0.43750002999999998 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[121]" " -type \"float2\" 0.421875 0.020933539000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[122]" " -type \"float2\" 0.45833337000000002 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[123]" " -type \"float2\" 0.36468353999999997 0.078125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[124]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[125]" " -type \"float2\" 0.34375 0.15625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[126]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[127]" " -type \"float2\" 0.36468353999999997 0.234375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[128]" " -type \"float2\" 0.52083336999999996 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[129]" " -type \"float2\" 0.421875 0.29156646000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[130]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[131]" " -type \"float2\" 0.5 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[132]" " -type \"float2\" 0.5625 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[133]" " -type \"float2\" 0.578125 0.29156646000000003"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[134]" " -type \"float2\" 0.58333330999999999 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[135]" " -type \"float2\" 0.63531649000000001 0.234375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[136]" " -type \"float2\" 0.60416663000000004 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[137]" " -type \"float2\" 0.65625 0.15625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[138]" " -type \"float2\" 0.62499994000000003 0.3125"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[139]" " -type \"float2\" 0.62499994000000003 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[140]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[141]" " -type \"float2\" 0.63531649000000001 0.921875"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[142]" " -type \"float2\" 0.65625 0.84375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[143]" " -type \"float2\" 0.578125 0.97906649000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[144]" " -type \"float2\" 0.375 0.68843984999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[145]" " -type \"float2\" 0.39583333999999998 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[146]" " -type \"float2\" 0.5 1"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[147]" " -type \"float2\" 0.41666669000000001 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[148]" " -type \"float2\" 0.421875 0.97906649000000001"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[149]" " -type \"float2\" 0.43750002999999998 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[150]" " -type \"float2\" 0.36468353999999997 0.921875"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[151]" " -type \"float2\" 0.45833337000000002 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[152]" " -type \"float2\" 0.34375 0.84375"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[153]" " -type \"float2\" 0.47916671999999999 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[154]" " -type \"float2\" 0.36468353999999997 0.765625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[155]" " -type \"float2\" 0.50000005999999997 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[156]" " -type \"float2\" 0.421875 0.70843350999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[157]" " -type \"float2\" 0.52083336999999996 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[158]" " -type \"float2\" 0.5 0.6875"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[159]" " -type \"float2\" 0.54166669000000001 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[160]" " -type \"float2\" 0.578125 0.70843350999999999"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[161]" " -type \"float2\" 0.5625 0.68843984999999996"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[162]" " -type \"float2\" 0.63531649000000001 0.765625"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[163]" " -type \"float2\" 0.58333330999999999 0.68843984999999996"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:head_geo" "scale" " -type \"double3\" 0.99999999999999989 1 0.99999999999999967"
-		
-		2 "|IKRig|lamp_model:Geometry|lamp_model:head_geo" "scaleX" " -av"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:head_geo" "scaleY" " -av"
-		2 "|IKRig|lamp_model:Geometry|lamp_model:head_geo" "scaleZ" " -av"
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
+		"uvst[0].uvsp[0:163]" (" -s 164 -type \"float2\" 0.36929848999999998 0.76828945000000004 0.42453944999999998 0.71283531 0.5 0.69282889000000003 0.57546054999999996 0.71283525000000003 0.5 0.83259039999999995 0.63070154 0.76828945000000004 0.64954190999999994 0.83845329000000002 0.60416663000000004 0.68555014999999997 0.34479091000000001 0.83966649000000004 0.35045809 0.83845323000000005 0.34375 0.84375 0.47916671999999999 0.68843984999999996 0.50000005999999997 0.68843984999999996 0.36468353999999997 0.765625 0.52083336999999996 0.68843984999999996 0.421875 0.70843350999999999 0.54166669000000001 0.68843984999999996 0.5 0.6875 0.5625 0.68843984999999996 0.578125 0.70843350999999999 0.58333330999999999 0.68843984999999996 0.63531649000000001 0.765625 0.60416663000000004 0.68843984999999996 0.65625 0.84375 0.60416663000000004 0.68843984999999996 0.5 0.83749998000000003 0.50000005999999997 0.3125 0.54166669000000001 0.3125 0.65560227999999998 0.16286854000000001 0.59822887000000002 0.30581859 0.52083336999999996 0.31717541999999999 0.500"
+		+ "00005999999997 0.68555014999999997 0.5625 0.31717503000000002 0.54166669000000001 0.68555014999999997 0.60416663000000004 0.31717541999999999 0.58333330999999999 0.68555014999999997 0.47748258999999998 0.31910691000000002 0.5 0.83221531000000004 0.50000005999999997 0.31717503000000002 0.47916674999999997 0.68555014999999997 0.54166669000000001 0.31717503000000002 0.52083336999999996 0.68555014999999997 0.58333330999999999 0.31717541999999999 0.56250005999999997 0.68555014999999997 0.5 0.15855005 0.60456699000000003 0.68434912000000003 0.51997674000000005 0.30581852999999998 0.50191081000000004 0.15745223999999999 0.48167812999999998 0.30781533999999999 0.55993020999999998 0.30581852999999998 0.47916671999999999 0.31717503000000002 0.57990693999999998 0.30581852999999998 0.50000005999999997 0.3125 0.52083336999999996 0.3125 0.54166669000000001 0.3125 0.5625 0.3125 0.58333330999999999 0.3125 0.60416663000000004 0.3125 0.65625 0.15625 0.47916671999999999 0.3125 0.47916671999999999 0.3125 0.5 0.15000000999999999 "
+		+ "0.375 0.31474137000000002 0.3958334 0.31474133999999998 0.39583337000000002 0.68619841000000004 0.375 0.68619841000000004 0.41666669000000001 0.31474137000000002 0.41666669000000001 0.68619841000000004 0.4375 0.3147414 0.4375 0.68619834999999996 0.45833337000000002 0.31474137000000002 0.45833337000000002 0.68619841000000004 0.47916671999999999 0.31474137000000002 0.47916671999999999 0.68619841000000004 0.5 0.3147414 0.49999997000000002 0.68619834999999996 0.52083336999999996 0.31474137000000002 0.52083336999999996 0.68619817000000005 0.54166674999999997 0.31474133999999998 0.54166669000000001 0.68619841000000004 0.5625 0.31474163999999999 0.5625 0.68619841000000004 0.58333336999999996 0.31474133999999998 0.58333343000000004 0.68619841000000004 0.60416663000000004 0.31474137000000002 0.60416669000000001 0.68619841000000004 0.62499994000000003 0.3147414 0.62499994000000003 0.68619841000000004 0.57031321999999995 0.033839020999999997 0.62178617999999997 0.085311263999999998 0.5 0.15000000999999999 0.5 0.01499862"
+		+ "7 0.42968677999999999 0.033839020999999997 0.37821381999999998 0.085311263999999998 0.35937342 0.15562506000000001 0.37821385000000002 0.22593833999999999 0.42968677999999999 0.27741110000000002 0.5 0.29625148000000001 0.57031321999999995 0.27741110000000002 0.62178617999999997 0.22593833999999999 0.64062655000000002 0.15562506000000001 0.62178617999999997 0.91343892000000004 0.57031321999999995 0.96491110000000002 0.5 0.83749998000000003 0.5 0.98375148000000001 0.42968677999999999 0.96491110000000002 0.37821381999999998 0.91343892000000004 0.35937342 0.84312505000000004 0.37821385000000002 0.77281177000000001 0.42968677999999999 0.72133899000000001 0.5 0.70249861000000002 0.57031321999999995 0.72133899000000001 0.62178617999999997 0.77281177000000001 0.64062655000000002 0.84312505000000004 0.375 0.3125 0.39583333999999998 0.3125 0.63531649000000001 0.078125 0.578125 0.020933539000000001 0.41666669000000001 0.3125 0.5 0 0.43750002999999998 0.3125 0.421875 0.020933539000000001 0.45833337000000002 0.3125 0.3646"
+		+ "8353999999997 0.078125 0.47916671999999999 0.3125 0.34375 0.15625 0.50000005999999997 0.3125 0.36468353999999997 0.234375 0.52083336999999996 0.3125 0.421875 0.29156646000000003 0.54166669000000001 0.3125 0.5 0.3125 0.5625 0.3125 0.578125 0.29156646000000003 0.58333330999999999 0.3125 0.63531649000000001 0.234375 0.60416663000000004 0.3125 0.65625 0.15625 0.62499994000000003 0.3125 0.62499994000000003 0.68843984999999996 0.60416663000000004 0.68843984999999996 0.63531649000000001 0.921875 0.65625 0.84375 0.578125 0.97906649000000001 0.375 0.68843984999999996 0.39583333999999998 0.68843984999999996 0.5 1 0.41666669000000001 0.68843984999999996 0.421875 0.97906649000000001 0.43750002999999998 0.68843984999999996 0.36468353999999997 0.921875 0.45833337000000002 0.68843984999999996 0.34375 0.84375 0.47916671999999999 0.68843984999999996 0.36468353999999997 0.765625 0.50000005999999997 0.68843984999999996 0.421875 0.70843350999999999 0.52083336999999996 0.68843984999999996 0.5 0.6875 0.54166669000000001 0.68843984"
+		+ "999999996 0.578125 0.70843350999999999 0.5625 0.68843984999999996 0.63531649000000001 0.765625 0.58333330999999999 0.68843984999999996"
+		)
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
+		"aiTranslator" " -type \"string\" \"polymesh\""
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShapeOrig" 
+		"aiTranslator" " -type \"string\" \"polymesh\""
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo|lamp_model:upper_arm_geoShape" 
+		"aiTranslator" " -type \"string\" \"polymesh\""
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo|lamp_model:upper_arm_geoShapeOrig" 
+		"aiTranslator" " -type \"string\" \"polymesh\""
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo" "scale" " -type \"double3\" 0.99999999999999989 1 0.99999999999999967"
+		
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo" "scaleX" " -av"
+		
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo" "scaleY" " -av"
+		
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo" "scaleZ" " -av"
+		
+		2 "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo|lamp_model:head_geoShape" 
+		"aiTranslator" " -type \"string\" \"polymesh\""
 		2 "lamp_model:groupParts1" "groupId" " 1"
 		2 "lamp_model:groupParts4" "groupId" " 2"
 		3 "lamp_model:groupId24.message" ":initialShadingGroup.groupNodes" "-na"
-		3 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.instObjGroups.objectGroups[0]" 
+		3 "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0]" 
 		":initialShadingGroup.dagSetMembers" "-na"
-		3 "lamp_model:groupId27.groupId" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.instObjGroups.objectGroups[0].objectGroupId" 
+		3 "lamp_model:groupId24.groupId" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0].objectGroupId" 
 		""
-		3 ":initialShadingGroup.memberWireframeColor" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.instObjGroups.objectGroups[0].objectGrpColor" 
+		3 ":initialShadingGroup.memberWireframeColor" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0].objectGrpColor" 
 		""
-		3 "lamp_model:groupParts4.outputGeometry" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.inMesh" 
+		3 "lamp_model:groupParts1.outputGeometry" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.inMesh" 
 		""
 		3 "lamp_model:groupId27.message" ":initialShadingGroup.groupNodes" "-na"
-		3 "lamp_model:groupId27.groupId" "lamp_model:groupParts4.groupId" ""
-		3 "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShapeOrig.worldMesh" 
-		"lamp_model:groupParts4.inputGeometry" ""
 		3 "lamp_model:groupId24.groupId" "lamp_model:groupParts1.groupId" ""
-		3 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShapeOrig.worldMesh" 
+		3 "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShapeOrig.worldMesh" 
 		"lamp_model:groupParts1.inputGeometry" ""
-		3 "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0]" 
+		3 "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.instObjGroups.objectGroups[0]" 
 		":initialShadingGroup.dagSetMembers" "-na"
-		3 "lamp_model:groupId24.groupId" "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0].objectGroupId" 
+		3 "lamp_model:groupId27.groupId" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.instObjGroups.objectGroups[0].objectGroupId" 
 		""
-		3 ":initialShadingGroup.memberWireframeColor" "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0].objectGrpColor" 
+		3 ":initialShadingGroup.memberWireframeColor" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.instObjGroups.objectGroups[0].objectGrpColor" 
 		""
-		3 "lamp_model:groupParts1.outputGeometry" "|IKRig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.inMesh" 
+		3 "lamp_model:groupParts4.outputGeometry" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.inMesh" 
 		""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.translateX" 
+		3 "lamp_model:groupId27.groupId" "lamp_model:groupParts4.groupId" ""
+		3 "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShapeOrig.worldMesh" 
+		"lamp_model:groupParts4.inputGeometry" ""
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.translateX" 
 		"lamp_modelRN.placeHolderList[1]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.translateY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.translateY" 
 		"lamp_modelRN.placeHolderList[2]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.translateZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.translateZ" 
 		"lamp_modelRN.placeHolderList[3]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.rotateX" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.rotateX" 
 		"lamp_modelRN.placeHolderList[4]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.rotateY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.rotateY" 
 		"lamp_modelRN.placeHolderList[5]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.rotateZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.rotateZ" 
 		"lamp_modelRN.placeHolderList[6]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.rotateOrder" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.rotateOrder" 
 		"lamp_modelRN.placeHolderList[7]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.parentInverseMatrix" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.parentInverseMatrix" 
 		"lamp_modelRN.placeHolderList[8]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.parentInverseMatrix" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.parentInverseMatrix" 
 		"lamp_modelRN.placeHolderList[9]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.rotatePivot" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.rotatePivot" 
 		"lamp_modelRN.placeHolderList[10]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.rotatePivotTranslate" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.rotatePivotTranslate" 
 		"lamp_modelRN.placeHolderList[11]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.scaleX" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.scaleX" 
 		"lamp_modelRN.placeHolderList[12]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.scaleY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.scaleY" 
 		"lamp_modelRN.placeHolderList[13]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:base_geo.scaleZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:base_geo.scaleZ" 
 		"lamp_modelRN.placeHolderList[14]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.translateX" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.translateX" 
 		"lamp_modelRN.placeHolderList[15]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.translateY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.translateY" 
 		"lamp_modelRN.placeHolderList[16]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.translateZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.translateZ" 
 		"lamp_modelRN.placeHolderList[17]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.rotateX" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.rotateX" 
 		"lamp_modelRN.placeHolderList[18]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.rotateY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.rotateY" 
 		"lamp_modelRN.placeHolderList[19]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.rotateZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.rotateZ" 
 		"lamp_modelRN.placeHolderList[20]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.rotateOrder" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.rotateOrder" 
 		"lamp_modelRN.placeHolderList[21]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.parentInverseMatrix" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.parentInverseMatrix" 
 		"lamp_modelRN.placeHolderList[22]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.parentInverseMatrix" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.parentInverseMatrix" 
 		"lamp_modelRN.placeHolderList[23]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.rotatePivot" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.rotatePivot" 
 		"lamp_modelRN.placeHolderList[24]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.rotatePivotTranslate" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.rotatePivotTranslate" 
 		"lamp_modelRN.placeHolderList[25]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.scaleX" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.scaleX" 
 		"lamp_modelRN.placeHolderList[26]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.scaleY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.scaleY" 
 		"lamp_modelRN.placeHolderList[27]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:lower_arm_geo.scaleZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:lower_arm_geo.scaleZ" 
 		"lamp_modelRN.placeHolderList[28]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.translateX" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.translateX" 
 		"lamp_modelRN.placeHolderList[29]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.translateY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.translateY" 
 		"lamp_modelRN.placeHolderList[30]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.translateZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.translateZ" 
 		"lamp_modelRN.placeHolderList[31]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.rotateX" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.rotateX" 
 		"lamp_modelRN.placeHolderList[32]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.rotateY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.rotateY" 
 		"lamp_modelRN.placeHolderList[33]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.rotateZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.rotateZ" 
 		"lamp_modelRN.placeHolderList[34]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.rotateOrder" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.rotateOrder" 
 		"lamp_modelRN.placeHolderList[35]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.parentInverseMatrix" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.parentInverseMatrix" 
 		"lamp_modelRN.placeHolderList[36]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.parentInverseMatrix" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.parentInverseMatrix" 
 		"lamp_modelRN.placeHolderList[37]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.rotatePivot" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.rotatePivot" 
 		"lamp_modelRN.placeHolderList[38]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.rotatePivotTranslate" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.rotatePivotTranslate" 
 		"lamp_modelRN.placeHolderList[39]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.scaleX" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.scaleX" 
 		"lamp_modelRN.placeHolderList[40]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.scaleY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.scaleY" 
 		"lamp_modelRN.placeHolderList[41]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:upper_arm_geo.scaleZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:upper_arm_geo.scaleZ" 
 		"lamp_modelRN.placeHolderList[42]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.translateX" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.scaleX" 
 		"lamp_modelRN.placeHolderList[43]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.translateY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.scaleY" 
 		"lamp_modelRN.placeHolderList[44]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.translateZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.scaleZ" 
 		"lamp_modelRN.placeHolderList[45]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.rotateX" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.translateX" 
 		"lamp_modelRN.placeHolderList[46]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.rotateY" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.translateY" 
 		"lamp_modelRN.placeHolderList[47]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.rotateZ" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.translateZ" 
 		"lamp_modelRN.placeHolderList[48]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.rotateOrder" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.rotateX" 
 		"lamp_modelRN.placeHolderList[49]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.parentInverseMatrix" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.rotateY" 
 		"lamp_modelRN.placeHolderList[50]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.parentInverseMatrix" 
+		5 4 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.rotateZ" 
 		"lamp_modelRN.placeHolderList[51]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.rotatePivot" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.rotateOrder" 
 		"lamp_modelRN.placeHolderList[52]" ""
-		5 3 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.rotatePivotTranslate" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.parentInverseMatrix" 
 		"lamp_modelRN.placeHolderList[53]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.scaleX" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.parentInverseMatrix" 
 		"lamp_modelRN.placeHolderList[54]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.scaleY" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.rotatePivot" 
 		"lamp_modelRN.placeHolderList[55]" ""
-		5 4 "lamp_modelRN" "|IKRig|lamp_model:Geometry|lamp_model:head_geo.scaleZ" 
+		5 3 "lamp_modelRN" "|IK_With_Base|lamp_model:Geometry|lamp_model:head_geo.rotatePivotTranslate" 
 		"lamp_modelRN.placeHolderList[56]" ""
 		5 3 "lamp_modelRN" "lamp_model:geo_layer.drawInfo" "lamp_modelRN.placeHolderList[57]" 
 		""
@@ -7460,17 +6509,17 @@ createNode script -n "uiConfigurationScriptNode";
 		"// Maya Mel UI Configuration File.\n//\n//  This script is machine generated.  Edit at your own risk.\n//\n//\n\nglobal string $gMainPane;\nif (`paneLayout -exists $gMainPane`) {\n\n\tglobal int $gUseScenePanelConfig;\n\tint    $useSceneConfig = $gUseScenePanelConfig;\n\tint    $menusOkayInPanels = `optionVar -q allowMenusInPanels`;\tint    $nVisPanes = `paneLayout -q -nvp $gMainPane`;\n\tint    $nPanes = 0;\n\tstring $editorName;\n\tstring $panelName;\n\tstring $itemFilterName;\n\tstring $panelConfig;\n\n\t//\n\t//  get current state of the UI\n\t//\n\tsceneUIReplacement -update $gMainPane;\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Top View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"top\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n"
 		+ "            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n"
 		+ "            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n"
-		+ "            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 369\n            -height 342\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Side View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels  $panelName;\n"
+		+ "            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Side View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels  $panelName;\n"
 		+ "\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"side\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n"
 		+ "            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n"
-		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 369\n            -height 341\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
+		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
 		+ "\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Front View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n"
 		+ "            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n"
-		+ "            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 369\n            -height 341\n"
+		+ "            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1\n            -height 1\n"
 		+ "            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"wireframe\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n"
 		+ "            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n"
 		+ "            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n"
-		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 545\n            -height 727\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n"
+		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1319\n            -height 737\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n"
 		+ "            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n            -isSet 0\n            -isSetMember 0\n"
 		+ "            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n            -animLayerFilterOptions \"allAffecting\" \n            -sortOrder \"none\" \n            -longNames 0\n            -niceNames 1\n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 0\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            -renderFilterIndex 0\n            -selectionOrder \"chronological\" \n            -expandAttribute 0\n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"Outliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n"
 		+ "\t\toutlinerPanel -edit -l (localizedPanelLabel(\"Outliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 0\n            -showReferenceMembers 0\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n"
@@ -7485,15 +6534,15 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\n\t\t\t$editorName = clipEditorNameFromPanel($panelName);\n            clipEditor -e \n                -displayKeys 0\n                -displayTangents 0\n                -displayActiveKeys 0\n                -displayActiveKeyTangents 0\n                -displayInfinities 0\n                -displayValues 0\n                -autoFit 0\n                -snapTime \"none\" \n                -snapValue \"none\" \n                -initialized 0\n                -manageSequencer 0 \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"sequenceEditorPanel\" (localizedPanelLabel(\"Camera Sequencer\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Camera Sequencer\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = sequenceEditorNameFromPanel($panelName);\n            clipEditor -e \n                -displayKeys 0\n                -displayTangents 0\n                -displayActiveKeys 0\n"
 		+ "                -displayActiveKeyTangents 0\n                -displayInfinities 0\n                -displayValues 0\n                -autoFit 0\n                -snapTime \"none\" \n                -snapValue \"none\" \n                -initialized 0\n                -manageSequencer 1 \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"hyperGraphPanel\" (localizedPanelLabel(\"Hypergraph Hierarchy\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypergraph Hierarchy\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"HyperGraphEd\");\n            hyperGraph -e \n                -graphLayoutStyle \"hierarchicalLayout\" \n                -orientation \"horiz\" \n                -mergeConnections 0\n                -zoom 1\n                -animateTransition 0\n                -showRelationships 1\n                -showShapes 0\n                -showDeformers 0\n"
 		+ "                -showExpressions 0\n                -showConstraints 0\n                -showConnectionFromSelected 0\n                -showConnectionToSelected 0\n                -showConstraintLabels 0\n                -showUnderworld 0\n                -showInvisible 0\n                -transitionFrames 1\n                -opaqueContainers 0\n                -freeform 0\n                -imagePosition 0 0 \n                -imageScale 1\n                -imageEnabled 0\n                -graphType \"DAG\" \n                -heatMapDisplay 0\n                -updateSelection 1\n                -updateNodeAdded 1\n                -useDrawOverrideColor 0\n                -limitGraphTraversal -1\n                -range 0 0 \n                -iconSize \"smallIcons\" \n                -showCachedConnections 0\n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"hyperShadePanel\" (localizedPanelLabel(\"Hypershade\")) `;\n\tif (\"\" != $panelName) {\n"
-		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypershade\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"visorPanel\" (localizedPanelLabel(\"Visor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Visor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n"
-		+ "                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -highlightConnections 0\n                -copyConnectionsOnPaste 0\n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -activeTab -1\n                -editorMode \"default\" \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"shapePanel\" (localizedPanelLabel(\"Shape Editor\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tshapePanel -edit -l (localizedPanelLabel(\"Shape Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"posePanel\" (localizedPanelLabel(\"Pose Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tposePanel -edit -l (localizedPanelLabel(\"Pose Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"profilerPanel\" (localizedPanelLabel(\"Profiler Tool\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
-		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"wireframe\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 545\\n    -height 727\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"wireframe\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 545\\n    -height 727\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypershade\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"visorPanel\" (localizedPanelLabel(\"Visor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Visor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Editor\")) `;\n\tif (\"\" != $panelName) {\n"
+		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"shapePanel\" (localizedPanelLabel(\"Shape Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tshapePanel -edit -l (localizedPanelLabel(\"Shape Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"posePanel\" (localizedPanelLabel(\"Pose Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n"
+		+ "\t\tposePanel -edit -l (localizedPanelLabel(\"Pose Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" != $panelName) {\n"
+		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"profilerPanel\" (localizedPanelLabel(\"Profiler Tool\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -highlightConnections 0\n                -copyConnectionsOnPaste 0\n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n"
+		+ "                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -activeTab -1\n                -editorMode \"default\" \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
+		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"wireframe\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1319\\n    -height 737\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"wireframe\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1319\\n    -height 737\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
@@ -7549,8 +6598,8 @@ connectAttr "base_geo_parentConstraint1.crx" "lamp_modelRN.phl[4]";
 connectAttr "base_geo_parentConstraint1.cry" "lamp_modelRN.phl[5]";
 connectAttr "base_geo_parentConstraint1.crz" "lamp_modelRN.phl[6]";
 connectAttr "lamp_modelRN.phl[7]" "base_geo_parentConstraint1.cro";
-connectAttr "lamp_modelRN.phl[8]" "base_geo_scaleConstraint1.cpim";
-connectAttr "lamp_modelRN.phl[9]" "base_geo_parentConstraint1.cpim";
+connectAttr "lamp_modelRN.phl[8]" "base_geo_parentConstraint1.cpim";
+connectAttr "lamp_modelRN.phl[9]" "base_geo_scaleConstraint1.cpim";
 connectAttr "lamp_modelRN.phl[10]" "base_geo_parentConstraint1.crp";
 connectAttr "lamp_modelRN.phl[11]" "base_geo_parentConstraint1.crt";
 connectAttr "base_geo_scaleConstraint1.csx" "lamp_modelRN.phl[12]";
@@ -7563,8 +6612,8 @@ connectAttr "lower_arm_geo_parentConstraint1.crx" "lamp_modelRN.phl[18]";
 connectAttr "lower_arm_geo_parentConstraint1.cry" "lamp_modelRN.phl[19]";
 connectAttr "lower_arm_geo_parentConstraint1.crz" "lamp_modelRN.phl[20]";
 connectAttr "lamp_modelRN.phl[21]" "lower_arm_geo_parentConstraint1.cro";
-connectAttr "lamp_modelRN.phl[22]" "lower_arm_geo_scaleConstraint1.cpim";
-connectAttr "lamp_modelRN.phl[23]" "lower_arm_geo_parentConstraint1.cpim";
+connectAttr "lamp_modelRN.phl[22]" "lower_arm_geo_parentConstraint1.cpim";
+connectAttr "lamp_modelRN.phl[23]" "lower_arm_geo_scaleConstraint1.cpim";
 connectAttr "lamp_modelRN.phl[24]" "lower_arm_geo_parentConstraint1.crp";
 connectAttr "lamp_modelRN.phl[25]" "lower_arm_geo_parentConstraint1.crt";
 connectAttr "lower_arm_geo_scaleConstraint1.csx" "lamp_modelRN.phl[26]";
@@ -7577,73 +6626,73 @@ connectAttr "upper_arm_geo_parentConstraint1.crx" "lamp_modelRN.phl[32]";
 connectAttr "upper_arm_geo_parentConstraint1.cry" "lamp_modelRN.phl[33]";
 connectAttr "upper_arm_geo_parentConstraint1.crz" "lamp_modelRN.phl[34]";
 connectAttr "lamp_modelRN.phl[35]" "upper_arm_geo_parentConstraint1.cro";
-connectAttr "lamp_modelRN.phl[36]" "upper_arm_geo_scaleConstraint1.cpim";
-connectAttr "lamp_modelRN.phl[37]" "upper_arm_geo_parentConstraint1.cpim";
+connectAttr "lamp_modelRN.phl[36]" "upper_arm_geo_parentConstraint1.cpim";
+connectAttr "lamp_modelRN.phl[37]" "upper_arm_geo_scaleConstraint1.cpim";
 connectAttr "lamp_modelRN.phl[38]" "upper_arm_geo_parentConstraint1.crp";
 connectAttr "lamp_modelRN.phl[39]" "upper_arm_geo_parentConstraint1.crt";
 connectAttr "upper_arm_geo_scaleConstraint1.csx" "lamp_modelRN.phl[40]";
 connectAttr "upper_arm_geo_scaleConstraint1.csy" "lamp_modelRN.phl[41]";
 connectAttr "upper_arm_geo_scaleConstraint1.csz" "lamp_modelRN.phl[42]";
-connectAttr "head_geo_parentConstraint1.ctx" "lamp_modelRN.phl[43]";
-connectAttr "head_geo_parentConstraint1.cty" "lamp_modelRN.phl[44]";
-connectAttr "head_geo_parentConstraint1.ctz" "lamp_modelRN.phl[45]";
-connectAttr "head_geo_parentConstraint1.crx" "lamp_modelRN.phl[46]";
-connectAttr "head_geo_parentConstraint1.cry" "lamp_modelRN.phl[47]";
-connectAttr "head_geo_parentConstraint1.crz" "lamp_modelRN.phl[48]";
-connectAttr "lamp_modelRN.phl[49]" "head_geo_parentConstraint1.cro";
-connectAttr "lamp_modelRN.phl[50]" "head_geo_scaleConstraint1.cpim";
-connectAttr "lamp_modelRN.phl[51]" "head_geo_parentConstraint1.cpim";
-connectAttr "lamp_modelRN.phl[52]" "head_geo_parentConstraint1.crp";
-connectAttr "lamp_modelRN.phl[53]" "head_geo_parentConstraint1.crt";
-connectAttr "head_geo_scaleConstraint1.csx" "lamp_modelRN.phl[54]";
-connectAttr "head_geo_scaleConstraint1.csy" "lamp_modelRN.phl[55]";
-connectAttr "head_geo_scaleConstraint1.csz" "lamp_modelRN.phl[56]";
+connectAttr "head_geo_scaleConstraint1.csx" "lamp_modelRN.phl[43]";
+connectAttr "head_geo_scaleConstraint1.csy" "lamp_modelRN.phl[44]";
+connectAttr "head_geo_scaleConstraint1.csz" "lamp_modelRN.phl[45]";
+connectAttr "head_geo_parentConstraint1.ctx" "lamp_modelRN.phl[46]";
+connectAttr "head_geo_parentConstraint1.cty" "lamp_modelRN.phl[47]";
+connectAttr "head_geo_parentConstraint1.ctz" "lamp_modelRN.phl[48]";
+connectAttr "head_geo_parentConstraint1.crx" "lamp_modelRN.phl[49]";
+connectAttr "head_geo_parentConstraint1.cry" "lamp_modelRN.phl[50]";
+connectAttr "head_geo_parentConstraint1.crz" "lamp_modelRN.phl[51]";
+connectAttr "lamp_modelRN.phl[52]" "head_geo_parentConstraint1.cro";
+connectAttr "lamp_modelRN.phl[53]" "head_geo_parentConstraint1.cpim";
+connectAttr "lamp_modelRN.phl[54]" "head_geo_scaleConstraint1.cpim";
+connectAttr "lamp_modelRN.phl[55]" "head_geo_parentConstraint1.crp";
+connectAttr "lamp_modelRN.phl[56]" "head_geo_parentConstraint1.crt";
 connectAttr "lamp_modelRN.phl[57]" "base_geo.do";
 connectAttr "lamp_modelRN.phl[58]" "lower_arm_geo.do";
 connectAttr "lamp_modelRN.phl[59]" "upper_arm_geo.do";
 connectAttr "lamp_modelRN.phl[60]" "head_geo.do";
-connectAttr "Base_Jnt_scaleConstraint1.csx" "|IKRig|Joints|Base_Jnt.sx";
-connectAttr "Base_Jnt_scaleConstraint1.csy" "|IKRig|Joints|Base_Jnt.sy";
-connectAttr "Base_Jnt_scaleConstraint1.csz" "|IKRig|Joints|Base_Jnt.sz";
-connectAttr "Base_Jnt_parentConstraint1.ctx" "|IKRig|Joints|Base_Jnt.tx";
-connectAttr "Base_Jnt_parentConstraint1.cty" "|IKRig|Joints|Base_Jnt.ty";
-connectAttr "Base_Jnt_parentConstraint1.ctz" "|IKRig|Joints|Base_Jnt.tz";
-connectAttr "Base_Jnt_parentConstraint1.crx" "|IKRig|Joints|Base_Jnt.rx";
-connectAttr "Base_Jnt_parentConstraint1.cry" "|IKRig|Joints|Base_Jnt.ry";
-connectAttr "Base_Jnt_parentConstraint1.crz" "|IKRig|Joints|Base_Jnt.rz";
-connectAttr "|IKRig|Joints|Base_Jnt.s" "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.is"
+connectAttr "Base_Jnt_scaleConstraint1.csx" "|IK_With_Base|Joints|Base_Jnt.sx";
+connectAttr "Base_Jnt_scaleConstraint1.csy" "|IK_With_Base|Joints|Base_Jnt.sy";
+connectAttr "Base_Jnt_scaleConstraint1.csz" "|IK_With_Base|Joints|Base_Jnt.sz";
+connectAttr "Base_Jnt_parentConstraint1.ctx" "|IK_With_Base|Joints|Base_Jnt.tx";
+connectAttr "Base_Jnt_parentConstraint1.cty" "|IK_With_Base|Joints|Base_Jnt.ty";
+connectAttr "Base_Jnt_parentConstraint1.ctz" "|IK_With_Base|Joints|Base_Jnt.tz";
+connectAttr "Base_Jnt_parentConstraint1.crx" "|IK_With_Base|Joints|Base_Jnt.rx";
+connectAttr "Base_Jnt_parentConstraint1.cry" "|IK_With_Base|Joints|Base_Jnt.ry";
+connectAttr "Base_Jnt_parentConstraint1.crz" "|IK_With_Base|Joints|Base_Jnt.rz";
+connectAttr "|IK_With_Base|Joints|Base_Jnt.s" "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.is"
 		;
-connectAttr "Lower_Arm_Jnt_parentConstraint1.ctx" "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.tx"
+connectAttr "Lower_Arm_Jnt_parentConstraint1.ctx" "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.tx"
 		;
-connectAttr "Lower_Arm_Jnt_parentConstraint1.cty" "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.ty"
+connectAttr "Lower_Arm_Jnt_parentConstraint1.cty" "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.ty"
 		;
-connectAttr "Lower_Arm_Jnt_parentConstraint1.ctz" "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.tz"
+connectAttr "Lower_Arm_Jnt_parentConstraint1.ctz" "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.tz"
 		;
-connectAttr "Lower_Arm_Jnt_parentConstraint1.crx" "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.rx"
+connectAttr "Lower_Arm_Jnt_parentConstraint1.crx" "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.rx"
 		;
-connectAttr "Lower_Arm_Jnt_parentConstraint1.cry" "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.ry"
+connectAttr "Lower_Arm_Jnt_parentConstraint1.cry" "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.ry"
 		;
-connectAttr "Lower_Arm_Jnt_parentConstraint1.crz" "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.rz"
+connectAttr "Lower_Arm_Jnt_parentConstraint1.crz" "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.rz"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.s" "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.is"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.s" "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.is"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.s" "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.is"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.s" "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.is"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.tx" "effector1.tx"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.tx" "effector1.tx"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.ty" "effector1.ty"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.ty" "effector1.ty"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.tz" "effector1.tz"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.tz" "effector1.tz"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.ro" "Lower_Arm_Jnt_parentConstraint1.cro"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.ro" "Lower_Arm_Jnt_parentConstraint1.cro"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.pim" "Lower_Arm_Jnt_parentConstraint1.cpim"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.pim" "Lower_Arm_Jnt_parentConstraint1.cpim"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.rp" "Lower_Arm_Jnt_parentConstraint1.crp"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.rp" "Lower_Arm_Jnt_parentConstraint1.crp"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.rpt" "Lower_Arm_Jnt_parentConstraint1.crt"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.rpt" "Lower_Arm_Jnt_parentConstraint1.crt"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.jo" "Lower_Arm_Jnt_parentConstraint1.cjo"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.jo" "Lower_Arm_Jnt_parentConstraint1.cjo"
 		;
 connectAttr "Root_ctrl.t" "Lower_Arm_Jnt_parentConstraint1.tg[0].tt";
 connectAttr "Root_ctrl.rp" "Lower_Arm_Jnt_parentConstraint1.tg[0].trp";
@@ -7654,11 +6703,13 @@ connectAttr "Root_ctrl.s" "Lower_Arm_Jnt_parentConstraint1.tg[0].ts";
 connectAttr "Root_ctrl.pm" "Lower_Arm_Jnt_parentConstraint1.tg[0].tpm";
 connectAttr "Lower_Arm_Jnt_parentConstraint1.w0" "Lower_Arm_Jnt_parentConstraint1.tg[0].tw"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt.ro" "Base_Jnt_parentConstraint1.cro";
-connectAttr "|IKRig|Joints|Base_Jnt.pim" "Base_Jnt_parentConstraint1.cpim";
-connectAttr "|IKRig|Joints|Base_Jnt.rp" "Base_Jnt_parentConstraint1.crp";
-connectAttr "|IKRig|Joints|Base_Jnt.rpt" "Base_Jnt_parentConstraint1.crt";
-connectAttr "|IKRig|Joints|Base_Jnt.jo" "Base_Jnt_parentConstraint1.cjo";
+connectAttr "|IK_With_Base|Joints|Base_Jnt.ro" "Base_Jnt_parentConstraint1.cro";
+connectAttr "|IK_With_Base|Joints|Base_Jnt.pim" "Base_Jnt_parentConstraint1.cpim"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt.rp" "Base_Jnt_parentConstraint1.crp";
+connectAttr "|IK_With_Base|Joints|Base_Jnt.rpt" "Base_Jnt_parentConstraint1.crt"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt.jo" "Base_Jnt_parentConstraint1.cjo";
 connectAttr "Base_ctrl.t" "Base_Jnt_parentConstraint1.tg[0].tt";
 connectAttr "Base_ctrl.rp" "Base_Jnt_parentConstraint1.tg[0].trp";
 connectAttr "Base_ctrl.rpt" "Base_Jnt_parentConstraint1.tg[0].trt";
@@ -7668,20 +6719,21 @@ connectAttr "Base_ctrl.s" "Base_Jnt_parentConstraint1.tg[0].ts";
 connectAttr "Base_ctrl.pm" "Base_Jnt_parentConstraint1.tg[0].tpm";
 connectAttr "Base_Jnt_parentConstraint1.w0" "Base_Jnt_parentConstraint1.tg[0].tw"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt.pim" "Base_Jnt_scaleConstraint1.cpim";
+connectAttr "|IK_With_Base|Joints|Base_Jnt.pim" "Base_Jnt_scaleConstraint1.cpim"
+		;
 connectAttr "Base_ctrl.s" "Base_Jnt_scaleConstraint1.tg[0].ts";
 connectAttr "Base_ctrl.pm" "Base_Jnt_scaleConstraint1.tg[0].tpm";
 connectAttr "Base_Jnt_scaleConstraint1.w0" "Base_Jnt_scaleConstraint1.tg[0].tw";
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.msg" "ikHandle1.hsj";
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.msg" "ikHandle1.hsj";
 connectAttr "effector1.hp" "ikHandle1.hee";
 connectAttr "ikRPsolver.msg" "ikHandle1.hsv";
 connectAttr "ikHandle1_poleVectorConstraint1.ctx" "ikHandle1.pvx";
 connectAttr "ikHandle1_poleVectorConstraint1.cty" "ikHandle1.pvy";
 connectAttr "ikHandle1_poleVectorConstraint1.ctz" "ikHandle1.pvz";
 connectAttr "ikHandle1.pim" "ikHandle1_poleVectorConstraint1.cpim";
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.pm" "ikHandle1_poleVectorConstraint1.ps"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.pm" "ikHandle1_poleVectorConstraint1.ps"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.t" "ikHandle1_poleVectorConstraint1.crp"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.t" "ikHandle1_poleVectorConstraint1.crp"
 		;
 connectAttr "PV_ctrl.t" "ikHandle1_poleVectorConstraint1.tg[0].tt";
 connectAttr "PV_ctrl.rp" "ikHandle1_poleVectorConstraint1.tg[0].trp";
@@ -7853,23 +6905,15 @@ connectAttr "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.s" "hea
 connectAttr "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.pm" "head_geo_scaleConstraint2.tg[0].tpm"
 		;
 connectAttr "head_geo_scaleConstraint2.w0" "head_geo_scaleConstraint2.tg[0].tw";
-connectAttr "Base_Jnt_scaleConstraint2.csx" "|FKRig|Joints|Base_Jnt.sx";
-connectAttr "Base_Jnt_scaleConstraint2.csy" "|FKRig|Joints|Base_Jnt.sy";
-connectAttr "Base_Jnt_scaleConstraint2.csz" "|FKRig|Joints|Base_Jnt.sz";
 connectAttr "Base_Jnt_parentConstraint2.ctx" "|FKRig|Joints|Base_Jnt.tx";
 connectAttr "Base_Jnt_parentConstraint2.cty" "|FKRig|Joints|Base_Jnt.ty";
 connectAttr "Base_Jnt_parentConstraint2.ctz" "|FKRig|Joints|Base_Jnt.tz";
 connectAttr "Base_Jnt_parentConstraint2.crx" "|FKRig|Joints|Base_Jnt.rx";
 connectAttr "Base_Jnt_parentConstraint2.cry" "|FKRig|Joints|Base_Jnt.ry";
 connectAttr "Base_Jnt_parentConstraint2.crz" "|FKRig|Joints|Base_Jnt.rz";
-connectAttr "|FKRig|Joints|Base_Jnt.s" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.is"
-		;
-connectAttr "Lower_Arm_Jnt_scaleConstraint1.csx" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.sx"
-		;
-connectAttr "Lower_Arm_Jnt_scaleConstraint1.csy" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.sy"
-		;
-connectAttr "Lower_Arm_Jnt_scaleConstraint1.csz" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.sz"
-		;
+connectAttr "Base_Jnt_scaleConstraint2.csx" "|FKRig|Joints|Base_Jnt.sx";
+connectAttr "Base_Jnt_scaleConstraint2.csy" "|FKRig|Joints|Base_Jnt.sy";
+connectAttr "Base_Jnt_scaleConstraint2.csz" "|FKRig|Joints|Base_Jnt.sz";
 connectAttr "Lower_Arm_Jnt_parentConstraint2.ctx" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.tx"
 		;
 connectAttr "Lower_Arm_Jnt_parentConstraint2.cty" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.ty"
@@ -7882,13 +6926,13 @@ connectAttr "Lower_Arm_Jnt_parentConstraint2.cry" "|FKRig|Joints|Base_Jnt|Lower_
 		;
 connectAttr "Lower_Arm_Jnt_parentConstraint2.crz" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.rz"
 		;
-connectAttr "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.s" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.is"
+connectAttr "Lower_Arm_Jnt_scaleConstraint1.csx" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.sx"
 		;
-connectAttr "Upper_Arm_Jnt_scaleConstraint1.csx" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.sx"
+connectAttr "Lower_Arm_Jnt_scaleConstraint1.csy" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.sy"
 		;
-connectAttr "Upper_Arm_Jnt_scaleConstraint1.csy" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.sy"
+connectAttr "Lower_Arm_Jnt_scaleConstraint1.csz" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.sz"
 		;
-connectAttr "Upper_Arm_Jnt_scaleConstraint1.csz" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.sz"
+connectAttr "|FKRig|Joints|Base_Jnt.s" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.is"
 		;
 connectAttr "Upper_Arm_Jnt_parentConstraint1.ctx" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.tx"
 		;
@@ -7902,7 +6946,13 @@ connectAttr "Upper_Arm_Jnt_parentConstraint1.cry" "|FKRig|Joints|Base_Jnt|Lower_
 		;
 connectAttr "Upper_Arm_Jnt_parentConstraint1.crz" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.rz"
 		;
-connectAttr "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.s" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.is"
+connectAttr "Upper_Arm_Jnt_scaleConstraint1.csx" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.sx"
+		;
+connectAttr "Upper_Arm_Jnt_scaleConstraint1.csy" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.sy"
+		;
+connectAttr "Upper_Arm_Jnt_scaleConstraint1.csz" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.sz"
+		;
+connectAttr "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt.s" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.is"
 		;
 connectAttr "Head_Jnt_parentConstraint1.ctx" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.tx"
 		;
@@ -7921,6 +6971,8 @@ connectAttr "Head_Jnt_scaleConstraint1.csx" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jn
 connectAttr "Head_Jnt_scaleConstraint1.csy" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.sy"
 		;
 connectAttr "Head_Jnt_scaleConstraint1.csz" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.sz"
+		;
+connectAttr "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.s" "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.is"
 		;
 connectAttr "|FKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.ro" "Head_Jnt_parentConstraint1.cro"
 		;
@@ -8020,112 +7072,124 @@ connectAttr "|FKRig|Joints|Base_Jnt.pim" "Base_Jnt_scaleConstraint2.cpim";
 connectAttr "base_ctrl.s" "Base_Jnt_scaleConstraint2.tg[0].ts";
 connectAttr "base_ctrl.pm" "Base_Jnt_scaleConstraint2.tg[0].tpm";
 connectAttr "Base_Jnt_scaleConstraint2.w0" "Base_Jnt_scaleConstraint2.tg[0].tw";
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.t" "head_geo_parentConstraint1.tg[0].tt"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.s" "head_geo_scaleConstraint1.tg[0].ts"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.rp" "head_geo_parentConstraint1.tg[0].trp"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.pm" "head_geo_scaleConstraint1.tg[0].tpm"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.rpt" "head_geo_parentConstraint1.tg[0].trt"
+connectAttr "head_geo_scaleConstraint1.w0" "head_geo_scaleConstraint1.tg[0].tw";
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.t" "head_geo_parentConstraint1.tg[0].tt"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.r" "head_geo_parentConstraint1.tg[0].tr"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.rp" "head_geo_parentConstraint1.tg[0].trp"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.ro" "head_geo_parentConstraint1.tg[0].tro"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.rpt" "head_geo_parentConstraint1.tg[0].trt"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.s" "head_geo_parentConstraint1.tg[0].ts"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.r" "head_geo_parentConstraint1.tg[0].tr"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.pm" "head_geo_parentConstraint1.tg[0].tpm"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.ro" "head_geo_parentConstraint1.tg[0].tro"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.jo" "head_geo_parentConstraint1.tg[0].tjo"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.s" "head_geo_parentConstraint1.tg[0].ts"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.ssc" "head_geo_parentConstraint1.tg[0].tsc"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.pm" "head_geo_parentConstraint1.tg[0].tpm"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.is" "head_geo_parentConstraint1.tg[0].tis"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.jo" "head_geo_parentConstraint1.tg[0].tjo"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.ssc" "head_geo_parentConstraint1.tg[0].tsc"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.is" "head_geo_parentConstraint1.tg[0].tis"
 		;
 connectAttr "head_geo_parentConstraint1.w0" "head_geo_parentConstraint1.tg[0].tw"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.s" "head_geo_scaleConstraint1.tg[0].ts"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.s" "upper_arm_geo_scaleConstraint1.tg[0].ts"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt|Head_Jnt.pm" "head_geo_scaleConstraint1.tg[0].tpm"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.pm" "upper_arm_geo_scaleConstraint1.tg[0].tpm"
 		;
-connectAttr "head_geo_scaleConstraint1.w0" "head_geo_scaleConstraint1.tg[0].tw";
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.t" "upper_arm_geo_parentConstraint1.tg[0].tt"
+connectAttr "upper_arm_geo_scaleConstraint1.w0" "upper_arm_geo_scaleConstraint1.tg[0].tw"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.rp" "upper_arm_geo_parentConstraint1.tg[0].trp"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.t" "upper_arm_geo_parentConstraint1.tg[0].tt"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.rpt" "upper_arm_geo_parentConstraint1.tg[0].trt"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.rp" "upper_arm_geo_parentConstraint1.tg[0].trp"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.r" "upper_arm_geo_parentConstraint1.tg[0].tr"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.rpt" "upper_arm_geo_parentConstraint1.tg[0].trt"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.ro" "upper_arm_geo_parentConstraint1.tg[0].tro"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.r" "upper_arm_geo_parentConstraint1.tg[0].tr"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.s" "upper_arm_geo_parentConstraint1.tg[0].ts"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.ro" "upper_arm_geo_parentConstraint1.tg[0].tro"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.pm" "upper_arm_geo_parentConstraint1.tg[0].tpm"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.s" "upper_arm_geo_parentConstraint1.tg[0].ts"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.jo" "upper_arm_geo_parentConstraint1.tg[0].tjo"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.pm" "upper_arm_geo_parentConstraint1.tg[0].tpm"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.ssc" "upper_arm_geo_parentConstraint1.tg[0].tsc"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.jo" "upper_arm_geo_parentConstraint1.tg[0].tjo"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.is" "upper_arm_geo_parentConstraint1.tg[0].tis"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.ssc" "upper_arm_geo_parentConstraint1.tg[0].tsc"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.is" "upper_arm_geo_parentConstraint1.tg[0].tis"
 		;
 connectAttr "upper_arm_geo_parentConstraint1.w0" "upper_arm_geo_parentConstraint1.tg[0].tw"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.s" "upper_arm_geo_scaleConstraint1.tg[0].ts"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.s" "lower_arm_geo_scaleConstraint1.tg[0].ts"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt|Upper_Arm_Jnt.pm" "upper_arm_geo_scaleConstraint1.tg[0].tpm"
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.pm" "lower_arm_geo_scaleConstraint1.tg[0].tpm"
 		;
-connectAttr "upper_arm_geo_scaleConstraint1.w0" "upper_arm_geo_scaleConstraint1.tg[0].tw"
+connectAttr "lower_arm_geo_scaleConstraint1.w0" "lower_arm_geo_scaleConstraint1.tg[0].tw"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.t" "lower_arm_geo_parentConstraint1.tg[0].tt"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.rp" "lower_arm_geo_parentConstraint1.tg[0].trp"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.rpt" "lower_arm_geo_parentConstraint1.tg[0].trt"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.r" "lower_arm_geo_parentConstraint1.tg[0].tr"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.ro" "lower_arm_geo_parentConstraint1.tg[0].tro"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.s" "lower_arm_geo_parentConstraint1.tg[0].ts"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.pm" "lower_arm_geo_parentConstraint1.tg[0].tpm"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.jo" "lower_arm_geo_parentConstraint1.tg[0].tjo"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.ssc" "lower_arm_geo_parentConstraint1.tg[0].tsc"
+		;
+connectAttr "|IK_With_Base|Joints|Base_Jnt|Lower_Arm_Jnt.is" "lower_arm_geo_parentConstraint1.tg[0].tis"
+		;
+connectAttr "lower_arm_geo_parentConstraint1.w0" "lower_arm_geo_parentConstraint1.tg[0].tw"
 		;
 connectAttr "groupId8.id" "|lamp_modelRNfosterParent1|lower_arm_geoShapeDeformed.iog.og[2].gid"
 		;
 connectAttr ":initialShadingGroup.mwc" "|lamp_modelRNfosterParent1|lower_arm_geoShapeDeformed.iog.og[2].gco"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.t" "lower_arm_geo_parentConstraint1.tg[0].tt"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.s" "base_geo_scaleConstraint1.tg[0].ts"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.rp" "lower_arm_geo_parentConstraint1.tg[0].trp"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.pm" "base_geo_scaleConstraint1.tg[0].tpm"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.rpt" "lower_arm_geo_parentConstraint1.tg[0].trt"
+connectAttr "base_geo_scaleConstraint1.w0" "base_geo_scaleConstraint1.tg[0].tw";
+connectAttr "|IK_With_Base|Joints|Base_Jnt.t" "base_geo_parentConstraint1.tg[0].tt"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.r" "lower_arm_geo_parentConstraint1.tg[0].tr"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.rp" "base_geo_parentConstraint1.tg[0].trp"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.ro" "lower_arm_geo_parentConstraint1.tg[0].tro"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.rpt" "base_geo_parentConstraint1.tg[0].trt"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.s" "lower_arm_geo_parentConstraint1.tg[0].ts"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.r" "base_geo_parentConstraint1.tg[0].tr"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.pm" "lower_arm_geo_parentConstraint1.tg[0].tpm"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.ro" "base_geo_parentConstraint1.tg[0].tro"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.jo" "lower_arm_geo_parentConstraint1.tg[0].tjo"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.s" "base_geo_parentConstraint1.tg[0].ts"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.ssc" "lower_arm_geo_parentConstraint1.tg[0].tsc"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.pm" "base_geo_parentConstraint1.tg[0].tpm"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.is" "lower_arm_geo_parentConstraint1.tg[0].tis"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.jo" "base_geo_parentConstraint1.tg[0].tjo"
 		;
-connectAttr "lower_arm_geo_parentConstraint1.w0" "lower_arm_geo_parentConstraint1.tg[0].tw"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.ssc" "base_geo_parentConstraint1.tg[0].tsc"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.s" "lower_arm_geo_scaleConstraint1.tg[0].ts"
+connectAttr "|IK_With_Base|Joints|Base_Jnt.is" "base_geo_parentConstraint1.tg[0].tis"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt|Lower_Arm_Jnt.pm" "lower_arm_geo_scaleConstraint1.tg[0].tpm"
-		;
-connectAttr "lower_arm_geo_scaleConstraint1.w0" "lower_arm_geo_scaleConstraint1.tg[0].tw"
+connectAttr "base_geo_parentConstraint1.w0" "base_geo_parentConstraint1.tg[0].tw"
 		;
 connectAttr "groupId7.id" "|lamp_modelRNfosterParent1|base_geoShapeDeformed.iog.og[2].gid"
 		;
 connectAttr ":initialShadingGroup.mwc" "|lamp_modelRNfosterParent1|base_geoShapeDeformed.iog.og[2].gco"
 		;
-connectAttr "|IKRig|Joints|Base_Jnt.t" "base_geo_parentConstraint1.tg[0].tt";
-connectAttr "|IKRig|Joints|Base_Jnt.rp" "base_geo_parentConstraint1.tg[0].trp";
-connectAttr "|IKRig|Joints|Base_Jnt.rpt" "base_geo_parentConstraint1.tg[0].trt";
-connectAttr "|IKRig|Joints|Base_Jnt.r" "base_geo_parentConstraint1.tg[0].tr";
-connectAttr "|IKRig|Joints|Base_Jnt.ro" "base_geo_parentConstraint1.tg[0].tro";
-connectAttr "|IKRig|Joints|Base_Jnt.s" "base_geo_parentConstraint1.tg[0].ts";
-connectAttr "|IKRig|Joints|Base_Jnt.pm" "base_geo_parentConstraint1.tg[0].tpm";
-connectAttr "|IKRig|Joints|Base_Jnt.jo" "base_geo_parentConstraint1.tg[0].tjo";
-connectAttr "|IKRig|Joints|Base_Jnt.ssc" "base_geo_parentConstraint1.tg[0].tsc";
-connectAttr "|IKRig|Joints|Base_Jnt.is" "base_geo_parentConstraint1.tg[0].tis";
-connectAttr "base_geo_parentConstraint1.w0" "base_geo_parentConstraint1.tg[0].tw"
-		;
-connectAttr "|IKRig|Joints|Base_Jnt.s" "base_geo_scaleConstraint1.tg[0].ts";
-connectAttr "|IKRig|Joints|Base_Jnt.pm" "base_geo_scaleConstraint1.tg[0].tpm";
-connectAttr "base_geo_scaleConstraint1.w0" "base_geo_scaleConstraint1.tg[0].tw";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
