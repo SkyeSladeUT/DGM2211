@@ -1,6 +1,6 @@
 //Maya ASCII 2018 scene
 //Name: FKIKLamp.ma
-//Last modified: Tue, Apr 09, 2019 06:57:31 PM
+//Last modified: Thu, Apr 11, 2019 03:44:25 PM
 //Codeset: 1252
 file -rdi 1 -ns "lamp_model" -rfn "lamp_modelRN" -op "v=0;" -typ "mayaAscii"
 		 "E:/School/Spring2019/DGM2211/Rigging//scenes/Lamps/01-lamp_model.ma";
@@ -12,18 +12,18 @@ fileInfo "application" "maya";
 fileInfo "product" "Maya 2018";
 fileInfo "version" "2018";
 fileInfo "cutIdentifier" "201706261615-f9658c4cfc";
-fileInfo "osv" "Microsoft Windows 8 Home Premium Edition, 64-bit  (Build 9200)\n";
+fileInfo "osv" "Microsoft Windows 8 Enterprise Edition, 64-bit  (Build 9200)\n";
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "C625B066-4474-6C91-D9A4-688533D5CAC9";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -79.939661067517832 20.241571283608316 22.744787626991595 ;
-	setAttr ".r" -type "double3" -3.3383527296041047 -431.79999999955101 -6.3644714633130793e-16 ;
+	setAttr ".t" -type "double3" -0.97706266303303169 33.153749901243437 116.28529135725532 ;
+	setAttr ".r" -type "double3" -8.7383527297459249 -361.40000000042841 0 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "5A6DCEB8-46D0-0777-806D-86934277C262";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 80.34818570562048;
+	setAttr ".coi" 114.10401981720032;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -49,13 +49,13 @@ createNode camera -s -n "topShape" -p "top";
 createNode transform -s -n "front";
 	rename -uid "AC72CDE6-49BF-31F3-37B4-B0928E99277E";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 0.11783903958352493 15.236967776538293 1000.1 ;
+	setAttr ".t" -type "double3" 5.662131490458588 21.752767200421165 1000.1 ;
 createNode camera -s -n "frontShape" -p "front";
 	rename -uid "5EE52241-4B30-A95A-AB30-B590524EF41E";
 	setAttr -k off ".v" no;
 	setAttr ".rnd" no;
 	setAttr ".coi" 1000.1;
-	setAttr ".ow" 23.849161972972485;
+	setAttr ".ow" 45.762100929784175;
 	setAttr ".imn" -type "string" "front";
 	setAttr ".den" -type "string" "front_depth";
 	setAttr ".man" -type "string" "front_mask";
@@ -72,7 +72,7 @@ createNode camera -s -n "sideShape" -p "side";
 	setAttr -k off ".v" no;
 	setAttr ".rnd" no;
 	setAttr ".coi" 1000.1;
-	setAttr ".ow" 30;
+	setAttr ".ow" 174.98316534399791;
 	setAttr ".imn" -type "string" "side";
 	setAttr ".den" -type "string" "side_depth";
 	setAttr ".man" -type "string" "side_mask";
@@ -83,11 +83,9 @@ createNode transform -n "Lamp_Rig";
 	rename -uid "EB05BDD3-498B-398D-8385-AB96DD315D23";
 createNode transform -n "FK_IK_Switch" -p "Lamp_Rig";
 	rename -uid "81B8F7E8-48DC-4C28-34BE-FBB31F02A505";
-	addAttr -ci true -sn "Switch" -ln "Switch" -min 0 -max 1 -at "double";
 	addAttr -ci true -sn "FK" -ln "FK" -min 0 -max 1 -at "bool";
 	setAttr ".rp" -type "double3" 0 31.065691692126059 0 ;
 	setAttr ".sp" -type "double3" 0 31.065691692126059 0 ;
-	setAttr -k on ".Switch" 1;
 	setAttr -k on ".FK" yes;
 createNode nurbsCurve -n "FK_IK_SwitchShape" -p "FK_IK_Switch";
 	rename -uid "D52A937B-4E3E-7C6F-6E4E-048A1F84984D";
@@ -110,6 +108,8 @@ createNode nurbsCurve -n "FK_IK_SwitchShape" -p "FK_IK_Switch";
 		;
 createNode transform -n "IK_Rig" -p "Lamp_Rig";
 	rename -uid "5814A848-47F0-FA31-8B7A-F4888D855BE4";
+	setAttr ".ove" yes;
+	setAttr ".ovc" 13;
 createNode transform -n "IK_JOints" -p "IK_Rig";
 	rename -uid "3FF05F90-4534-D2FC-D075-C0BC2ACD5552";
 createNode joint -n "IK_base_jnt" -p "IK_JOints";
@@ -265,7 +265,7 @@ createNode nurbsCurve -n "nurbsCircleShape1" -p "|Lamp_Rig|IK_Rig|Controls|head_
 		4.7786344233838847 23.681360244750977 -6.3604431096402916
 		-1.5818086862564082 23.681360244750977 -8.9950249083558003
 		-7.942251795896702 23.681360244750977 -6.3604431096402889
-		-10.576833594612216 23.681360244750977 3.187552085798236e-15
+		-10.576833594612216 23.681360244750977 3.1875520857982356e-15
 		-7.942251795896702 23.681360244750977 6.3604431096402969
 		-1.5818086862564096 23.681360244750977 8.9950249083558109
 		4.7786344233838847 23.681360244750977 6.360443109640296
@@ -404,6 +404,7 @@ createNode nurbsCurve -n "nurbsCircleShape2" -p "nurbsCircle2";
 		;
 createNode transform -n "RK_Joints" -p "Lamp_Rig";
 	rename -uid "77A42FE2-457D-8D0D-2128-B5B724AF8127";
+	setAttr ".v" no;
 createNode joint -n "RK_base_jnt" -p "RK_Joints";
 	rename -uid "B2D29041-4814-F3C2-7E8A-56A6B5B1B794";
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
@@ -547,6 +548,8 @@ createNode parentConstraint -n "RK_base_jnt_parentConstraint1" -p "RK_base_jnt";
 	setAttr -k on ".w1";
 createNode transform -n "FK_Rig" -p "Lamp_Rig";
 	rename -uid "7C2DB68B-4C7B-C626-CE13-7DAB8F93D6A1";
+	setAttr ".ove" yes;
+	setAttr ".ovc" 6;
 createNode transform -n "FK_Controls" -p "FK_Rig";
 	rename -uid "1135611A-4856-1C7B-0913-64B3574C7976";
 createNode transform -n "FK_base_ctrl_grp" -p "FK_Controls";
@@ -783,7 +786,7 @@ createNode parentConstraint -n "FK_base_jnt_parentConstraint1" -p "FK_base_jnt";
 	setAttr ".rst" -type "double3" -0.032441843533540592 0.68153634323561729 0 ;
 	setAttr -k on ".w0";
 createNode fosterParent -n "lamp_modelRNfosterParent1";
-	rename -uid "AD3EFACC-41D7-1E6D-7043-7B9D3CB54A29";
+	rename -uid "083AD5A4-48C0-2744-0519-B6B8030CF8CD";
 createNode parentConstraint -n "head_geo_parentConstraint1" -p "lamp_modelRNfosterParent1";
 	rename -uid "745E96C5-4F1B-225C-E666-D79B5A63920C";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "RK_Head_JntW0" -dv 1 -min 0 -at "double";
@@ -830,6 +833,26 @@ createNode parentConstraint -n "upper_arm_geo_parentConstraint1" -p "lamp_modelR
 	setAttr ".tg[0].tot" -type "double3" 0.026991303522019394 0.012072394689866428 -0.0088138282299041731 ;
 	setAttr ".tg[0].tor" -type "double3" 0 0 -140.33690709820269 ;
 	setAttr ".rst" -type "double3" -1.7763568394002505e-15 -1.7763568394002505e-15 -2.6020852139652106e-17 ;
+	setAttr -k on ".w0";
+createNode parentConstraint -n "lower_arm_geo_parentConstraint1" -p "lamp_modelRNfosterParent1";
+	rename -uid "EEEFE2AD-4B3A-5132-5C51-03A44EA16CAF";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "RK_Lower_Arm_JntW0" -dv 1 -min 0 
+		-at "double";
+	setAttr -k on ".nds";
+	setAttr -k off ".v";
+	setAttr -k off ".tx";
+	setAttr -k off ".ty";
+	setAttr -k off ".tz";
+	setAttr -k off ".rx";
+	setAttr -k off ".ry";
+	setAttr -k off ".rz";
+	setAttr -k off ".sx";
+	setAttr -k off ".sy";
+	setAttr -k off ".sz";
+	setAttr ".erp" yes;
+	setAttr ".tg[0].tot" -type "double3" 7.5475508266452529 -0.027755970954773446 -0.0088138314227734441 ;
+	setAttr ".tg[0].tor" -type "double3" 0 0 -40.601294645004479 ;
+	setAttr ".rst" -type "double3" 7.1054273576010019e-15 2.6645352591003757e-15 -5.2041704279304213e-18 ;
 	setAttr -k on ".w0";
 createNode mesh -n "lower_arm_geoShapeDeformed" -p "lamp_modelRNfosterParent1";
 	rename -uid "56965B08-4E40-DC6B-3852-BE83E249DF84";
@@ -1214,10 +1237,9 @@ createNode mesh -n "lower_arm_geoShapeDeformed" -p "lamp_modelRNfosterParent1";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
-createNode parentConstraint -n "lower_arm_geo_parentConstraint1" -p "lamp_modelRNfosterParent1";
-	rename -uid "EEEFE2AD-4B3A-5132-5C51-03A44EA16CAF";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "RK_Lower_Arm_JntW0" -dv 1 -min 0 
-		-at "double";
+createNode parentConstraint -n "base_geo_parentConstraint1" -p "lamp_modelRNfosterParent1";
+	rename -uid "669439A9-4056-81AE-59AC-F5AE045D64C9";
+	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "RK_base_jntW0" -dv 1 -min 0 -at "double";
 	setAttr -k on ".nds";
 	setAttr -k off ".v";
 	setAttr -k off ".tx";
@@ -1230,9 +1252,8 @@ createNode parentConstraint -n "lower_arm_geo_parentConstraint1" -p "lamp_modelR
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".tg[0].tot" -type "double3" 7.5475508266452529 -0.027755970954773446 -0.0088138314227734441 ;
-	setAttr ".tg[0].tor" -type "double3" 0 0 -40.601294645004479 ;
-	setAttr ".rst" -type "double3" 7.1054273576010019e-15 2.6645352591003757e-15 -5.2041704279304213e-18 ;
+	setAttr ".tg[0].tot" -type "double3" 0.96998475707091403 -0.039086335711429707 0 ;
+	setAttr ".tg[0].tor" -type "double3" 0 0 -90.392430709340886 ;
 	setAttr -k on ".w0";
 createNode mesh -n "base_geoShapeDeformed" -p "lamp_modelRNfosterParent1";
 	rename -uid "2CD73A79-479D-AB4C-D613-0C99C1A9C803";
@@ -1768,38 +1789,20 @@ createNode mesh -n "base_geoShapeDeformed" -p "lamp_modelRNfosterParent1";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 	setAttr ".ai_translator" -type "string" "polymesh";
-createNode parentConstraint -n "base_geo_parentConstraint1" -p "lamp_modelRNfosterParent1";
-	rename -uid "669439A9-4056-81AE-59AC-F5AE045D64C9";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "RK_base_jntW0" -dv 1 -min 0 -at "double";
-	setAttr -k on ".nds";
-	setAttr -k off ".v";
-	setAttr -k off ".tx";
-	setAttr -k off ".ty";
-	setAttr -k off ".tz";
-	setAttr -k off ".rx";
-	setAttr -k off ".ry";
-	setAttr -k off ".rz";
-	setAttr -k off ".sx";
-	setAttr -k off ".sy";
-	setAttr -k off ".sz";
-	setAttr ".erp" yes;
-	setAttr ".tg[0].tot" -type "double3" 0.96998475707091403 -0.039086335711429707 0 ;
-	setAttr ".tg[0].tor" -type "double3" 0 0 -90.392430709340886 ;
-	setAttr -k on ".w0";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "CC5A2A8F-4F60-B0ED-E904-6AB702A8E42A";
+	rename -uid "98241440-498F-1B62-0389-049DE451B493";
 	setAttr -s 2 ".lnk";
 	setAttr -s 2 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "36C642BC-4BDA-0982-0286-B99840C09BB2";
+	rename -uid "5534681F-4045-5B11-5967-A49D04C68669";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "1F3E6A25-4F21-E4D3-32C3-B0A3BC93D568";
+	rename -uid "C2CDFDEE-45F6-892B-E424-709D93C2D19C";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "9E133BF5-4A88-7227-E489-17AEE6C1DC31";
+	rename -uid "136C557B-4AF3-13BE-A573-4E959428309D";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "611DA425-46FB-E830-4DD1-6ABB0380782F";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "9FB9BCF0-4788-CD7B-BBED-DAAE68EFC5A3";
+	rename -uid "0F67E854-4179-19F2-2E45-18B140066D71";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "D5BF3338-4596-BAB6-AF31-5CBB2047D523";
 	setAttr ".g" yes;
@@ -1851,15 +1854,15 @@ createNode reference -n "lamp_modelRN";
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"lamp_modelRN"
 		"lamp_modelRN" 0
-		"lamp_modelRN" 481
+		"lamp_modelRN" 70
 		0 "|lamp_model:Geometry" "|Lamp_Rig" "-s -r "
-		0 "|lamp_modelRNfosterParent1|base_geo_parentConstraint1" "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo" 
-		"-s -r "
 		0 "|lamp_modelRNfosterParent1|base_geoShapeDeformed" "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo" 
 		"-s -r "
-		0 "|lamp_modelRNfosterParent1|lower_arm_geo_parentConstraint1" "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo" 
+		0 "|lamp_modelRNfosterParent1|base_geo_parentConstraint1" "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo" 
 		"-s -r "
 		0 "|lamp_modelRNfosterParent1|lower_arm_geoShapeDeformed" "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo" 
+		"-s -r "
+		0 "|lamp_modelRNfosterParent1|lower_arm_geo_parentConstraint1" "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo" 
 		"-s -r "
 		0 "|lamp_modelRNfosterParent1|upper_arm_geo_parentConstraint1" "|Lamp_Rig|lamp_model:Geometry|lamp_model:upper_arm_geo" 
 		"-s -r "
@@ -1870,1033 +1873,33 @@ createNode reference -n "lamp_modelRN";
 		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
 		"uvSet[0].uvSetName" " -type \"string\" \"map1\""
 		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints" " -s 247"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[0]" " -type \"float2\" 0.3958334 0.31474133999999998"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[1]" " -type \"float2\" 0.375 0.68619841000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[2]" " -type \"float2\" 0.41666669000000001 0.31474137000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[3]" " -type \"float2\" 0.39583337000000002 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[4]" " -type \"float2\" 0.4375 0.3147414"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[5]" " -type \"float2\" 0.41666669000000001 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[6]" " -type \"float2\" 0.45833337000000002 0.31474137000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[7]" " -type \"float2\" 0.4375 0.68619834999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[8]" " -type \"float2\" 0.47916671999999999 0.31474137000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[9]" " -type \"float2\" 0.45833337000000002 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[10]" " -type \"float2\" 0.5 0.3147414"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[11]" " -type \"float2\" 0.47916671999999999 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[12]" " -type \"float2\" 0.52083336999999996 0.31474137000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[13]" " -type \"float2\" 0.49999997000000002 0.68619834999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[14]" " -type \"float2\" 0.54166674999999997 0.31474133999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[15]" " -type \"float2\" 0.52083336999999996 0.68619817000000005"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[16]" " -type \"float2\" 0.5625 0.31474163999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[17]" " -type \"float2\" 0.54166669000000001 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[18]" " -type \"float2\" 0.58333336999999996 0.31474133999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[19]" " -type \"float2\" 0.5625 0.68619841000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[20]" " -type \"float2\" 0.60416663000000004 0.31474137000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[21]" " -type \"float2\" 0.58333343000000004 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[22]" " -type \"float2\" 0.62499994000000003 0.3147414"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[23]" " -type \"float2\" 0.60416669000000001 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[24]" " -type \"float2\" 0.62178617999999997 0.085311263999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[25]" " -type \"float2\" 0.57031321999999995 0.033839020999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[26]" " -type \"float2\" 0.5 0.014998627"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[27]" " -type \"float2\" 0.42968677999999999 0.033839020999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[28]" " -type \"float2\" 0.37821381999999998 0.085311263999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[29]" " -type \"float2\" 0.35937342 0.15562506000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[30]" " -type \"float2\" 0.37821385000000002 0.22593833999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[31]" " -type \"float2\" 0.42968677999999999 0.27741110000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[32]" " -type \"float2\" 0.5 0.29625148000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[33]" " -type \"float2\" 0.57031321999999995 0.27741110000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[34]" " -type \"float2\" 0.62178617999999997 0.22593833999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[35]" " -type \"float2\" 0.5 0.15000000999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[36]" " -type \"float2\" 0.64062655000000002 0.15562506000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[37]" " -type \"float2\" 0.57031321999999995 0.96491110000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[38]" " -type \"float2\" 0.5 0.98375148000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[39]" " -type \"float2\" 0.42968677999999999 0.96491110000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[40]" " -type \"float2\" 0.37821381999999998 0.91343892000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[41]" " -type \"float2\" 0.35937342 0.84312505000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[42]" " -type \"float2\" 0.37821385000000002 0.77281177000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[43]" " -type \"float2\" 0.42968677999999999 0.72133899000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[44]" " -type \"float2\" 0.5 0.70249861000000002"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[45]" " -type \"float2\" 0.57031321999999995 0.72133899000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[46]" " -type \"float2\" 0.62178617999999997 0.77281177000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[47]" " -type \"float2\" 0.64062655000000002 0.84312505000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[48]" " -type \"float2\" 0.62178617999999997 0.91343892000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[49]" " -type \"float2\" 0.5 0.83749998000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[50]" " -type \"float2\" 0.375 0.31474137000000002"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[51]" " -type \"float2\" 0.62499994000000003 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[52]" " -type \"float2\" 0.62499994000000003 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[53]" " -type \"float2\" 0.63531649000000001 0.078125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[54]" " -type \"float2\" 0.375 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[55]" " -type \"float2\" 0.578125 0.020933539000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[56]" " -type \"float2\" 0.39583333999999998 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[57]" " -type \"float2\" 0.5 0"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[58]" " -type \"float2\" 0.41666669000000001 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[59]" " -type \"float2\" 0.421875 0.020933539000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[60]" " -type \"float2\" 0.43750002999999998 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[61]" " -type \"float2\" 0.36468353999999997 0.078125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[62]" " -type \"float2\" 0.45833337000000002 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[63]" " -type \"float2\" 0.34375 0.15625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[64]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[65]" " -type \"float2\" 0.36468353999999997 0.234375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[66]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[67]" " -type \"float2\" 0.421875 0.29156646000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[68]" " -type \"float2\" 0.52083336999999996 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[69]" " -type \"float2\" 0.5 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[70]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[71]" " -type \"float2\" 0.578125 0.29156646000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[72]" " -type \"float2\" 0.5625 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[73]" " -type \"float2\" 0.63531649000000001 0.234375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[74]" " -type \"float2\" 0.58333330999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[75]" " -type \"float2\" 0.65625 0.15625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[76]" " -type \"float2\" 0.60416663000000004 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[77]" " -type \"float2\" 0.375 0.68843984999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[78]" " -type \"float2\" 0.63531649000000001 0.921875"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[79]" " -type \"float2\" 0.62499994000000003 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[80]" " -type \"float2\" 0.39583333999999998 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[81]" " -type \"float2\" 0.578125 0.97906649000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[82]" " -type \"float2\" 0.41666669000000001 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[83]" " -type \"float2\" 0.5 1"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[84]" " -type \"float2\" 0.43750002999999998 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[85]" " -type \"float2\" 0.421875 0.97906649000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[86]" " -type \"float2\" 0.45833337000000002 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[87]" " -type \"float2\" 0.36468353999999997 0.921875"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[88]" " -type \"float2\" 0.47916671999999999 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[89]" " -type \"float2\" 0.34375 0.84375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[90]" " -type \"float2\" 0.50000005999999997 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[91]" " -type \"float2\" 0.36468353999999997 0.765625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[92]" " -type \"float2\" 0.52083336999999996 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[93]" " -type \"float2\" 0.421875 0.70843350999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[94]" " -type \"float2\" 0.54166669000000001 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[95]" " -type \"float2\" 0.5 0.6875"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[96]" " -type \"float2\" 0.5625 0.68843984999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[97]" " -type \"float2\" 0.578125 0.70843350999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[98]" " -type \"float2\" 0.58333330999999999 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[99]" " -type \"float2\" 0.63531649000000001 0.765625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[100]" " -type \"float2\" 0.65625 0.84375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[101]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[102]" " -type \"float2\" 0.62499994000000003 0.53807896"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[103]" " -type \"float2\" 0.62469339000000002 0.68843979"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[104]" " -type \"float2\" 0.60444193999999996 0.68347179999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[105]" " -type \"float2\" 0.60416663000000004 0.53807908000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[106]" " -type \"float2\" 0.37527530999999997 0.68347186000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[107]" " -type \"float2\" 0.375 0.53807896"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[108]" " -type \"float2\" 0.39583333999999998 0.53807901999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[109]" " -type \"float2\" 0.39552683 0.68843984999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[110]" " -type \"float2\" 0.39610866 0.68347179999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[111]" " -type \"float2\" 0.41666669000000001 0.53807908000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[112]" " -type \"float2\" 0.41636013999999999 0.68843979"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[113]" " -type \"float2\" 0.416942 0.68347179999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[114]" " -type \"float2\" 0.4375 0.53807896"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[115]" " -type \"float2\" 0.43719348000000002 0.68843979"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[116]" " -type \"float2\" 0.43777537 0.68347186000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[117]" " -type \"float2\" 0.45833337000000002 0.53807896"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[118]" " -type \"float2\" 0.45802685999999998 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[119]" " -type \"float2\" 0.45860868999999999 0.68347179999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[120]" " -type \"float2\" 0.47916671999999999 0.53807908000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[121]" " -type \"float2\" 0.47886016999999997 0.68843979"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[122]" " -type \"float2\" 0.47944203000000002 0.68347179999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[123]" " -type \"float2\" 0.50000005999999997 0.53807896"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[124]" " -type \"float2\" 0.49969353999999999 0.68843979"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[125]" " -type \"float2\" 0.50027537 0.68347186000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[126]" " -type \"float2\" 0.52083336999999996 0.53807901999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[127]" " -type \"float2\" 0.52052683 0.68843984999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[128]" " -type \"float2\" 0.52110869000000004 0.68347179999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[129]" " -type \"float2\" 0.54166669000000001 0.53807908000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[130]" " -type \"float2\" 0.54136013999999999 0.68843979"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[131]" " -type \"float2\" 0.541942 0.68347179999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[132]" " -type \"float2\" 0.5625 0.53807896"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[133]" " -type \"float2\" 0.56219344999999998 0.68843979"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[134]" " -type \"float2\" 0.56277531000000003 0.68347186000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[135]" " -type \"float2\" 0.58333330999999999 0.53807896"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[136]" " -type \"float2\" 0.58302683 0.68843984999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[137]" " -type \"float2\" 0.58360862999999996 0.68347179999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[138]" " -type \"float2\" 0.60386008000000002 0.68843979"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[139]" " -type \"float2\" 0.62692481 0.91664248999999998"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[140]" " -type \"float2\" 0.57328009999999996 0.97028725999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[141]" " -type \"float2\" 0.5 0.83749998000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[142]" " -type \"float2\" 0.5 0.98992252000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[143]" " -type \"float2\" 0.42671993000000003 0.97028725999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[144]" " -type \"float2\" 0.37307519 0.91664248999999998"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[145]" " -type \"float2\" 0.35343986999999999 0.84336239000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[146]" " -type \"float2\" 0.37307519 0.77008235000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[147]" " -type \"float2\" 0.42671993000000003 0.71643758000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[148]" " -type \"float2\" 0.5 0.69680226000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[149]" " -type \"float2\" 0.57328009999999996 0.71643758000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[150]" " -type \"float2\" 0.62692481 0.77008235000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[151]" " -type \"float2\" 0.64656013000000001 0.84336239000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[152]" " -type \"float2\" 0.57746350999999996 0.022026401000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[153]" " -type \"float2\" 0.63417071000000003 0.078733593000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[154]" " -type \"float2\" 0.5 0.15000000999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[155]" " -type \"float2\" 0.5 0.0012701154"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[156]" " -type \"float2\" 0.42253652000000003 0.022026401000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[157]" " -type \"float2\" 0.36582932000000001 0.078733593000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[158]" " -type \"float2\" 0.34507304 0.15619706999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[159]" " -type \"float2\" 0.36582932000000001 0.23366055999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[160]" " -type \"float2\" 0.42253652000000003 0.29036774999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[161]" " -type \"float2\" 0.5 0.31112403"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[162]" " -type \"float2\" 0.57746350999999996 0.29036774999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[163]" " -type \"float2\" 0.63417071000000003 0.23366055999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[164]" " -type \"float2\" 0.65492695999999995 0.15619706999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[165]" " -type \"float2\" 0.375 0.33505559000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[166]" " -type \"float2\" 0.39583333999999998 0.33505559000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[167]" " -type \"float2\" 0.41666669000000001 0.33505568000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[168]" " -type \"float2\" 0.43750002999999998 0.33505559000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[169]" " -type \"float2\" 0.45833337000000002 0.33505559000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[170]" " -type \"float2\" 0.47916671999999999 0.33505568000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[171]" " -type \"float2\" 0.50000005999999997 0.33505559000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[172]" " -type \"float2\" 0.52083336999999996 0.33505559000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[173]" " -type \"float2\" 0.54166669000000001 0.33505568000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[174]" " -type \"float2\" 0.5625 0.33505559000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[175]" " -type \"float2\" 0.58333330999999999 0.33505559000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[176]" " -type \"float2\" 0.60416663000000004 0.33505568000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[177]" " -type \"float2\" 0.62499994000000003 0.33505559000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[178]" " -type \"float2\" 0.63531649000000001 0.078125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[179]" " -type \"float2\" 0.65625 0.15625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[180]" " -type \"float2\" 0.62499994000000003 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[181]" " -type \"float2\" 0.60416663000000004 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[182]" " -type \"float2\" 0.375 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[183]" " -type \"float2\" 0.39583333999999998 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[184]" " -type \"float2\" 0.578125 0.020933539000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[185]" " -type \"float2\" 0.41666669000000001 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[186]" " -type \"float2\" 0.5 0"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[187]" " -type \"float2\" 0.43750002999999998 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[188]" " -type \"float2\" 0.421875 0.020933539000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[189]" " -type \"float2\" 0.45833337000000002 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[190]" " -type \"float2\" 0.36468353999999997 0.078125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[191]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[192]" " -type \"float2\" 0.34375 0.15625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[193]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[194]" " -type \"float2\" 0.36468353999999997 0.234375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[195]" " -type \"float2\" 0.52083336999999996 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[196]" " -type \"float2\" 0.421875 0.29156646000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[197]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[198]" " -type \"float2\" 0.5 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[199]" " -type \"float2\" 0.5625 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[200]" " -type \"float2\" 0.578125 0.29156646000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[201]" " -type \"float2\" 0.58333330999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[202]" " -type \"float2\" 0.63531649000000001 0.234375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[203]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[204]" " -type \"float2\" 0.52083336999999996 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[205]" " -type \"float2\" 0.52083336999999996 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[206]" " -type \"float2\" 0.50000005999999997 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[207]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[208]" " -type \"float2\" 0.5625 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[209]" " -type \"float2\" 0.56250005999999997 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[210]" " -type \"float2\" 0.54166669000000001 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[211]" " -type \"float2\" 0.58333330999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[212]" " -type \"float2\" 0.60416663000000004 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[213]" " -type \"float2\" 0.60416663000000004 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[214]" " -type \"float2\" 0.58333330999999999 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[215]" " -type \"float2\" 0.5 0.15000000999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[216]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[217]" " -type \"float2\" 0.34479091000000001 0.83966649000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[218]" " -type \"float2\" 0.5 0.83221531000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[219]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[220]" " -type \"float2\" 0.47916674999999997 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[221]" " -type \"float2\" 0.65625 0.15625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[222]" " -type \"float2\" 0.60456699000000003 0.68434912000000003"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[223]" " -type \"float2\" 0.5 0.83259039999999995"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[224]" " -type \"float2\" 0.35045809 0.83845323000000005"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[225]" " -type \"float2\" 0.36929848999999998 0.76828945000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[226]" " -type \"float2\" 0.42453944999999998 0.71283531"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[227]" " -type \"float2\" 0.5 0.69282889000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[228]" " -type \"float2\" 0.57546054999999996 0.71283525000000003"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[229]" " -type \"float2\" 0.63070154 0.76828945000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[230]" " -type \"float2\" 0.64954190999999994 0.83845329000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[231]" " -type \"float2\" 0.34375 0.84375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[232]" " -type \"float2\" 0.36468353999999997 0.765625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[233]" " -type \"float2\" 0.47916671999999999 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[234]" " -type \"float2\" 0.50000005999999997 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[235]" " -type \"float2\" 0.421875 0.70843350999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[236]" " -type \"float2\" 0.52083336999999996 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[237]" " -type \"float2\" 0.5 0.6875"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[238]" " -type \"float2\" 0.54166669000000001 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[239]" " -type \"float2\" 0.578125 0.70843350999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[240]" " -type \"float2\" 0.5625 0.68843984999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[241]" " -type \"float2\" 0.63531649000000001 0.765625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[242]" " -type \"float2\" 0.58333330999999999 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[243]" " -type \"float2\" 0.65625 0.84375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[244]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[245]" " -type \"float2\" 0.5 0.83749998000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape" 
-		"uvSet[0].uvSetPoints[246]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
+		"uvst[0].uvsp[0:246]" (" -s 247 -type \"float2\" 0.3958334 0.31474133999999998 0.375 0.68619841000000004 0.41666669000000001 0.31474137000000002 0.39583337000000002 0.68619841000000004 0.4375 0.3147414 0.41666669000000001 0.68619841000000004 0.45833337000000002 0.31474137000000002 0.4375 0.68619834999999996 0.47916671999999999 0.31474137000000002 0.45833337000000002 0.68619841000000004 0.5 0.3147414 0.47916671999999999 0.68619841000000004 0.52083336999999996 0.31474137000000002 0.49999997000000002 0.68619834999999996 0.54166674999999997 0.31474133999999998 0.52083336999999996 0.68619817000000005 0.5625 0.31474163999999999 0.54166669000000001 0.68619841000000004 0.58333336999999996 0.31474133999999998 0.5625 0.68619841000000004 0.60416663000000004 0.31474137000000002 0.58333343000000004 0.68619841000000004 0.62499994000000003 0.3147414 0.60416669000000001 0.68619841000000004 0.62178617999999997 0.085311263999999998 0.57031321999999995 0.033839020999999997 0.5 0.014998627 0.42968677999999999 0.033839020999999997 0.37821381999999998 0.08"
+		+ "5311263999999998 0.35937342 0.15562506000000001 0.37821385000000002 0.22593833999999999 0.42968677999999999 0.27741110000000002 0.5 0.29625148000000001 0.57031321999999995 0.27741110000000002 0.62178617999999997 0.22593833999999999 0.5 0.15000000999999999 0.64062655000000002 0.15562506000000001 0.57031321999999995 0.96491110000000002 0.5 0.98375148000000001 0.42968677999999999 0.96491110000000002 0.37821381999999998 0.91343892000000004 0.35937342 0.84312505000000004 0.37821385000000002 0.77281177000000001 0.42968677999999999 0.72133899000000001 0.5 0.70249861000000002 0.57031321999999995 0.72133899000000001 0.62178617999999997 0.77281177000000001 0.64062655000000002 0.84312505000000004 0.62178617999999997 0.91343892000000004 0.5 0.83749998000000003 0.375 0.31474137000000002 0.62499994000000003 0.68619841000000004 0.62499994000000003 0.3125 0.63531649000000001 0.078125 0.375 0.3125 0.578125 0.020933539000000001 0.39583333999999998 0.3125 0.5 0 0.41666669000000001 0.3125 0.421875 0.020933539000000001 0.43750002"
+		+ "999999998 0.3125 0.36468353999999997 0.078125 0.45833337000000002 0.3125 0.34375 0.15625 0.47916671999999999 0.3125 0.36468353999999997 0.234375 0.50000005999999997 0.3125 0.421875 0.29156646000000003 0.52083336999999996 0.3125 0.5 0.3125 0.54166669000000001 0.3125 0.578125 0.29156646000000003 0.5625 0.3125 0.63531649000000001 0.234375 0.58333330999999999 0.3125 0.65625 0.15625 0.60416663000000004 0.3125 0.375 0.68843984999999996 0.63531649000000001 0.921875 0.62499994000000003 0.68843984999999996 0.39583333999999998 0.68843984999999996 0.578125 0.97906649000000001 0.41666669000000001 0.68843984999999996 0.5 1 0.43750002999999998 0.68843984999999996 0.421875 0.97906649000000001 0.45833337000000002 0.68843984999999996 0.36468353999999997 0.921875 0.47916671999999999 0.68843984999999996 0.34375 0.84375 0.50000005999999997 0.68843984999999996 0.36468353999999997 0.765625 0.52083336999999996 0.68843984999999996 0.421875 0.70843350999999999 0.54166669000000001 0.68843984999999996 0.5 0.6875 0.5625 0.68843984999999"
+		+ "996 0.578125 0.70843350999999999 0.58333330999999999 0.68843984999999996 0.63531649000000001 0.765625 0.65625 0.84375 0.60416663000000004 0.68843984999999996 0.62499994000000003 0.53807896 0.62469339000000002 0.68843979 0.60444193999999996 0.68347179999999996 0.60416663000000004 0.53807908000000004 0.37527530999999997 0.68347186000000004 0.375 0.53807896 0.39583333999999998 0.53807901999999996 0.39552683 0.68843984999999996 0.39610866 0.68347179999999996 0.41666669000000001 0.53807908000000004 0.41636013999999999 0.68843979 0.416942 0.68347179999999996 0.4375 0.53807896 0.43719348000000002 0.68843979 0.43777537 0.68347186000000004 0.45833337000000002 0.53807896 0.45802685999999998 0.68843984999999996 0.45860868999999999 0.68347179999999996 0.47916671999999999 0.53807908000000004 0.47886016999999997 0.68843979 0.47944203000000002 0.68347179999999996 0.50000005999999997 0.53807896 0.49969353999999999 0.68843979 0.50027537 0.68347186000000004 0.52083336999999996 0.53807901999999996 0.52052683 0.68843984999999996"
+		+ " 0.52110869000000004 0.68347179999999996 0.54166669000000001 0.53807908000000004 0.54136013999999999 0.68843979 0.541942 0.68347179999999996 0.5625 0.53807896 0.56219344999999998 0.68843979 0.56277531000000003 0.68347186000000004 0.58333330999999999 0.53807896 0.58302683 0.68843984999999996 0.58360862999999996 0.68347179999999996 0.60386008000000002 0.68843979 0.62692481 0.91664248999999998 0.57328009999999996 0.97028725999999998 0.5 0.83749998000000003 0.5 0.98992252000000003 0.42671993000000003 0.97028725999999998 0.37307519 0.91664248999999998 0.35343986999999999 0.84336239000000002 0.37307519 0.77008235000000003 0.42671993000000003 0.71643758000000002 0.5 0.69680226000000001 0.57328009999999996 0.71643758000000002 0.62692481 0.77008235000000003 0.64656013000000001 0.84336239000000002 0.57746350999999996 0.022026401000000001 0.63417071000000003 0.078733593000000004 0.5 0.15000000999999999 0.5 0.0012701154 0.42253652000000003 0.022026401000000001 0.36582932000000001 0.078733593000000004 0.34507304 0.1561970"
+		+ "6999999999 0.36582932000000001 0.23366055999999999 0.42253652000000003 0.29036774999999998 0.5 0.31112403 0.57746350999999996 0.29036774999999998 0.63417071000000003 0.23366055999999999 0.65492695999999995 0.15619706999999999 0.375 0.33505559000000001 0.39583333999999998 0.33505559000000001 0.41666669000000001 0.33505568000000002 0.43750002999999998 0.33505559000000001 0.45833337000000002 0.33505559000000001 0.47916671999999999 0.33505568000000002 0.50000005999999997 0.33505559000000001 0.52083336999999996 0.33505559000000001 0.54166669000000001 0.33505568000000002 0.5625 0.33505559000000001 0.58333330999999999 0.33505559000000001 0.60416663000000004 0.33505568000000002 0.62499994000000003 0.33505559000000001 0.63531649000000001 0.078125 0.65625 0.15625 0.62499994000000003 0.3125 0.60416663000000004 0.3125 0.375 0.3125 0.39583333999999998 0.3125 0.578125 0.020933539000000001 0.41666669000000001 0.3125 0.5 0 0.43750002999999998 0.3125 0.421875 0.020933539000000001 0.45833337000000002 0.3125 0.36468353999999997"
+		+ " 0.078125 0.47916671999999999 0.3125 0.34375 0.15625 0.50000005999999997 0.3125 0.36468353999999997 0.234375 0.52083336999999996 0.3125 0.421875 0.29156646000000003 0.54166669000000001 0.3125 0.5 0.3125 0.5625 0.3125 0.578125 0.29156646000000003 0.58333330999999999 0.3125 0.63531649000000001 0.234375 0.50000005999999997 0.3125 0.52083336999999996 0.3125 0.52083336999999996 0.68555014999999997 0.50000005999999997 0.68555014999999997 0.54166669000000001 0.3125 0.5625 0.3125 0.56250005999999997 0.68555014999999997 0.54166669000000001 0.68555014999999997 0.58333330999999999 0.3125 0.60416663000000004 0.3125 0.60416663000000004 0.68555014999999997 0.58333330999999999 0.68555014999999997 0.5 0.15000000999999999 0.47916671999999999 0.3125 0.34479091000000001 0.83966649000000004 0.5 0.83221531000000004 0.47916671999999999 0.3125 0.47916674999999997 0.68555014999999997 0.65625 0.15625 0.60456699000000003 0.68434912000000003 0.5 0.83259039999999995 0.35045809 0.83845323000000005 0.36929848999999998 0.76828945000000004 "
+		+ "0.42453944999999998 0.71283531 0.5 0.69282889000000003 0.57546054999999996 0.71283525000000003 0.63070154 0.76828945000000004 0.64954190999999994 0.83845329000000002 0.34375 0.84375 0.36468353999999997 0.765625 0.47916671999999999 0.68843984999999996 0.50000005999999997 0.68843984999999996 0.421875 0.70843350999999999 0.52083336999999996 0.68843984999999996 0.5 0.6875 0.54166669000000001 0.68843984999999996 0.578125 0.70843350999999999 0.5625 0.68843984999999996 0.63531649000000001 0.765625 0.58333330999999999 0.68843984999999996 0.65625 0.84375 0.60416663000000004 0.68843984999999996 0.5 0.83749998000000003 0.60416663000000004 0.68843984999999996"
+		)
 		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
 		"intermediateObject" " 1"
 		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
 		"uvSet[0].uvSetName" " -type \"string\" \"map1\""
 		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints" " -s 164"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[0]" " -type \"float2\" 0.36929848999999998 0.76828945000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[1]" " -type \"float2\" 0.42453944999999998 0.71283531"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[2]" " -type \"float2\" 0.5 0.69282889000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[3]" " -type \"float2\" 0.57546054999999996 0.71283525000000003"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[4]" " -type \"float2\" 0.5 0.83259039999999995"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[5]" " -type \"float2\" 0.63070154 0.76828945000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[6]" " -type \"float2\" 0.64954190999999994 0.83845329000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[7]" " -type \"float2\" 0.60416663000000004 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[8]" " -type \"float2\" 0.34479091000000001 0.83966649000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[9]" " -type \"float2\" 0.35045809 0.83845323000000005"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[10]" " -type \"float2\" 0.34375 0.84375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[11]" " -type \"float2\" 0.47916671999999999 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[12]" " -type \"float2\" 0.50000005999999997 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[13]" " -type \"float2\" 0.36468353999999997 0.765625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[14]" " -type \"float2\" 0.52083336999999996 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[15]" " -type \"float2\" 0.421875 0.70843350999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[16]" " -type \"float2\" 0.54166669000000001 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[17]" " -type \"float2\" 0.5 0.6875"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[18]" " -type \"float2\" 0.5625 0.68843984999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[19]" " -type \"float2\" 0.578125 0.70843350999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[20]" " -type \"float2\" 0.58333330999999999 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[21]" " -type \"float2\" 0.63531649000000001 0.765625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[22]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[23]" " -type \"float2\" 0.65625 0.84375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[24]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[25]" " -type \"float2\" 0.5 0.83749998000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[26]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[27]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[28]" " -type \"float2\" 0.65560227999999998 0.16286854000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[29]" " -type \"float2\" 0.59822887000000002 0.30581859"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[30]" " -type \"float2\" 0.52083336999999996 0.31717541999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[31]" " -type \"float2\" 0.50000005999999997 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[32]" " -type \"float2\" 0.5625 0.31717503000000002"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[33]" " -type \"float2\" 0.54166669000000001 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[34]" " -type \"float2\" 0.60416663000000004 0.31717541999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[35]" " -type \"float2\" 0.58333330999999999 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[36]" " -type \"float2\" 0.47748258999999998 0.31910691000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[37]" " -type \"float2\" 0.5 0.83221531000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[38]" " -type \"float2\" 0.50000005999999997 0.31717503000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[39]" " -type \"float2\" 0.47916674999999997 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[40]" " -type \"float2\" 0.54166669000000001 0.31717503000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[41]" " -type \"float2\" 0.52083336999999996 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[42]" " -type \"float2\" 0.58333330999999999 0.31717541999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[43]" " -type \"float2\" 0.56250005999999997 0.68555014999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[44]" " -type \"float2\" 0.5 0.15855005"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[45]" " -type \"float2\" 0.60456699000000003 0.68434912000000003"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[46]" " -type \"float2\" 0.51997674000000005 0.30581852999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[47]" " -type \"float2\" 0.50191081000000004 0.15745223999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[48]" " -type \"float2\" 0.48167812999999998 0.30781533999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[49]" " -type \"float2\" 0.55993020999999998 0.30581852999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[50]" " -type \"float2\" 0.47916671999999999 0.31717503000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[51]" " -type \"float2\" 0.57990693999999998 0.30581852999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[52]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[53]" " -type \"float2\" 0.52083336999999996 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[54]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[55]" " -type \"float2\" 0.5625 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[56]" " -type \"float2\" 0.58333330999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[57]" " -type \"float2\" 0.60416663000000004 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[58]" " -type \"float2\" 0.65625 0.15625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[59]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[60]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[61]" " -type \"float2\" 0.5 0.15000000999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[62]" " -type \"float2\" 0.375 0.31474137000000002"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[63]" " -type \"float2\" 0.3958334 0.31474133999999998"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[64]" " -type \"float2\" 0.39583337000000002 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[65]" " -type \"float2\" 0.375 0.68619841000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[66]" " -type \"float2\" 0.41666669000000001 0.31474137000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[67]" " -type \"float2\" 0.41666669000000001 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[68]" " -type \"float2\" 0.4375 0.3147414"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[69]" " -type \"float2\" 0.4375 0.68619834999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[70]" " -type \"float2\" 0.45833337000000002 0.31474137000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[71]" " -type \"float2\" 0.45833337000000002 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[72]" " -type \"float2\" 0.47916671999999999 0.31474137000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[73]" " -type \"float2\" 0.47916671999999999 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[74]" " -type \"float2\" 0.5 0.3147414"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[75]" " -type \"float2\" 0.49999997000000002 0.68619834999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[76]" " -type \"float2\" 0.52083336999999996 0.31474137000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[77]" " -type \"float2\" 0.52083336999999996 0.68619817000000005"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[78]" " -type \"float2\" 0.54166674999999997 0.31474133999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[79]" " -type \"float2\" 0.54166669000000001 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[80]" " -type \"float2\" 0.5625 0.31474163999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[81]" " -type \"float2\" 0.5625 0.68619841000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[82]" " -type \"float2\" 0.58333336999999996 0.31474133999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[83]" " -type \"float2\" 0.58333343000000004 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[84]" " -type \"float2\" 0.60416663000000004 0.31474137000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[85]" " -type \"float2\" 0.60416669000000001 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[86]" " -type \"float2\" 0.62499994000000003 0.3147414"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[87]" " -type \"float2\" 0.62499994000000003 0.68619841000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[88]" " -type \"float2\" 0.57031321999999995 0.033839020999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[89]" " -type \"float2\" 0.62178617999999997 0.085311263999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[90]" " -type \"float2\" 0.5 0.15000000999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[91]" " -type \"float2\" 0.5 0.014998627"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[92]" " -type \"float2\" 0.42968677999999999 0.033839020999999997"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[93]" " -type \"float2\" 0.37821381999999998 0.085311263999999998"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[94]" " -type \"float2\" 0.35937342 0.15562506000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[95]" " -type \"float2\" 0.37821385000000002 0.22593833999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[96]" " -type \"float2\" 0.42968677999999999 0.27741110000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[97]" " -type \"float2\" 0.5 0.29625148000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[98]" " -type \"float2\" 0.57031321999999995 0.27741110000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[99]" " -type \"float2\" 0.62178617999999997 0.22593833999999999"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[100]" " -type \"float2\" 0.64062655000000002 0.15562506000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[101]" " -type \"float2\" 0.62178617999999997 0.91343892000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[102]" " -type \"float2\" 0.57031321999999995 0.96491110000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[103]" " -type \"float2\" 0.5 0.83749998000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[104]" " -type \"float2\" 0.5 0.98375148000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[105]" " -type \"float2\" 0.42968677999999999 0.96491110000000002"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[106]" " -type \"float2\" 0.37821381999999998 0.91343892000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[107]" " -type \"float2\" 0.35937342 0.84312505000000004"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[108]" " -type \"float2\" 0.37821385000000002 0.77281177000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[109]" " -type \"float2\" 0.42968677999999999 0.72133899000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[110]" " -type \"float2\" 0.5 0.70249861000000002"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[111]" " -type \"float2\" 0.57031321999999995 0.72133899000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[112]" " -type \"float2\" 0.62178617999999997 0.77281177000000001"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[113]" " -type \"float2\" 0.64062655000000002 0.84312505000000004"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[114]" " -type \"float2\" 0.375 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[115]" " -type \"float2\" 0.39583333999999998 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[116]" " -type \"float2\" 0.63531649000000001 0.078125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[117]" " -type \"float2\" 0.578125 0.020933539000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[118]" " -type \"float2\" 0.41666669000000001 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[119]" " -type \"float2\" 0.5 0"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[120]" " -type \"float2\" 0.43750002999999998 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[121]" " -type \"float2\" 0.421875 0.020933539000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[122]" " -type \"float2\" 0.45833337000000002 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[123]" " -type \"float2\" 0.36468353999999997 0.078125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[124]" " -type \"float2\" 0.47916671999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[125]" " -type \"float2\" 0.34375 0.15625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[126]" " -type \"float2\" 0.50000005999999997 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[127]" " -type \"float2\" 0.36468353999999997 0.234375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[128]" " -type \"float2\" 0.52083336999999996 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[129]" " -type \"float2\" 0.421875 0.29156646000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[130]" " -type \"float2\" 0.54166669000000001 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[131]" " -type \"float2\" 0.5 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[132]" " -type \"float2\" 0.5625 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[133]" " -type \"float2\" 0.578125 0.29156646000000003"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[134]" " -type \"float2\" 0.58333330999999999 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[135]" " -type \"float2\" 0.63531649000000001 0.234375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[136]" " -type \"float2\" 0.60416663000000004 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[137]" " -type \"float2\" 0.65625 0.15625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[138]" " -type \"float2\" 0.62499994000000003 0.3125"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[139]" " -type \"float2\" 0.62499994000000003 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[140]" " -type \"float2\" 0.60416663000000004 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[141]" " -type \"float2\" 0.63531649000000001 0.921875"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[142]" " -type \"float2\" 0.65625 0.84375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[143]" " -type \"float2\" 0.578125 0.97906649000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[144]" " -type \"float2\" 0.375 0.68843984999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[145]" " -type \"float2\" 0.39583333999999998 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[146]" " -type \"float2\" 0.5 1"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[147]" " -type \"float2\" 0.41666669000000001 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[148]" " -type \"float2\" 0.421875 0.97906649000000001"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[149]" " -type \"float2\" 0.43750002999999998 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[150]" " -type \"float2\" 0.36468353999999997 0.921875"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[151]" " -type \"float2\" 0.45833337000000002 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[152]" " -type \"float2\" 0.34375 0.84375"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[153]" " -type \"float2\" 0.47916671999999999 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[154]" " -type \"float2\" 0.36468353999999997 0.765625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[155]" " -type \"float2\" 0.50000005999999997 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[156]" " -type \"float2\" 0.421875 0.70843350999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[157]" " -type \"float2\" 0.52083336999999996 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[158]" " -type \"float2\" 0.5 0.6875"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[159]" " -type \"float2\" 0.54166669000000001 0.68843984999999996"
-		
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[160]" " -type \"float2\" 0.578125 0.70843350999999999"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[161]" " -type \"float2\" 0.5625 0.68843984999999996"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[162]" " -type \"float2\" 0.63531649000000001 0.765625"
-		2 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape" 
-		"uvSet[0].uvSetPoints[163]" " -type \"float2\" 0.58333330999999999 0.68843984999999996"
-		
-		2 "lamp_model:geo_layer" "displayType" " 2"
+		"uvst[0].uvsp[0:163]" (" -s 164 -type \"float2\" 0.36929848999999998 0.76828945000000004 0.42453944999999998 0.71283531 0.5 0.69282889000000003 0.57546054999999996 0.71283525000000003 0.5 0.83259039999999995 0.63070154 0.76828945000000004 0.64954190999999994 0.83845329000000002 0.60416663000000004 0.68555014999999997 0.34479091000000001 0.83966649000000004 0.35045809 0.83845323000000005 0.34375 0.84375 0.47916671999999999 0.68843984999999996 0.50000005999999997 0.68843984999999996 0.36468353999999997 0.765625 0.52083336999999996 0.68843984999999996 0.421875 0.70843350999999999 0.54166669000000001 0.68843984999999996 0.5 0.6875 0.5625 0.68843984999999996 0.578125 0.70843350999999999 0.58333330999999999 0.68843984999999996 0.63531649000000001 0.765625 0.60416663000000004 0.68843984999999996 0.65625 0.84375 0.60416663000000004 0.68843984999999996 0.5 0.83749998000000003 0.50000005999999997 0.3125 0.54166669000000001 0.3125 0.65560227999999998 0.16286854000000001 0.59822887000000002 0.30581859 0.52083336999999996 0.31717541999999999 0.500"
+		+ "00005999999997 0.68555014999999997 0.5625 0.31717503000000002 0.54166669000000001 0.68555014999999997 0.60416663000000004 0.31717541999999999 0.58333330999999999 0.68555014999999997 0.47748258999999998 0.31910691000000002 0.5 0.83221531000000004 0.50000005999999997 0.31717503000000002 0.47916674999999997 0.68555014999999997 0.54166669000000001 0.31717503000000002 0.52083336999999996 0.68555014999999997 0.58333330999999999 0.31717541999999999 0.56250005999999997 0.68555014999999997 0.5 0.15855005 0.60456699000000003 0.68434912000000003 0.51997674000000005 0.30581852999999998 0.50191081000000004 0.15745223999999999 0.48167812999999998 0.30781533999999999 0.55993020999999998 0.30581852999999998 0.47916671999999999 0.31717503000000002 0.57990693999999998 0.30581852999999998 0.50000005999999997 0.3125 0.52083336999999996 0.3125 0.54166669000000001 0.3125 0.5625 0.3125 0.58333330999999999 0.3125 0.60416663000000004 0.3125 0.65625 0.15625 0.47916671999999999 0.3125 0.47916671999999999 0.3125 0.5 0.15000000999999999 "
+		+ "0.375 0.31474137000000002 0.3958334 0.31474133999999998 0.39583337000000002 0.68619841000000004 0.375 0.68619841000000004 0.41666669000000001 0.31474137000000002 0.41666669000000001 0.68619841000000004 0.4375 0.3147414 0.4375 0.68619834999999996 0.45833337000000002 0.31474137000000002 0.45833337000000002 0.68619841000000004 0.47916671999999999 0.31474137000000002 0.47916671999999999 0.68619841000000004 0.5 0.3147414 0.49999997000000002 0.68619834999999996 0.52083336999999996 0.31474137000000002 0.52083336999999996 0.68619817000000005 0.54166674999999997 0.31474133999999998 0.54166669000000001 0.68619841000000004 0.5625 0.31474163999999999 0.5625 0.68619841000000004 0.58333336999999996 0.31474133999999998 0.58333343000000004 0.68619841000000004 0.60416663000000004 0.31474137000000002 0.60416669000000001 0.68619841000000004 0.62499994000000003 0.3147414 0.62499994000000003 0.68619841000000004 0.57031321999999995 0.033839020999999997 0.62178617999999997 0.085311263999999998 0.5 0.15000000999999999 0.5 0.01499862"
+		+ "7 0.42968677999999999 0.033839020999999997 0.37821381999999998 0.085311263999999998 0.35937342 0.15562506000000001 0.37821385000000002 0.22593833999999999 0.42968677999999999 0.27741110000000002 0.5 0.29625148000000001 0.57031321999999995 0.27741110000000002 0.62178617999999997 0.22593833999999999 0.64062655000000002 0.15562506000000001 0.62178617999999997 0.91343892000000004 0.57031321999999995 0.96491110000000002 0.5 0.83749998000000003 0.5 0.98375148000000001 0.42968677999999999 0.96491110000000002 0.37821381999999998 0.91343892000000004 0.35937342 0.84312505000000004 0.37821385000000002 0.77281177000000001 0.42968677999999999 0.72133899000000001 0.5 0.70249861000000002 0.57031321999999995 0.72133899000000001 0.62178617999999997 0.77281177000000001 0.64062655000000002 0.84312505000000004 0.375 0.3125 0.39583333999999998 0.3125 0.63531649000000001 0.078125 0.578125 0.020933539000000001 0.41666669000000001 0.3125 0.5 0 0.43750002999999998 0.3125 0.421875 0.020933539000000001 0.45833337000000002 0.3125 0.3646"
+		+ "8353999999997 0.078125 0.47916671999999999 0.3125 0.34375 0.15625 0.50000005999999997 0.3125 0.36468353999999997 0.234375 0.52083336999999996 0.3125 0.421875 0.29156646000000003 0.54166669000000001 0.3125 0.5 0.3125 0.5625 0.3125 0.578125 0.29156646000000003 0.58333330999999999 0.3125 0.63531649000000001 0.234375 0.60416663000000004 0.3125 0.65625 0.15625 0.62499994000000003 0.3125 0.62499994000000003 0.68843984999999996 0.60416663000000004 0.68843984999999996 0.63531649000000001 0.921875 0.65625 0.84375 0.578125 0.97906649000000001 0.375 0.68843984999999996 0.39583333999999998 0.68843984999999996 0.5 1 0.41666669000000001 0.68843984999999996 0.421875 0.97906649000000001 0.43750002999999998 0.68843984999999996 0.36468353999999997 0.921875 0.45833337000000002 0.68843984999999996 0.34375 0.84375 0.47916671999999999 0.68843984999999996 0.36468353999999997 0.765625 0.50000005999999997 0.68843984999999996 0.421875 0.70843350999999999 0.52083336999999996 0.68843984999999996 0.5 0.6875 0.54166669000000001 0.68843984"
+		+ "999999996 0.578125 0.70843350999999999 0.5625 0.68843984999999996 0.63531649000000001 0.765625 0.58333330999999999 0.68843984999999996"
+		)
+		2 "lamp_model:geo_layer" "displayType" " 0"
 		2 "lamp_model:groupParts1" "groupId" " 1"
 		2 "lamp_model:groupParts4" "groupId" " 2"
-		3 "lamp_model:groupId27.message" ":initialShadingGroup.groupNodes" "-na"
 		3 "lamp_model:groupId27.groupId" "lamp_model:groupParts4.groupId" ""
 		3 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShapeOrig.worldMesh" 
 		"lamp_model:groupParts4.inputGeometry" ""
-		3 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0]" 
-		":initialShadingGroup.dagSetMembers" "-na"
-		3 "lamp_model:groupId24.groupId" "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0].objectGroupId" 
-		""
-		3 ":initialShadingGroup.memberWireframeColor" "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0].objectGrpColor" 
-		""
-		3 "lamp_model:groupParts1.outputGeometry" "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.inMesh" 
-		""
 		3 "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.instObjGroups.objectGroups[0]" 
 		":initialShadingGroup.dagSetMembers" "-na"
 		3 "lamp_model:groupId27.groupId" "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.instObjGroups.objectGroups[0].objectGroupId" 
@@ -2905,7 +1908,16 @@ createNode reference -n "lamp_modelRN";
 		""
 		3 "lamp_model:groupParts4.outputGeometry" "|Lamp_Rig|lamp_model:Geometry|lamp_model:lower_arm_geo|lamp_model:lower_arm_geoShape.inMesh" 
 		""
+		3 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0]" 
+		":initialShadingGroup.dagSetMembers" "-na"
+		3 "lamp_model:groupId24.groupId" "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0].objectGroupId" 
+		""
+		3 ":initialShadingGroup.memberWireframeColor" "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.instObjGroups.objectGroups[0].objectGrpColor" 
+		""
+		3 "lamp_model:groupParts1.outputGeometry" "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShape.inMesh" 
+		""
 		3 "lamp_model:groupId24.message" ":initialShadingGroup.groupNodes" "-na"
+		3 "lamp_model:groupId27.message" ":initialShadingGroup.groupNodes" "-na"
 		3 "lamp_model:groupId24.groupId" "lamp_model:groupParts1.groupId" ""
 		3 "|Lamp_Rig|lamp_model:Geometry|lamp_model:base_geo|lamp_model:base_geoShapeOrig.worldMesh" 
 		"lamp_model:groupParts1.inputGeometry" ""
@@ -2995,19 +2007,19 @@ createNode script -n "uiConfigurationScriptNode";
 	rename -uid "EBCE3AEC-42B2-F41E-B15E-5483AC699C61";
 	setAttr ".b" -type "string" (
 		"// Maya Mel UI Configuration File.\n//\n//  This script is machine generated.  Edit at your own risk.\n//\n//\n\nglobal string $gMainPane;\nif (`paneLayout -exists $gMainPane`) {\n\n\tglobal int $gUseScenePanelConfig;\n\tint    $useSceneConfig = $gUseScenePanelConfig;\n\tint    $menusOkayInPanels = `optionVar -q allowMenusInPanels`;\tint    $nVisPanes = `paneLayout -q -nvp $gMainPane`;\n\tint    $nPanes = 0;\n\tstring $editorName;\n\tstring $panelName;\n\tstring $itemFilterName;\n\tstring $panelConfig;\n\n\t//\n\t//  get current state of the UI\n\t//\n\tsceneUIReplacement -update $gMainPane;\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Top View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Top View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"top\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n"
-		+ "            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n"
+		+ "            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 16384\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n"
 		+ "            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n"
-		+ "            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 242\n            -height 322\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Side View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels  $panelName;\n"
-		+ "\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"side\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n"
+		+ "            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 556\n            -height 232\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Side View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Side View\")) -mbv $menusOkayInPanels  $panelName;\n"
+		+ "\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"side\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 16384\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n"
 		+ "            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n"
-		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 241\n            -height 322\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
+		+ "            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 556\n            -height 232\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n"
 		+ "\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Front View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Front View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"front\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n"
-		+ "            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n"
-		+ "            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 242\n            -height 322\n"
-		+ "            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"wireframe\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n"
-		+ "            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 32768\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n"
+		+ "            -textureDisplay \"modulate\" \n            -textureMaxSize 16384\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n"
+		+ "            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 556\n            -height 232\n"
+		+ "            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"modelPanel\" (localizedPanelLabel(\"Persp View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tmodelPanel -edit -l (localizedPanelLabel(\"Persp View\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        modelEditor -e \n            -camera \"persp\" \n            -useInteractiveMode 0\n            -displayLights \"default\" \n            -displayAppearance \"smoothShaded\" \n            -activeOnly 0\n            -ignorePanZoom 0\n            -wireframeOnShaded 0\n            -headsUpDisplay 1\n            -holdOuts 1\n            -selectionHiliteDisplay 1\n            -useDefaultMaterial 0\n            -bufferMode \"double\" \n            -twoSidedLighting 0\n            -backfaceCulling 0\n"
+		+ "            -xray 0\n            -jointXray 0\n            -activeComponentsXray 0\n            -displayTextures 0\n            -smoothWireframe 0\n            -lineWidth 1\n            -textureAnisotropic 0\n            -textureHilight 1\n            -textureSampling 2\n            -textureDisplay \"modulate\" \n            -textureMaxSize 16384\n            -fogging 0\n            -fogSource \"fragment\" \n            -fogMode \"linear\" \n            -fogStart 0\n            -fogEnd 100\n            -fogDensity 0.1\n            -fogColor 0.5 0.5 0.5 1 \n            -depthOfFieldPreview 1\n            -maxConstantTransparency 1\n            -rendererName \"vp2Renderer\" \n            -objectFilterShowInHUD 1\n            -isFiltered 0\n            -colorResolution 256 256 \n            -bumpResolution 512 512 \n            -textureCompression 0\n            -transparencyAlgorithm \"frontAndBackCull\" \n            -transpInShadows 0\n            -cullingOverride \"none\" \n            -lowQualityLighting 0\n            -maximumNumHardwareLights 1\n            -occlusionCulling 0\n"
 		+ "            -shadingModel 0\n            -useBaseRenderer 0\n            -useReducedRenderer 0\n            -smallObjectCulling 0\n            -smallObjectThreshold -1 \n            -interactiveDisableShadows 0\n            -interactiveBackFaceCull 0\n            -sortTransparent 1\n            -controllers 1\n            -nurbsCurves 1\n            -nurbsSurfaces 1\n            -polymeshes 1\n            -subdivSurfaces 1\n            -planes 1\n            -lights 1\n            -cameras 1\n            -controlVertices 1\n            -hulls 1\n            -grid 1\n            -imagePlane 1\n            -joints 1\n            -ikHandles 1\n            -deformers 1\n            -dynamics 1\n            -particleInstancers 1\n            -fluids 1\n            -hairSystems 1\n            -follicles 1\n            -nCloths 1\n            -nParticles 1\n            -nRigids 1\n            -dynamicConstraints 1\n            -locators 1\n            -manipulators 1\n            -pluginShapes 1\n            -dimensions 1\n            -handles 1\n            -pivots 1\n"
-		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 690\n            -height 338\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n"
+		+ "            -textures 1\n            -strokes 1\n            -motionTrails 1\n            -clipGhosts 1\n            -greasePencils 1\n            -shadows 0\n            -captureSequenceNumber -1\n            -width 1319\n            -height 508\n            -sceneRenderFilter 0\n            $editorName;\n        modelEditor -e -viewSelected 0 $editorName;\n        modelEditor -e \n            -pluginObjects \"gpuCacheDisplayFilter\" 1 \n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"ToggledOutliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\toutlinerPanel -edit -l (localizedPanelLabel(\"ToggledOutliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 1\n            -showReferenceMembers 1\n            -showAttributes 0\n"
 		+ "            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n            -autoSelectNewObjects 0\n            -doNotSelectNewObjects 0\n            -dropIsParent 1\n            -transmitFilters 0\n            -setFilter \"defaultSetFilter\" \n            -showSetMembers 1\n            -allowMultiSelection 1\n            -alwaysToggleSelect 0\n            -directSelect 0\n            -isSet 0\n            -isSetMember 0\n"
 		+ "            -displayMode \"DAG\" \n            -expandObjects 0\n            -setsIgnoreFilters 1\n            -containersIgnoreFilters 0\n            -editAttrName 0\n            -showAttrValues 0\n            -highlightSecondary 0\n            -showUVAttrsOnly 0\n            -showTextureNodesOnly 0\n            -attrAlphaOrder \"default\" \n            -animLayerFilterOptions \"allAffecting\" \n            -sortOrder \"none\" \n            -longNames 0\n            -niceNames 1\n            -showNamespace 1\n            -showPinIcons 0\n            -mapMotionTrails 0\n            -ignoreHiddenAttribute 0\n            -ignoreOutlinerColor 0\n            -renderFilterVisible 0\n            -renderFilterIndex 0\n            -selectionOrder \"chronological\" \n            -expandAttribute 0\n            $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"outlinerPanel\" (localizedPanelLabel(\"Outliner\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n"
 		+ "\t\toutlinerPanel -edit -l (localizedPanelLabel(\"Outliner\")) -mbv $menusOkayInPanels  $panelName;\n\t\t$editorName = $panelName;\n        outlinerEditor -e \n            -showShapes 0\n            -showAssignedMaterials 0\n            -showTimeEditor 1\n            -showReferenceNodes 0\n            -showReferenceMembers 0\n            -showAttributes 0\n            -showConnected 0\n            -showAnimCurvesOnly 0\n            -showMuteInfo 0\n            -organizeByLayer 1\n            -organizeByClip 1\n            -showAnimLayerWeight 1\n            -autoExpandLayers 1\n            -autoExpand 0\n            -showDagOnly 1\n            -showAssets 1\n            -showContainedOnly 1\n            -showPublishedAsConnected 0\n            -showParentContainers 0\n            -showContainerContents 1\n            -ignoreDagHierarchy 0\n            -expandConnections 0\n            -showUpstreamCurves 1\n            -showUnitlessCurves 1\n            -showCompounds 1\n            -showLeafs 1\n            -showNumericAttrsOnly 0\n            -highlightActive 1\n"
@@ -3022,16 +2034,16 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Trax Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = clipEditorNameFromPanel($panelName);\n            clipEditor -e \n                -displayKeys 0\n                -displayTangents 0\n                -displayActiveKeys 0\n                -displayActiveKeyTangents 0\n                -displayInfinities 0\n                -displayValues 0\n                -autoFit 0\n                -snapTime \"none\" \n                -snapValue \"none\" \n                -initialized 0\n                -manageSequencer 0 \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"sequenceEditorPanel\" (localizedPanelLabel(\"Camera Sequencer\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Camera Sequencer\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = sequenceEditorNameFromPanel($panelName);\n            clipEditor -e \n"
 		+ "                -displayKeys 0\n                -displayTangents 0\n                -displayActiveKeys 0\n                -displayActiveKeyTangents 0\n                -displayInfinities 0\n                -displayValues 0\n                -autoFit 0\n                -snapTime \"none\" \n                -snapValue \"none\" \n                -initialized 0\n                -manageSequencer 1 \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"hyperGraphPanel\" (localizedPanelLabel(\"Hypergraph Hierarchy\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypergraph Hierarchy\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"HyperGraphEd\");\n            hyperGraph -e \n                -graphLayoutStyle \"hierarchicalLayout\" \n                -orientation \"horiz\" \n                -mergeConnections 0\n                -zoom 1\n                -animateTransition 0\n"
 		+ "                -showRelationships 1\n                -showShapes 0\n                -showDeformers 0\n                -showExpressions 0\n                -showConstraints 0\n                -showConnectionFromSelected 0\n                -showConnectionToSelected 0\n                -showConstraintLabels 0\n                -showUnderworld 0\n                -showInvisible 0\n                -transitionFrames 1\n                -opaqueContainers 0\n                -freeform 0\n                -imagePosition 0 0 \n                -imageScale 1\n                -imageEnabled 0\n                -graphType \"DAG\" \n                -heatMapDisplay 0\n                -updateSelection 1\n                -updateNodeAdded 1\n                -useDrawOverrideColor 0\n                -limitGraphTraversal -1\n                -range 0 0 \n                -iconSize \"smallIcons\" \n                -showCachedConnections 0\n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"hyperShadePanel\" (localizedPanelLabel(\"Hypershade\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypershade\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"visorPanel\" (localizedPanelLabel(\"Visor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Visor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n"
-		+ "                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -highlightConnections 0\n                -copyConnectionsOnPaste 0\n                -connectionStyle \"bezier\" \n                -connectionMinSegment 0.03\n                -connectionOffset 0.03\n                -connectionRoundness 0.8\n                -connectionTension -100\n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n"
-		+ "                -extendToShapes 1\n                -activeTab 0\n                -editorMode \"default\" \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" != $panelName) {\n"
-		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"shapePanel\" (localizedPanelLabel(\"Shape Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tshapePanel -edit -l (localizedPanelLabel(\"Shape Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"posePanel\" (localizedPanelLabel(\"Pose Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tposePanel -edit -l (localizedPanelLabel(\"Pose Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n"
-		+ "\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"profilerPanel\" (localizedPanelLabel(\"Profiler Tool\")) `;\n"
-		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Hypershade\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"visorPanel\" (localizedPanelLabel(\"Visor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Visor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"createNodePanel\" (localizedPanelLabel(\"Create Node\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Create Node\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"polyTexturePlacementPanel\" (localizedPanelLabel(\"UV Editor\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"UV Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"renderWindowPanel\" (localizedPanelLabel(\"Render View\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Render View\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"shapePanel\" (localizedPanelLabel(\"Shape Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tshapePanel -edit -l (localizedPanelLabel(\"Shape Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextPanel \"posePanel\" (localizedPanelLabel(\"Pose Editor\")) `;\n\tif (\"\" != $panelName) {\n"
+		+ "\t\t$label = `panel -q -label $panelName`;\n\t\tposePanel -edit -l (localizedPanelLabel(\"Pose Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynRelEdPanel\" (localizedPanelLabel(\"Dynamic Relationships\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Dynamic Relationships\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"relationshipPanel\" (localizedPanelLabel(\"Relationship Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Relationship Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"referenceEditorPanel\" (localizedPanelLabel(\"Reference Editor\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Reference Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"componentEditorPanel\" (localizedPanelLabel(\"Component Editor\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Component Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"dynPaintScriptedPanelType\" (localizedPanelLabel(\"Paint Effects\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Paint Effects\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"scriptEditorPanel\" (localizedPanelLabel(\"Script Editor\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Script Editor\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"profilerPanel\" (localizedPanelLabel(\"Profiler Tool\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Profiler Tool\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"contentBrowserPanel\" (localizedPanelLabel(\"Content Browser\")) `;\n\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Content Browser\")) -mbv $menusOkayInPanels  $panelName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\t$panelName = `sceneUIReplacement -getNextScriptedPanel \"nodeEditorPanel\" (localizedPanelLabel(\"Node Editor\")) `;\n"
+		+ "\tif (\"\" != $panelName) {\n\t\t$label = `panel -q -label $panelName`;\n\t\tscriptedPanel -edit -l (localizedPanelLabel(\"Node Editor\")) -mbv $menusOkayInPanels  $panelName;\n\n\t\t\t$editorName = ($panelName+\"NodeEditorEd\");\n            nodeEditor -e \n                -allAttributes 0\n                -allNodes 0\n                -autoSizeNodes 1\n                -consistentNameSize 1\n                -createNodeCommand \"nodeEdCreateNodeCommand\" \n                -connectNodeOnCreation 0\n                -connectOnDrop 0\n                -highlightConnections 0\n                -copyConnectionsOnPaste 0\n                -connectionStyle \"bezier\" \n                -connectionMinSegment 0.03\n                -connectionOffset 0.03\n                -connectionRoundness 0.8\n                -connectionTension -100\n                -defaultPinnedState 0\n                -additiveGraphingMode 0\n                -settingsChangedCallback \"nodeEdSyncControls\" \n                -traversalDepthLimit -1\n                -keyPressCommand \"nodeEdKeyPressCommand\" \n"
+		+ "                -nodeTitleMode \"name\" \n                -gridSnap 0\n                -gridVisibility 1\n                -crosshairOnEdgeDragging 0\n                -popupMenuScript \"nodeEdBuildPanelMenus\" \n                -showNamespace 1\n                -showShapes 1\n                -showSGShapes 0\n                -showTransforms 1\n                -useAssets 1\n                -syncedSelection 1\n                -extendToShapes 1\n                -activeTab 0\n                -editorMode \"default\" \n                $editorName;\n\t\tif (!$useSceneConfig) {\n\t\t\tpanel -e -l $label $panelName;\n\t\t}\n\t}\n\n\n\tif ($useSceneConfig) {\n        string $configName = `getPanel -cwl (localizedPanelLabel(\"Current Layout\"))`;\n        if (\"\" != $configName) {\n\t\t\tpanelConfiguration -edit -label (localizedPanelLabel(\"Current Layout\")) \n\t\t\t\t-userCreated false\n\t\t\t\t-defaultImage \"vacantCell.xP:/\"\n\t\t\t\t-image \"\"\n\t\t\t\t-sc false\n\t\t\t\t-configString \"global string $gMainPane; paneLayout -e -cn \\\"single\\\" -ps 1 100 100 $gMainPane;\"\n\t\t\t\t-removeAllPanels\n\t\t\t\t-ap false\n"
 		+ "\t\t\t\t\t(localizedPanelLabel(\"Persp View\")) \n\t\t\t\t\t\"modelPanel\"\n"
-		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"wireframe\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 690\\n    -height 338\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
-		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"wireframe\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 32768\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 690\\n    -height 338\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"$panelName = `modelPanel -unParent -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels `;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1319\\n    -height 508\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
+		+ "\t\t\t\t\t\"modelPanel -edit -l (localizedPanelLabel(\\\"Persp View\\\")) -mbv $menusOkayInPanels  $panelName;\\n$editorName = $panelName;\\nmodelEditor -e \\n    -cam `findStartUpCamera persp` \\n    -useInteractiveMode 0\\n    -displayLights \\\"default\\\" \\n    -displayAppearance \\\"smoothShaded\\\" \\n    -activeOnly 0\\n    -ignorePanZoom 0\\n    -wireframeOnShaded 0\\n    -headsUpDisplay 1\\n    -holdOuts 1\\n    -selectionHiliteDisplay 1\\n    -useDefaultMaterial 0\\n    -bufferMode \\\"double\\\" \\n    -twoSidedLighting 0\\n    -backfaceCulling 0\\n    -xray 0\\n    -jointXray 0\\n    -activeComponentsXray 0\\n    -displayTextures 0\\n    -smoothWireframe 0\\n    -lineWidth 1\\n    -textureAnisotropic 0\\n    -textureHilight 1\\n    -textureSampling 2\\n    -textureDisplay \\\"modulate\\\" \\n    -textureMaxSize 16384\\n    -fogging 0\\n    -fogSource \\\"fragment\\\" \\n    -fogMode \\\"linear\\\" \\n    -fogStart 0\\n    -fogEnd 100\\n    -fogDensity 0.1\\n    -fogColor 0.5 0.5 0.5 1 \\n    -depthOfFieldPreview 1\\n    -maxConstantTransparency 1\\n    -rendererName \\\"vp2Renderer\\\" \\n    -objectFilterShowInHUD 1\\n    -isFiltered 0\\n    -colorResolution 256 256 \\n    -bumpResolution 512 512 \\n    -textureCompression 0\\n    -transparencyAlgorithm \\\"frontAndBackCull\\\" \\n    -transpInShadows 0\\n    -cullingOverride \\\"none\\\" \\n    -lowQualityLighting 0\\n    -maximumNumHardwareLights 1\\n    -occlusionCulling 0\\n    -shadingModel 0\\n    -useBaseRenderer 0\\n    -useReducedRenderer 0\\n    -smallObjectCulling 0\\n    -smallObjectThreshold -1 \\n    -interactiveDisableShadows 0\\n    -interactiveBackFaceCull 0\\n    -sortTransparent 1\\n    -controllers 1\\n    -nurbsCurves 1\\n    -nurbsSurfaces 1\\n    -polymeshes 1\\n    -subdivSurfaces 1\\n    -planes 1\\n    -lights 1\\n    -cameras 1\\n    -controlVertices 1\\n    -hulls 1\\n    -grid 1\\n    -imagePlane 1\\n    -joints 1\\n    -ikHandles 1\\n    -deformers 1\\n    -dynamics 1\\n    -particleInstancers 1\\n    -fluids 1\\n    -hairSystems 1\\n    -follicles 1\\n    -nCloths 1\\n    -nParticles 1\\n    -nRigids 1\\n    -dynamicConstraints 1\\n    -locators 1\\n    -manipulators 1\\n    -pluginShapes 1\\n    -dimensions 1\\n    -handles 1\\n    -pivots 1\\n    -textures 1\\n    -strokes 1\\n    -motionTrails 1\\n    -clipGhosts 1\\n    -greasePencils 1\\n    -shadows 0\\n    -captureSequenceNumber -1\\n    -width 1319\\n    -height 508\\n    -sceneRenderFilter 0\\n    $editorName;\\nmodelEditor -e -viewSelected 0 $editorName;\\nmodelEditor -e \\n    -pluginObjects \\\"gpuCacheDisplayFilter\\\" 1 \\n    $editorName\"\n"
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
@@ -3063,40 +2075,6 @@ createNode aiAOVDriver -s -n "defaultArnoldDisplayDriver";
 	setAttr ".ai_translator" -type "string" "maya";
 createNode reverse -n "reverse2";
 	rename -uid "59BF6855-46C0-584D-3B9E-4C9308FA3B78";
-createNode nodeGraphEditorInfo -n "MayaNodeEditorSavedTabsInfo";
-	rename -uid "9052D072-46F2-0DE8-B7D5-C088AD6A3FBD";
-	setAttr ".pee" yes;
-	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
-	setAttr ".tgi[0].vl" -type "double2" -1557.7915429687846 -510.33053868518158 ;
-	setAttr ".tgi[0].vh" -type "double2" -434.83867556371547 -70.914199265806545 ;
-	setAttr -s 9 ".tgi[0].ni";
-	setAttr ".tgi[0].ni[0].x" -344.29434204101563;
-	setAttr ".tgi[0].ni[0].y" -149.54441833496094;
-	setAttr ".tgi[0].ni[0].nvs" 18304;
-	setAttr ".tgi[0].ni[1].x" -98.598197937011719;
-	setAttr ".tgi[0].ni[1].y" -153.40470886230469;
-	setAttr ".tgi[0].ni[1].nvs" 18304;
-	setAttr ".tgi[0].ni[2].x" -790.02557373046875;
-	setAttr ".tgi[0].ni[2].y" -147.28311157226563;
-	setAttr ".tgi[0].ni[2].nvs" 18304;
-	setAttr ".tgi[0].ni[3].x" -558.4954833984375;
-	setAttr ".tgi[0].ni[3].y" -148.47358703613281;
-	setAttr ".tgi[0].ni[3].nvs" 18304;
-	setAttr ".tgi[0].ni[4].x" -1310.5308837890625;
-	setAttr ".tgi[0].ni[4].y" -78.699577331542969;
-	setAttr ".tgi[0].ni[4].nvs" 18304;
-	setAttr ".tgi[0].ni[5].x" 124.02085113525391;
-	setAttr ".tgi[0].ni[5].y" -156.97613525390625;
-	setAttr ".tgi[0].ni[5].nvs" 18304;
-	setAttr ".tgi[0].ni[6].x" -697.80474853515625;
-	setAttr ".tgi[0].ni[6].y" -347.27957153320313;
-	setAttr ".tgi[0].ni[6].nvs" 18306;
-	setAttr ".tgi[0].ni[7].x" -476.37615966796875;
-	setAttr ".tgi[0].ni[7].y" -347.27957153320313;
-	setAttr ".tgi[0].ni[7].nvs" 18306;
-	setAttr ".tgi[0].ni[8].x" -1033.3306884765625;
-	setAttr ".tgi[0].ni[8].y" -258.14285278320313;
-	setAttr ".tgi[0].ni[8].nvs" 18305;
 createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
 	rename -uid "F5D4B194-40BC-0B5D-5E64-40A0A781337F";
 	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
@@ -3105,6 +2083,40 @@ createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
 	setAttr ".tgi[0].ni[0].x" -262.85714721679688;
 	setAttr ".tgi[0].ni[0].y" 65.714286804199219;
 	setAttr ".tgi[0].ni[0].nvs" 1923;
+createNode nodeGraphEditorInfo -n "MayaNodeEditorSavedTabsInfo";
+	rename -uid "A6B0CAAA-4571-DB9A-BB88-808A1857C680";
+	setAttr ".pee" yes;
+	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
+	setAttr ".tgi[0].vl" -type "double2" -1336.107533520008 -890.67237236546919 ;
+	setAttr ".tgi[0].vh" -type "double2" 10171.582194520583 148.21628363819531 ;
+	setAttr -s 9 ".tgi[0].ni";
+	setAttr ".tgi[0].ni[0].x" -196.99153137207031;
+	setAttr ".tgi[0].ni[0].y" 227.89689636230469;
+	setAttr ".tgi[0].ni[0].nvs" 18304;
+	setAttr ".tgi[0].ni[1].x" -440.29666137695313;
+	setAttr ".tgi[0].ni[1].y" 117.03714752197266;
+	setAttr ".tgi[0].ni[1].nvs" 18305;
+	setAttr ".tgi[0].ni[2].x" 717.05487060546875;
+	setAttr ".tgi[0].ni[2].y" 218.20387268066406;
+	setAttr ".tgi[0].ni[2].nvs" 18304;
+	setAttr ".tgi[0].ni[3].x" 34.538551330566406;
+	setAttr ".tgi[0].ni[3].y" 226.7064208984375;
+	setAttr ".tgi[0].ni[3].nvs" 18304;
+	setAttr ".tgi[0].ni[4].x" -717.496826171875;
+	setAttr ".tgi[0].ni[4].y" 296.48043823242188;
+	setAttr ".tgi[0].ni[4].nvs" 18304;
+	setAttr ".tgi[0].ni[5].x" 248.73970031738281;
+	setAttr ".tgi[0].ni[5].y" 225.63558959960938;
+	setAttr ".tgi[0].ni[5].nvs" 18304;
+	setAttr ".tgi[0].ni[6].x" -124.85757446289063;
+	setAttr ".tgi[0].ni[6].y" 103.94355010986328;
+	setAttr ".tgi[0].ni[6].nvs" 18306;
+	setAttr ".tgi[0].ni[7].x" 494.43585205078125;
+	setAttr ".tgi[0].ni[7].y" 221.77529907226563;
+	setAttr ".tgi[0].ni[7].nvs" 18304;
+	setAttr ".tgi[0].ni[8].x" 80.788482666015625;
+	setAttr ".tgi[0].ni[8].y" 103.94355010986328;
+	setAttr ".tgi[0].ni[8].nvs" 18306;
 select -ne :time1;
 	setAttr ".o" 1;
 	setAttr ".unw" 1;
@@ -3567,27 +2579,27 @@ connectAttr "FK_base_jnt_parentConstraint1.ctz" "FK_base_jnt.tz";
 connectAttr "FK_base_jnt_parentConstraint1.crx" "FK_base_jnt.rx";
 connectAttr "FK_base_jnt_parentConstraint1.cry" "FK_base_jnt.ry";
 connectAttr "FK_base_jnt_parentConstraint1.crz" "FK_base_jnt.rz";
-connectAttr "FK_base_jnt.s" "FK_Lower_Arm_Jnt.is";
 connectAttr "FK_Lower_Arm_Jnt_parentConstraint1.ctx" "FK_Lower_Arm_Jnt.tx";
 connectAttr "FK_Lower_Arm_Jnt_parentConstraint1.cty" "FK_Lower_Arm_Jnt.ty";
 connectAttr "FK_Lower_Arm_Jnt_parentConstraint1.ctz" "FK_Lower_Arm_Jnt.tz";
 connectAttr "FK_Lower_Arm_Jnt_parentConstraint1.crx" "FK_Lower_Arm_Jnt.rx";
 connectAttr "FK_Lower_Arm_Jnt_parentConstraint1.cry" "FK_Lower_Arm_Jnt.ry";
 connectAttr "FK_Lower_Arm_Jnt_parentConstraint1.crz" "FK_Lower_Arm_Jnt.rz";
-connectAttr "FK_Lower_Arm_Jnt.s" "FK_Upper_Arm_Jnt.is";
+connectAttr "FK_base_jnt.s" "FK_Lower_Arm_Jnt.is";
 connectAttr "FK_Upper_Arm_Jnt_parentConstraint1.ctx" "FK_Upper_Arm_Jnt.tx";
 connectAttr "FK_Upper_Arm_Jnt_parentConstraint1.cty" "FK_Upper_Arm_Jnt.ty";
 connectAttr "FK_Upper_Arm_Jnt_parentConstraint1.ctz" "FK_Upper_Arm_Jnt.tz";
 connectAttr "FK_Upper_Arm_Jnt_parentConstraint1.crx" "FK_Upper_Arm_Jnt.rx";
 connectAttr "FK_Upper_Arm_Jnt_parentConstraint1.cry" "FK_Upper_Arm_Jnt.ry";
 connectAttr "FK_Upper_Arm_Jnt_parentConstraint1.crz" "FK_Upper_Arm_Jnt.rz";
-connectAttr "FK_Upper_Arm_Jnt.s" "FK_Head_Jnt.is";
+connectAttr "FK_Lower_Arm_Jnt.s" "FK_Upper_Arm_Jnt.is";
 connectAttr "FK_Head_Jnt_parentConstraint1.ctx" "FK_Head_Jnt.tx";
 connectAttr "FK_Head_Jnt_parentConstraint1.cty" "FK_Head_Jnt.ty";
 connectAttr "FK_Head_Jnt_parentConstraint1.ctz" "FK_Head_Jnt.tz";
 connectAttr "FK_Head_Jnt_parentConstraint1.crx" "FK_Head_Jnt.rx";
 connectAttr "FK_Head_Jnt_parentConstraint1.cry" "FK_Head_Jnt.ry";
 connectAttr "FK_Head_Jnt_parentConstraint1.crz" "FK_Head_Jnt.rz";
+connectAttr "FK_Upper_Arm_Jnt.s" "FK_Head_Jnt.is";
 connectAttr "FK_Head_Jnt.s" "FK_Head_Rotate_Jnt.is";
 connectAttr "FK_Head_Jnt.ro" "FK_Head_Jnt_parentConstraint1.cro";
 connectAttr "FK_Head_Jnt.pim" "FK_Head_Jnt_parentConstraint1.cpim";
@@ -3709,9 +2721,6 @@ connectAttr "RK_Upper_Arm_Jnt.ssc" "upper_arm_geo_parentConstraint1.tg[0].tsc";
 connectAttr "RK_Upper_Arm_Jnt.is" "upper_arm_geo_parentConstraint1.tg[0].tis";
 connectAttr "upper_arm_geo_parentConstraint1.w0" "upper_arm_geo_parentConstraint1.tg[0].tw"
 		;
-connectAttr "groupId8.id" "lower_arm_geoShapeDeformed.iog.og[2].gid";
-connectAttr ":initialShadingGroup.mwc" "lower_arm_geoShapeDeformed.iog.og[2].gco"
-		;
 connectAttr "RK_Lower_Arm_Jnt.t" "lower_arm_geo_parentConstraint1.tg[0].tt";
 connectAttr "RK_Lower_Arm_Jnt.rp" "lower_arm_geo_parentConstraint1.tg[0].trp";
 connectAttr "RK_Lower_Arm_Jnt.rpt" "lower_arm_geo_parentConstraint1.tg[0].trt";
@@ -3724,8 +2733,9 @@ connectAttr "RK_Lower_Arm_Jnt.ssc" "lower_arm_geo_parentConstraint1.tg[0].tsc";
 connectAttr "RK_Lower_Arm_Jnt.is" "lower_arm_geo_parentConstraint1.tg[0].tis";
 connectAttr "lower_arm_geo_parentConstraint1.w0" "lower_arm_geo_parentConstraint1.tg[0].tw"
 		;
-connectAttr "groupId7.id" "base_geoShapeDeformed.iog.og[2].gid";
-connectAttr ":initialShadingGroup.mwc" "base_geoShapeDeformed.iog.og[2].gco";
+connectAttr "groupId8.id" "lower_arm_geoShapeDeformed.iog.og[2].gid";
+connectAttr ":initialShadingGroup.mwc" "lower_arm_geoShapeDeformed.iog.og[2].gco"
+		;
 connectAttr "RK_base_jnt.t" "base_geo_parentConstraint1.tg[0].tt";
 connectAttr "RK_base_jnt.rp" "base_geo_parentConstraint1.tg[0].trp";
 connectAttr "RK_base_jnt.rpt" "base_geo_parentConstraint1.tg[0].trt";
@@ -3738,6 +2748,8 @@ connectAttr "RK_base_jnt.ssc" "base_geo_parentConstraint1.tg[0].tsc";
 connectAttr "RK_base_jnt.is" "base_geo_parentConstraint1.tg[0].tis";
 connectAttr "base_geo_parentConstraint1.w0" "base_geo_parentConstraint1.tg[0].tw"
 		;
+connectAttr "groupId7.id" "base_geoShapeDeformed.iog.og[2].gid";
+connectAttr ":initialShadingGroup.mwc" "base_geoShapeDeformed.iog.og[2].gco";
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
 relationship "shadowLink" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
@@ -3751,22 +2763,22 @@ connectAttr ":defaultArnoldDisplayDriver.msg" ":defaultArnoldRenderOptions.drive
 connectAttr ":defaultArnoldFilter.msg" ":defaultArnoldRenderOptions.filt";
 connectAttr ":defaultArnoldDriver.msg" ":defaultArnoldRenderOptions.drvr";
 connectAttr "FK_IK_Switch.FK" "reverse2.ix";
-connectAttr "RK_Upper_Arm_Jnt_parentConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
+connectAttr "reverse2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
 		;
-connectAttr "RK_Lower_Arm_Jnt_parentConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
+connectAttr "RK_Head_Rotate_Jnt_parentConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
 		;
-connectAttr "RK_Head_Rotate_Jnt_parentConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[2].dn"
+connectAttr "reverse2.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[1].dn";
+connectAttr "RK_base_jnt_parentConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[2].dn"
 		;
 connectAttr "RK_Head_Jnt_parentConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[3].dn"
 		;
 connectAttr "FK_IK_Switch.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[4].dn";
-connectAttr "RK_base_jnt_parentConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[5].dn"
+connectAttr "RK_Upper_Arm_Jnt_parentConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[5].dn"
 		;
 connectAttr "FK_Rig.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[6].dn";
-connectAttr "IK_Rig.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[7].dn";
-connectAttr "reverse2.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[8].dn";
-connectAttr "reverse2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
+connectAttr "RK_Lower_Arm_Jnt_parentConstraint1.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[7].dn"
 		;
+connectAttr "IK_Rig.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[8].dn";
 connectAttr "reverse1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "condition1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "reverse2.msg" ":defaultRenderUtilityList1.u" -na;
