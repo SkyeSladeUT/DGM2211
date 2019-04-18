@@ -1,0 +1,594 @@
+using System.Collections;
+using System.Collections.Generic;
+using JetBrains.Annotations;
+using UnityEngine;
+
+public class DogAnimationSpeedUp : MonoBehaviour {
+
+	public Animator Anim;
+	public FloatData Speed, SpeedIncrease;
+	private float currentSpeed;
+	//public float speedup;
+
+	private void Start()
+	{
+		currentSpeed = Speed.value;
+	}
+
+	public void Initialize()
+	{
+		currentSpeed = Speed.value;
+		Anim.speed = currentSpeed;
+	}
+
+	public void SpeedUp()
+	{
+		currentSpeed += SpeedIncrease.value*Time.deltaTime*.25f;
+		Anim.speed = currentSpeed;
+	}
+}
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AnimationSpeedUp : MonoBehaviour
+{
+	public Animator Anim;
+	public FloatData Speed;
+
+	private void Start()
+	{
+		Anim.speed = Speed.value;
+	}
+
+	public void SpeedUp()
+	{
+		Anim.speed = Speed.value;
+	}
+	
+}
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DoubleTap : MonoBehaviour {
+
+	private int numtaps;
+	
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.A))
+		{
+			if (numtaps == 0)
+			{
+				StartCoroutine(Count());
+			}
+			numtaps++;
+		}
+
+		if (numtaps >= 2)
+		{
+			numtaps = 0;
+			print("DoubleTap");
+		}
+	}
+
+	IEnumerator Count()
+	{
+		yield return new WaitForSeconds(.25f);
+		numtaps = 0;
+	}
+}
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class ChargingDog : MonoBehaviour {
+
+	private Rigidbody rb;
+	private float currentSpeed, Gravity, _offsetTime;
+	public float  offset,  gravity;
+	public GameObject player;
+	private Vector3 movement;
+	private bool isAwake, right, charging, waking;
+	private bool inRange;
+	public FloatData DogSpeed, Offset, Seconds, SpeedIncrease, ChargeFrequency;
+	public GameObject CautionSymbolRight;
+	public GameObject CautionSymbolLeft;
+	private Quaternion rotation;
+	public Animator Anim;
+	private bool isDead;
+<<<<<<< Updated upstream
+	private bool isCharging;
+	public BoolData CatDead;
+=======
+	public UnityEvent SpeedUp, WakeUp;
+>>>>>>> Stashed changes
+
+	private void Start()
+	{
+		waking = false;
+		isCharging = false;
+		isDead = false;
+		isAwake = false;
+		inRange = false;
+		charging = false;
+		gameObject.tag = "Untagged";
+		CautionSymbolLeft.SetActive(false);
+		CautionSymbolRight.SetActive(false);
+		rb = GetComponent<Rigidbody>();
+		currentSpeed = 0;
+		rotation = transform.rotation;
+	}
+
+	private void Update()
+	{
+		if(CatDead.value && isCharging)
+			attackCat();
+		if (!isDead)
+		{
+			if (!charging)
+			{
+				if (transform.position.x < player.transform.position.x && !waking)
+				{
+					StartCoroutine(Wake());
+					Debug.Log("Move");
+					StartCoroutine(Move());
+				}
+				else if (transform.position.x < player.transform.position.x - offset && isAwake)
+				{
+					StartCoroutine(Right());
+					right = true;
+				}
+				else if (transform.position.x > player.transform.position.x + offset && isAwake)
+				{
+					StartCoroutine(Left());
+					right = false;
+				}
+			}
+
+			if (isAwake)
+			{
+				movement = rb.velocity;
+				movement.x = currentSpeed;
+				rb.velocity = movement;
+<<<<<<< Updated upstream
+				if (!CatDead.value)
+				{
+					if (currentSpeed < 0)
+						currentSpeed -= SpeedIncrease.value * Time.deltaTime;
+					else
+						currentSpeed += SpeedIncrease.value * Time.deltaTime;
+					if (_offsetTime > .1f)
+						_offsetTime -= .005f * Time.deltaTime;
+				}
+
+=======
+				SpeedUp.Invoke();
+				if (currentSpeed < 0)
+					currentSpeed -= SpeedIncrease.value * Time.deltaTime;
+				else
+					currentSpeed += SpeedIncrease.value * Time.deltaTime;
+>>>>>>> Stashed changes
+				if (gravity < 1f)
+					gravity += Time.deltaTime * Gravity;
+				movement = rb.velocity;
+				movement.y -= gravity;
+				rb.velocity = movement;
+			}
+		}
+		
+	}
+
+	private IEnumerator Wake()
+	{
+		waking = true;
+		_offsetTime = Offset.value;
+		isCharging = true;
+		Anim.SetTrigger("Wake");
+		WakeUp.Invoke();
+		yield return new WaitForSeconds(Seconds.value);
+		Anim.SetTrigger("Run");
+		currentSpeed = DogSpeed.value;
+		isAwake = true;
+		gameObject.tag = "Enemy";
+	}
+
+	private IEnumerator Right()
+	{
+		yield return  new WaitForSeconds(_offsetTime);
+		if (currentSpeed < 0)
+		{
+			currentSpeed *= -1;
+		}
+		rotation.y = 0;
+		transform.rotation = rotation;
+	}
+
+	private IEnumerator Left()
+	{
+		yield return new WaitForSeconds(_offsetTime);
+		if (currentSpeed > 0)
+		{
+			currentSpeed *= -1;
+		}
+		rotation.y = 180;
+		transform.rotation = rotation;
+	}
+
+	private IEnumerator Move()
+	{
+
+		while (isCharging)
+		{
+			yield return new WaitForSeconds(ChargeFrequency.value);
+			if (right)
+			{
+				CautionSymbolRight.SetActive(true);
+				yield return new WaitForSeconds(.5f);
+				charging = true;
+				currentSpeed += 20;
+				yield return new WaitForSeconds(.75f);
+				CautionSymbolRight.SetActive(false);
+				currentSpeed -= 20;
+				charging = false;
+			}
+			else
+			{
+				CautionSymbolLeft.SetActive(true);
+				yield return new WaitForSeconds(.5f);
+				charging = true;
+				currentSpeed -= 20;
+				yield return new WaitForSeconds(.75f);
+				CautionSymbolLeft.SetActive(false);
+				currentSpeed += 20;
+				charging = false;
+
+			}
+		}
+	}
+
+
+	private void OnCollisionStay(Collision other)
+	{
+		if (other.gameObject.layer == 9 || other.gameObject.layer == 12)
+		{
+			gravity = 0;
+		}
+	}
+	private void OnCollisionExit(Collision other)
+	{
+		gravity = 1;
+	}
+
+	public void StopMovement()
+	{
+		gameObject.tag = "Untagged";
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+		gameObject.layer = 0;
+		isDead = true;
+		rb.constraints = RigidbodyConstraints.FreezeRotation;
+		StopAllCoroutines();
+	}
+
+	public void attackCat()
+	{
+		charging = false;
+		isCharging = false;
+		_offsetTime = 0;
+		currentSpeed = 8;
+	}
+}
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class FollowDogMovement : MonoBehaviour {
+
+	private Rigidbody rb;
+	public float currentSpeed, Gravity, _offsetTime;
+	public float  offset, gravity;
+	public GameObject player;
+	private Vector3 movement;
+	private bool isAwake, inRange, isDead, isAttacking;
+	private Quaternion rotation;
+	public Animator Anim;
+	public FloatData Speed, Offset, Seconds, SpeedIncrease;
+<<<<<<< Updated upstream
+	public BoolData CatDead;
+=======
+	public UnityEvent SpeedUp, WakeUp;
+>>>>>>> Stashed changes
+
+	private void Start()
+	{
+		isAttacking = false;
+		isDead = false;
+		gameObject.tag = "Untagged";
+		rb = GetComponent<Rigidbody>();
+		currentSpeed = 0;
+		isAwake = false;
+		inRange = false;
+		rotation = transform.rotation;
+	}
+
+	private void Update()
+	{
+		if(CatDead.value && !isAttacking)
+			attackCat();
+		if (!isDead)
+		{
+			if (transform.position.x < player.transform.position.x && !isAwake)
+			{
+				StartCoroutine(Wake());
+			}
+			else if (transform.position.x < player.transform.position.x - offset && isAwake)
+			{
+				StartCoroutine(Right());
+			}
+			else if (transform.position.x > player.transform.position.x + offset && isAwake)
+			{
+				StartCoroutine(Left());
+			}
+
+			if (isAwake)
+			{
+				movement = rb.velocity;
+				movement.x = currentSpeed;
+				rb.velocity = movement;
+<<<<<<< Updated upstream
+				if (!CatDead.value)
+				{
+					if (currentSpeed < 0)
+						currentSpeed -= SpeedIncrease.value * Time.deltaTime;
+					else
+						currentSpeed += SpeedIncrease.value * Time.deltaTime;
+					if (_offsetTime > .1f)
+						_offsetTime -= .005f * Time.deltaTime;
+				}
+
+=======
+				SpeedUp.Invoke();
+				if (currentSpeed < 0)
+					currentSpeed -= SpeedIncrease.value * Time.deltaTime;
+				else
+					currentSpeed += SpeedIncrease.value * Time.deltaTime;
+>>>>>>> Stashed changes
+				if (gravity < 1f)
+					gravity += Time.deltaTime * Gravity;
+				movement = rb.velocity;
+				movement.y -= gravity;
+				rb.velocity = movement;
+			}
+		}
+		
+	}
+
+	private IEnumerator Wake()
+	{
+		_offsetTime = Offset.value;
+		Anim.SetTrigger("Wake");
+		WakeUp.Invoke();
+		yield return new WaitForSeconds(Seconds.value);
+		Anim.SetTrigger("Run");
+		currentSpeed = Speed.value;
+		isAwake = true;
+		gameObject.tag = "Enemy";
+	}
+
+	private IEnumerator Right()
+	{
+		yield return  new WaitForSeconds(_offsetTime);
+		if (currentSpeed < 0)
+		{
+			currentSpeed *= -1;
+		}
+		rotation.y = 0;
+		transform.rotation = rotation;
+	}
+
+	private IEnumerator Left()
+	{
+		yield return new WaitForSeconds(_offsetTime);
+		if (currentSpeed > 0)
+		{
+			currentSpeed *= -1;
+		}
+		rotation.y = 180;
+		transform.rotation = rotation;
+	}
+	
+	private void OnCollisionStay(Collision other)
+	{
+		if (other.gameObject.layer == 9|| other.gameObject.layer == 12)
+		{
+			gravity = 0;
+		}
+	}
+
+	private void OnCollisionExit(Collision other)
+	{
+		gravity = 1;
+	}
+
+	public void StopMovement()
+	{
+		gameObject.tag = "Untagged";
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+		gameObject.layer = 0;
+		isDead = true;
+		rb.constraints = RigidbodyConstraints.FreezeRotation;
+		StopAllCoroutines();
+	}
+	
+	public void attackCat()
+	{
+		isAttacking = true;
+		_offsetTime = 0;
+		currentSpeed = 8;
+	}
+}
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class JumpDog : MonoBehaviour {
+
+	private Rigidbody rb;
+	private float currentSpeed, _offsetTime;
+	public GameObject player;
+	private Vector3 movement, JumpMove;
+	private bool isAwake, CanJump, isDead, isAttacking;
+	private Quaternion rotation;
+	public float jumpspeed, gravity, Gravity, offset;
+	public Animator Anim;
+	public FloatData Speed, Offset, Seconds, SpeedIncrease;
+<<<<<<< Updated upstream
+	public BoolData CatDead;
+=======
+	public UnityEvent SpeedUp, WakeUp;
+>>>>>>> Stashed changes
+
+	private void Start()
+	{
+		isAttacking = false;
+		isDead = false;
+		gameObject.tag = "Untagged";
+		CanJump = true;
+		rb = GetComponent<Rigidbody>();
+		currentSpeed = 0;
+		isAwake = false;
+		rotation = transform.rotation;
+	}
+
+	private void Update()
+	{
+		if(CatDead.value && !isAttacking)
+			attackCat();
+		if (!isDead)
+		{
+			if (transform.position.x < player.transform.position.x && !isAwake)
+			{
+				StartCoroutine(Wake());
+			}
+			else if (transform.position.x < player.transform.position.x - offset && isAwake)
+			{
+				StartCoroutine(Right());
+			}
+			else if (transform.position.x > player.transform.position.x + offset && isAwake)
+			{
+				StartCoroutine(Left());
+			}
+
+			if (isAwake)
+			{
+				movement = rb.velocity;
+				movement.x = currentSpeed;
+				rb.velocity = movement;
+<<<<<<< Updated upstream
+				if (!CatDead.value)
+=======
+				SpeedUp.Invoke();
+				if (currentSpeed < 0)
+					currentSpeed -= SpeedIncrease.value * Time.deltaTime;
+				else
+					currentSpeed += SpeedIncrease.value * Time.deltaTime;
+				if (CanJump)
+>>>>>>> Stashed changes
+				{
+					if (currentSpeed < 0)
+						currentSpeed -= SpeedIncrease.value * Time.deltaTime;
+					else
+						currentSpeed += SpeedIncrease.value * Time.deltaTime;
+					if (_offsetTime > .1f)
+						_offsetTime -= .005f * Time.deltaTime;
+					if (CanJump)
+					{
+						movement = rb.velocity;
+						movement.y = jumpspeed;
+						rb.AddForce(movement, ForceMode.Impulse);
+						gravity = 0;
+						CanJump = false;
+					}
+				}
+
+				if (gravity < 1f)
+					gravity += Time.deltaTime * Gravity;
+				movement = rb.velocity;
+				movement.y -= gravity;
+				rb.velocity = movement;
+			}
+		}
+	}
+
+	private void OnCollisionStay(Collision other)
+	{
+		if (other.gameObject.layer == 9 || other.gameObject.layer == 12)
+		{
+			CanJump = true;
+			gravity = 0;
+		}
+	}
+
+	private IEnumerator Wake()
+	{
+		_offsetTime = Offset.value;
+		Anim.SetTrigger("Wake");
+		WakeUp.Invoke();
+		yield return new WaitForSeconds(Seconds.value);
+		Anim.SetTrigger("Run");
+		currentSpeed = Speed.value;
+		isAwake = true;
+		gameObject.tag = "Enemy";
+	}
+
+	private IEnumerator Right()
+	{
+		yield return  new WaitForSeconds(_offsetTime);
+		if (currentSpeed < 0)
+		{
+			currentSpeed *= -1;
+		}
+		rotation.y = 0;
+		transform.rotation = rotation;
+	}
+
+	private IEnumerator Left()
+	{
+		yield return new WaitForSeconds(_offsetTime);
+		if (currentSpeed > 0)
+		{
+			currentSpeed *= -1;
+		}
+		rotation.y = 180;
+		transform.rotation = rotation;
+	}
+	
+	public void StopMovement()
+	{
+		gameObject.tag = "Untagged";
+		rb.velocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+		gameObject.layer = 0;
+		isDead = true;
+		rb.constraints = RigidbodyConstraints.FreezeRotation;
+		StopAllCoroutines();
+	}
+	
+	public void attackCat()
+	{
+		_offsetTime = 0;
+		isAttacking = true;
+		currentSpeed = 8;
+	}
+}
